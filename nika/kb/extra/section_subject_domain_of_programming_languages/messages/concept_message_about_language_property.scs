@@ -1,0 +1,41 @@
+/* Общий класс для всех вопросов о свойстве конкретного языка программирования.
+   Правило классификации относит сообщение сразу к частному классу и к этому
+   общему: по отношению включения принадлежность сама не переносится, поэтому
+   вторая дуга принадлежности создаётся явно.
+   По этому классу срабатывает правило ответа третьего приоритета
+   lr_answer_about_unknown_language_property — когда нужных сведений в базе нет. */
+
+concept_message_about_language_property
+<- sc_node_class;
+=> nrel_main_idtf:
+    [сообщение о свойстве языка программирования]
+    (* <- lang_ru;; *);
+    [message about programming language property]
+    (* <- lang_en;; *);
+<= nrel_inclusion:
+    concept_atomic_message;
+=> nrel_inclusion:
+    concept_message_about_author;
+    concept_message_about_creation_year;
+    concept_message_about_implementation;
+    concept_message_about_standard;
+    concept_message_about_maintainer;
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (сообщение о свойстве языка программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Сообщение о свойстве языка программирования - атомарное сообщение, в котором назван язык программирования и запрошено значение одного из исследуемых отношений предметной области для этого языка.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_atomic_message;
+            concept_programming_language
+        };;
+    *);;

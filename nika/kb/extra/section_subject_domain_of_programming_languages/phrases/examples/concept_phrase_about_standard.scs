@@ -1,0 +1,54 @@
+/* Фразы ответа класса concept_phrase_about_standard (ЛР3).
+
+   В тексте фразы ${...} — место подстановки; имя в скобках совпадает
+   с nrel_system_identifier переменной-ссылки. Подстановок в каждой фразе две:
+   с тремя агент генерации фраз фразу не собирает.
+   Обе фразы класса используют один образец @tpl_std. */
+
+@var_language_name_std = _[];;
+@var_language_name_std
+=> nrel_system_identifier:
+	[_language_name_std];;
+
+@var_std_name = _[];;
+@var_std_name
+=> nrel_system_identifier:
+	[_std_name];;
+
+/* Образец: сообщение, выделенный в нём язык программирования, его русский
+   идентификатор, значение отношения nrel_language_standard и русский идентификатор
+   этого значения. Если у языка такого отношения нет, образец не находится. */
+@tpl_std = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_std;;
+
+	_language_std
+	_=> nrel_main_idtf::
+		@var_language_name_std
+		(* _<- lang_ru;; *);;
+
+	_language_std
+	_=> nrel_language_standard:: _standard;;
+
+	_standard
+	_=> nrel_main_idtf::
+		@var_std_name
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_standard ->
+	[Стандарт языка программирования ${_language_name_std} — ${_std_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_std;;
+	*);;
+
+concept_phrase_about_standard ->
+	[Язык программирования ${_language_name_std} описан стандартом ${_std_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_std;;
+	*);;

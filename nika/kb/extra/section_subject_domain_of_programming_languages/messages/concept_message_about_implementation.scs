@@ -1,0 +1,34 @@
+/* Класс сообщений ЛР3: вопрос о свойстве «реализация» языка программирования.
+   Сообщение попадает в класс по логическому правилу классификации
+   (множество concept_classify_message_rule_priority_1). */
+
+concept_message_about_implementation
+<- sc_node_class;
+<- concept_intent_possible_class;
+=> nrel_main_idtf:
+    [сообщение о реализации языка программирования]
+    (* <- lang_ru;; *);
+    [message about programming language implementation]
+    (* <- lang_en;; *);
+=> nrel_wit_ai_idtf:
+    [about_implementation];
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (сообщение о реализации языка программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Сообщение о реализации языка программирования - атомарное сообщение, содержащее язык программирования, реализацию которого требуется найти.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_atomic_message;
+            concept_programming_language;
+            concept_programming_language_implementation
+        };;
+    *);;

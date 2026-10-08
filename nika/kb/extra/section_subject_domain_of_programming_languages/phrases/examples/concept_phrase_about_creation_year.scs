@@ -1,0 +1,54 @@
+/* Фразы ответа класса concept_phrase_about_creation_year (ЛР3).
+
+   В тексте фразы ${...} — место подстановки; имя в скобках совпадает
+   с nrel_system_identifier переменной-ссылки. Подстановок в каждой фразе две:
+   с тремя агент генерации фраз фразу не собирает.
+   Обе фразы класса используют один образец @tpl_year. */
+
+@var_language_name_year = _[];;
+@var_language_name_year
+=> nrel_system_identifier:
+	[_language_name_year];;
+
+@var_year_name = _[];;
+@var_year_name
+=> nrel_system_identifier:
+	[_year_name];;
+
+/* Образец: сообщение, выделенный в нём язык программирования, его русский
+   идентификатор, значение отношения nrel_creation_year и русский идентификатор
+   этого значения. Если у языка такого отношения нет, образец не находится. */
+@tpl_year = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_year;;
+
+	_language_year
+	_=> nrel_main_idtf::
+		@var_language_name_year
+		(* _<- lang_ru;; *);;
+
+	_language_year
+	_=> nrel_creation_year:: _year;;
+
+	_year
+	_=> nrel_main_idtf::
+		@var_year_name
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_creation_year ->
+	[Год создания языка программирования ${_language_name_year} — ${_year_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_year;;
+	*);;
+
+concept_phrase_about_creation_year ->
+	[${_language_name_year}: год создания — ${_year_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_year;;
+	*);;

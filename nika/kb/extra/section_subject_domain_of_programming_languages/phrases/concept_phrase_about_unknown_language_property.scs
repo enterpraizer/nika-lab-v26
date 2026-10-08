@@ -1,0 +1,32 @@
+/* Класс фраз ответа (ЛР3). Сами фразы — в phrases/examples/concept_phrase_about_unknown_language_property.scs */
+
+concept_phrase_about_unknown_language_property
+<- sc_node_class;
+=> nrel_main_idtf:
+	[фраза об отсутствии сведений о языке программирования]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[phrase about missing programming language property]
+	(* <- lang_en;; *);
+<= nrel_inclusion:
+	concept_phrase;
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (фраза об отсутствии сведений о языке программирования)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Фраза об отсутствии сведений о языке программирования - фраза, сообщающая, что запрошенного свойства указанного языка программирования в базе знаний нет; используется правилом ответа третьего приоритета.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_phrase;
+			concept_programming_language
+		};;
+	*);;

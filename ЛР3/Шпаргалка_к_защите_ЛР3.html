@@ -1,0 +1,919 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<title>Защита ЛР3 по ТиИСПИС</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#FFFFFF; --surface:#FAFAF8; --surface-2:#F0EFEB;
+  --ink:#1A1A18; --ink-2:#4A4A46; --ink-3:#77766F;
+  --line:#DEDCD5; --line-strong:#C2BFB5;
+  --accent:#3F4A8A; --accent-soft:#E8EAF4; --accent-ink:#2C3566;
+  --mark:#8A5A20; --mark-soft:#F7EEE1;
+  --ok:#2F6B4A; --ok-soft:#E6F1EA;
+  --serif:"PT Serif",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.6}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.1rem 3rem}
+
+header{padding:2rem 0 1.1rem;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-ink);margin:0 0 .5rem}
+h1{font-family:var(--serif);font-weight:700;font-size:2.1rem;line-height:1.12;margin:0 0 .4rem}
+.sub{color:var(--ink-2);margin:0;font-size:.98rem}
+
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin:1.2rem 0 0}
+.facts h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 .55rem;font-weight:600}
+.fact{display:flex;justify-content:space-between;gap:1rem;padding:.32rem 0;
+  border-bottom:1px dashed var(--line);align-items:baseline}
+.fact:last-child{border-bottom:0}
+.fact dt{color:var(--ink-2);font-size:.92rem;margin:0}
+.fact dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+
+.part{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-ink);border-top:2px solid var(--ink);padding-top:.7rem;margin:2.8rem 0 0}
+h2.sec{font-family:var(--serif);font-weight:700;font-size:1.45rem;margin:2.2rem 0 .25rem}
+.part + h2.sec{margin-top:.5rem}
+.sec-note{color:var(--ink-3);font-size:.9rem;margin:0 0 1rem}
+
+nav.toc{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin:1.4rem 0 0}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 .5rem;font-weight:600}
+nav.toc ol{margin:0;padding-left:1.3rem;columns:2;column-gap:2rem;font-size:.92rem}
+nav.toc li{margin:.15rem 0;break-inside:avoid}
+nav.toc a{color:var(--accent-ink);text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+nav.toc .how{margin:.7rem 0 0;color:var(--ink-2);font-size:.9rem}
+
+article{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin-bottom:.7rem}
+article h3{display:flex;gap:.7rem;align-items:flex-start;margin:0 0 .6rem;
+  font-size:1rem;font-weight:600;line-height:1.4}
+.n{font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--accent-ink);
+  background:var(--accent-soft);border-radius:4px;padding:.1rem .4rem;flex:none;margin-top:.12rem}
+article p{margin:.55rem 0;color:var(--ink-2);font-size:.95rem}
+article p strong{color:var(--ink);font-weight:600}
+article ul,article ol{margin:.5rem 0;padding-left:1.1rem;color:var(--ink-2);font-size:.95rem}
+article ol{padding-left:1.4rem}
+article li{margin:.25rem 0}
+
+.say,.mine,.plain{padding:.6rem .8rem;border-radius:0 5px 5px 0;margin:.7rem 0 0}
+.say{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.mine{background:var(--mark-soft);border-left:3px solid var(--mark)}
+.plain{background:var(--ok-soft);border-left:3px solid var(--ok)}
+.say>b,.mine>b,.plain>b{display:block;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.2rem}
+.say>b{color:var(--accent-ink)} .mine>b{color:var(--mark)} .plain>b{color:var(--ok)}
+.say p,.mine p,.plain p{margin:0;color:var(--ink);font-size:.92rem}
+
+code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);
+  padding:.08em .32em;border-radius:3px;color:var(--ink)}
+pre{font-family:var(--mono);font-size:.78rem;line-height:1.5;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:6px;padding:.7rem .8rem;overflow-x:auto;
+  margin:.7rem 0;color:var(--ink)}
+pre code{background:none;padding:0}
+pre .c{color:var(--ink-3)}
+pre .hl{background:#FFF3C4;border-radius:2px}
+
+table{border-collapse:collapse;width:100%;font-size:.88rem;margin:.7rem 0}
+th,td{text-align:left;padding:.42rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+td.k{white-space:nowrap;font-weight:600;color:var(--ink)}
+
+/* путь сообщения */
+.flow{list-style:none;margin:.8rem 0 .2rem;padding:0;counter-reset:step}
+.flow li{position:relative;margin:0;padding:0 0 1rem 2.6rem;counter-increment:step}
+.flow li::before{content:counter(step);position:absolute;left:0;top:0;width:1.7rem;height:1.7rem;
+  border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:.8rem;
+  display:flex;align-items:center;justify-content:center}
+.flow li::after{content:"";position:absolute;left:.82rem;top:1.8rem;bottom:.1rem;width:2px;background:var(--line-strong)}
+.flow li:last-child{padding-bottom:0}
+.flow li:last-child::after{display:none}
+.flow .t{display:block;font-weight:600;color:var(--ink);font-size:.98rem}
+.flow .who{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  border-radius:3px;padding:.02rem .35rem;margin-left:.4rem;vertical-align:.08em}
+.who.ours{background:var(--mark-soft);color:var(--mark)}
+.who.stock{background:var(--surface-2);color:var(--ink-3)}
+.flow .d{display:block;color:var(--ink-2);font-size:.92rem;margin-top:.15rem}
+.flow pre{margin:.45rem 0 0;font-size:.72rem}
+
+figure{margin:.8rem 0 .3rem}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line-strong);border-radius:6px}
+figcaption{color:var(--ink-3);font-size:.84rem;margin-top:.35rem}
+
+footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:.85rem}
+
+@page{size:A4;margin:14mm 13mm}
+@media print{
+  body{font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  header{padding-top:0}
+  h1{font-size:20pt}
+  h2.sec{font-size:14pt;break-after:avoid}
+  .sec-note{break-after:avoid}
+  .part{break-after:avoid}
+  article{margin-bottom:5pt}
+  article.short{break-inside:avoid;page-break-inside:avoid}
+  .say,.mine,.plain{break-inside:avoid}
+  article h3{font-size:11pt;break-after:avoid}
+  article p,article ul,article ol{font-size:9.5pt}
+  .say p,.mine p,.plain p{font-size:9pt}
+  pre{font-size:8pt;break-inside:avoid}
+  .flow li{break-inside:avoid}
+  .flow pre{font-size:7pt}
+  .facts,nav.toc,figure{break-inside:avoid}
+  table{font-size:9pt}
+  tr{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+
+/* блоки, перенесённые из прежних шпаргалок */
+article{color:var(--ink-2);font-size:.95rem}
+article h3{color:var(--ink)}
+article pre{color:var(--ink)}
+.tip{background:var(--mark-soft);border-left:3px solid var(--mark);padding:.6rem .8rem;border-radius:0 5px 5px 0;
+  margin:.7rem 0;color:var(--ink);font-size:.92rem}
+.yes{color:var(--ok);font-weight:600} .no{color:#A33;font-weight:600}
+td.c,th.c{text-align:center}
+@media print{ .tip{break-inside:avoid;font-size:9pt} article{font-size:9.5pt} }
+td.k{white-space:normal}
+td code{overflow-wrap:anywhere}
+</style>
+</head><body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">ТиИСПИС · БГУИР · каф. ИИТ</p>
+  <h1>Защита ЛР3 по ТиИСПИС</h1>
+  <p class="sub">Логические правила и фразы ответа, вариант №26 — «Языки программирования». Сначала объяснение с нуля: что сделано и как оно работает. Потом 8 вопросов преподавателя, задачи и то, что ещё могут спросить.</p>
+
+  <dl class="facts">
+    <h2>Это надо назвать не задумываясь</h2>
+    <div class="fact"><dt>Типов вопросов о языках</dt><dd>5 и общий класс</dd></div>
+    <div class="fact"><dt>Правил ответа</dt><dd>6: пять по существу и одно на случай «сведений нет»</dd></div>
+    <div class="fact"><dt>Классов фраз / фраз</dt><dd>6 / 12, из них 10 с шаблоном</dd></div>
+    <div class="fact"><dt>Правил распознавания вопросов</dt><dd>40: 5 типов × 8 языков, по 4 формулировки</dd></div>
+    <div class="fact"><dt>Сценарий диалога</dt><dd>8 вопросов, три пары «вопрос один — ответ разный»</dd></div>
+    <div class="fact"><dt>Главная идея</dt><dd>ответ зависит от состояния базы знаний</dd></div>
+  </dl>
+</header>
+
+<nav class="toc">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#s1">Вся работа за две минуты</a></li>
+    <li><a href="#s2">Что такое NIKA</a></li>
+    <li><a href="#s3">Словарь</a></li>
+    <li><a href="#s4">Что было до ЛР3</a></li>
+    <li><a href="#s5">Что требовалось и что сделано</a></li>
+    <li><a href="#s6">Путь одного вопроса через систему</a></li>
+    <li><a href="#s7">Правило распознавания вопроса</a></li>
+    <li><a href="#s8">Правило ответа: разбор</a></li>
+    <li><a href="#s9">Фраза с шаблоном: разбор</a></li>
+    <li><a href="#s10">Когда сведений нет: один вопрос — разные ответы</a></li>
+    <li><a href="#s11">Карта файлов</a></li>
+    <li><a href="#s12">Как запустить и показать</a></li>
+    <li><a href="#s13">Если что-то пошло не так</a></li>
+    <li><a href="#s14">Вопросы к защите</a></li>
+    <li><a href="#s15">Задачи: логические правила</a></li>
+    <li><a href="#s16">Задачи: фразы с шаблоном</a></li>
+    <li><a href="#s17">Что ещё спросят</a></li>
+  </ol>
+  <p class="how">Если времени мало: разделы 1, 6, 10 и 12. Если работу видишь впервые — читай подряд с первого.</p>
+</nav>
+
+<p class="part">Часть I · с нуля</p>
+
+<h2 class="sec" id="s1">1. Вся работа за две минуты</h2>
+<p class="sec-note">Что это было, что сделано и чем закончилось.</p>
+
+<article><h3>Суть</h3>
+<p>В первой лабораторной в базу знаний системы NIKA занесены сведения о языках программирования: у Python автор Гвидо ван Россум, реализация CPython, год создания 1991. Во второй система научилась понимать, <em>о чём</em> её спрашивают.</p>
+<p>Третья лабораторная отвечает на следующий вопрос: система поняла, что спросили про реализацию Python, — <strong>как ей теперь построить ответ?</strong> Для этого нужны две вещи:</p>
+<ul>
+<li><strong>правило ответа</strong> — «если это вопрос о реализации и у этого языка в базе реализация записана, отвечай фразой из такого-то набора»;</li>
+<li><strong>фраза с шаблоном</strong> — текст с пропусками: «Реализация языка программирования ${…} — ${…}.» и описание, откуда в базе взять слова для пропусков.</li>
+</ul>
+<p>Система отвечает на пять типов вопросов про восемь языков:</p>
+<table>
+<thead><tr><th>Вопрос</th><th>Что берётся из базы</th><th>Ответ Ники</th></tr></thead>
+<tbody>
+<tr><td>Кто создал Haskell?</td><td>автор</td><td>Автор языка программирования Haskell — Саймон Пейтон Джонс.</td></tr>
+<tr><td>В каком году создан Си++?</td><td>год создания</td><td>Год создания языка программирования Си++ — 1985 год.</td></tr>
+<tr><td>Какая реализация у Python?</td><td>реализация</td><td>Реализация языка программирования Python — CPython.</td></tr>
+<tr><td>Какой стандарт у Си?</td><td>стандарт</td><td>Стандарт языка программирования Си — ISO/IEC 9899:2018.</td></tr>
+<tr><td>Кто сопровождает Java?</td><td>сопровождающая организация</td><td>Язык программирования Java сопровождает Oracle Corporation.</td></tr>
+</tbody>
+</table>
+<div class="plain"><b>главная мысль</b><p>Один и тот же вопрос даёт разные ответы в зависимости от того, что записано в базе. «Какая реализация у Python?» — ответ по существу, потому что реализация Python в базе есть. «Какая реализация у Haskell?» — «В базе знаний нет таких сведений об этом языке программирования», потому что для Haskell реализация не записана. Текст ответа нигде не хранится готовым: он каждый раз собирается из базы.</p></div>
+</article>
+
+<h2 class="sec" id="s2">2. Что такое NIKA</h2>
+<p class="sec-note">Из чего состоит система и что где открывать.</p>
+
+<article><h3>Три части системы</h3>
+<table>
+<thead><tr><th>Часть</th><th>Что это</th><th>Простыми словами</th></tr></thead>
+<tbody>
+<tr><td class="k">База знаний</td><td>граф из понятий и связей между ними, записанный на языке SC-код</td><td>всё, что система знает: «Python — язык программирования», «реализация Python — CPython»</td></tr>
+<tr><td class="k">Решатель задач</td><td>набор программ-<b>агентов</b>, каждый делает одно действие над базой</td><td>то, что система умеет: распознать вопрос, выбрать правило, собрать фразу</td></tr>
+<tr><td class="k">Интерфейс</td><td>окно чата и окно просмотра базы</td><td>то, что видит человек</td></tr>
+</tbody>
+</table>
+<p>Знания, правила и тексты ответов лежат в одной и той же базе знаний. В третьей лабораторной не написано ни строчки программного кода — в базу <strong>добавлены новые знания</strong>: правила и фразы. Агенты, которые ими пользуются, в NIKA уже были.</p>
+</article>
+
+<article><h3>Три адреса</h3>
+<table>
+<thead><tr><th>Адрес</th><th>Что там</th><th>Зачем на защите</th></tr></thead>
+<tbody>
+<tr><td class="k"><code>localhost:3033</code></td><td>диалоговое окно Ники</td><td>задать вопрос и получить ответ</td></tr>
+<tr><td class="k"><code>localhost:8000</code></td><td>sc-web — просмотр базы знаний</td><td>показать правило, класс фраз, экземпляр</td></tr>
+<tr><td class="k"><code>localhost:8090</code></td><td>sc-сервер, к нему подключаются два окна выше</td><td>открывать не нужно</td></tr>
+</tbody>
+</table>
+</article>
+
+<h2 class="sec" id="s3">3. Словарь</h2>
+<p class="sec-note">Слова, без которых дальше не разобраться.</p>
+
+<article><h3>Из чего состоит база знаний</h3>
+<table>
+<thead><tr><th>Слово</th><th>Что значит</th><th>Пример из работы</th></tr></thead>
+<tbody>
+<tr><td class="k">узел</td><td>обозначение чего угодно: предмета, понятия, отношения</td><td><code>python_language</code>, <code>cpython_interpreter</code></td></tr>
+<tr><td class="k">дуга</td><td>связь между двумя элементами</td><td>от Python к его реализации</td></tr>
+<tr><td class="k">ссылка</td><td>узел с текстом внутри</td><td><code>[Python]</code>, <code>[Какая реализация у Python?]</code></td></tr>
+<tr><td class="k">класс</td><td>множество однотипных объектов. Имя начинается с <code>concept_</code></td><td><code>concept_programming_language</code></td></tr>
+<tr><td class="k">экземпляр</td><td>конкретный объект, элемент класса</td><td><code>python_language</code>, <code>haskell_language</code></td></tr>
+<tr><td class="k">неролевое отношение</td><td>связь между двумя объектами. Имя с <code>nrel_</code>, по-русски со звёздочкой</td><td><code>nrel_language_implementation</code> — «реализация языка*»</td></tr>
+<tr><td class="k">ролевое отношение</td><td>роль элемента внутри чего-то. Имя с <code>rrel_</code>, по-русски с апострофом</td><td><code>rrel_entity</code> — «сущность'»: о чём сообщение</td></tr>
+<tr><td class="k">переменная</td><td>«любой подходящий элемент». Имя начинается с подчёркивания</td><td><code>_message</code>, <code>_entity</code></td></tr>
+<tr><td class="k">контур (структура)</td><td>кусок графа, обведённый рамкой, с которым работают как с одним целым</td><td>условие правила</td></tr>
+<tr><td class="k">шаблон</td><td>контур с переменными. Система ищет в базе всё, что на него похоже, и узнаёт, чему равны переменные</td><td>«какое-то сообщение, у которого есть сущность, а у неё — реализация»</td></tr>
+</tbody>
+</table>
+</article>
+
+<article><h3>Слова про диалог и логику</h3>
+<table>
+<thead><tr><th>Слово</th><th>Что значит</th><th>Пример из работы</th></tr></thead>
+<tbody>
+<tr><td class="k">сообщение</td><td>узел в базе, который появляется, когда человек отправил текст в чат</td><td>узел с текстом «Какая реализация у Python?»</td></tr>
+<tr><td class="k">класс сообщения</td><td>что хотят узнать</td><td><code>concept_message_about_implementation</code> — вопрос о реализации</td></tr>
+<tr><td class="k">сущность сообщения</td><td>о чём спрашивают. Привязана к сообщению ролью <code>rrel_entity</code></td><td><code>python_language</code></td></tr>
+<tr><td class="k">логическое правило</td><td>запись «если в базе есть вот это, то добавь вот это». Имя с <code>lr_</code></td><td><code>lr_answer_about_implementation</code></td></tr>
+<tr><td class="k">импликация</td><td>связка «если … то …». В каждом правиле ровно одна</td><td>условие ⇒ следствие</td></tr>
+<tr><td class="k">конъюнкция, дизъюнкция</td><td>«и» и «или»</td><td>четыре условия правила ответа связаны «и»; четыре формулировки вопроса — «или»</td></tr>
+<tr><td class="k">правило распознавания</td><td>по тексту вопроса назначает сообщению класс и сущность. Тема ЛР2</td><td><code>lr_classify_implementation_of_python_lang_message</code></td></tr>
+<tr><td class="k">правило ответа</td><td>по классу сообщения решает, из какого набора фраз отвечать. Тема ЛР3</td><td><code>lr_answer_about_implementation</code></td></tr>
+<tr><td class="k">приоритет правила</td><td>очерёдность проверки: сначала правила первого приоритета, потом второго, потом третьего</td><td>ответы по существу — второй, «сведений нет» — третий</td></tr>
+<tr><td class="k">класс фраз</td><td>набор взаимозаменяемых формулировок одного ответа</td><td><code>concept_phrase_about_implementation</code>, в нём две фразы</td></tr>
+<tr><td class="k">фраза с шаблоном</td><td>текст с пропусками <code>${…}</code> и описание, чем их заполнить</td><td>«Реализация языка программирования ${_language_name_impl} — ${_impl_name}.»</td></tr>
+<tr><td class="k">структура-образец</td><td>шаблон, привязанный к фразе: по нему в базе ищутся слова для пропусков</td><td>сообщение → язык → его реализация → название реализации</td></tr>
+<tr><td class="k">общий класс (надкласс)</td><td>класс, объединяющий несколько частных</td><td><code>concept_message_about_language_property</code> — любой вопрос о свойстве языка</td></tr>
+</tbody>
+</table>
+</article>
+
+<article><h3>Два формата файлов</h3>
+<ul>
+<li><code>.scs</code> — граф, записанный <b>текстом</b>. Так сделаны классы сообщений, классы фраз и сами фразы.</li>
+<li><code>.gwf</code> — граф, записанный <b>рисунком</b> (внутри XML с узлами и дугами). Так сделаны все логические правила.</li>
+</ul>
+<p>Это не вкус, а необходимость: правила в текстовом виде из шаблона репозитория не работают, а фразы с шаблоном не работают в <code>.gwf</code> — система молча отвечает <code>Answer isn't found</code>.</p>
+</article>
+
+<h2 class="sec" id="s4">4. Что было до ЛР3</h2>
+<p class="sec-note">На что опирается работа.</p>
+
+<article><h3>ЛР1 — знания о языках программирования</h3>
+<p>В базе 23 класса, 17 отношений и 40 экземпляров. Вот Python в сокращении:</p>
+<pre><code>python_language
+&lt;- concept_programming_language;                       <span class="c">/* это язык программирования */</span>
+=&gt; nrel_main_idtf: [Python] (* &lt;- lang_ru;; *);        <span class="c">/* русское название */</span>
+=&gt; nrel_language_author: guido_van_rossum;             <span class="c">/* автор        → «Кто создал Python?» */</span>
+=&gt; nrel_creation_year: year_1991;                      <span class="c">/* год создания → «В каком году создан Python?» */</span>
+=&gt; nrel_language_implementation: cpython_interpreter;  <span class="c">/* реализация   → «Какая реализация у Python?» */</span>
+=&gt; nrel_maintaining_organization: python_software_foundation;;  <span class="c">/* кто сопровождает */</span></code></pre>
+<p>Читается так: <code>&lt;-</code> — «принадлежит классу», <code>=&gt;</code> — «связан отношением», в квадратных скобках — текст, <code>;;</code> — конец предложения. Стандарта у Python в базе нет — поэтому на «Какой стандарт у Python?» система ответит, что сведений нет.</p>
+</article>
+
+<article><h3>Что записано у каких языков</h3>
+<p>У разных языков в базе заполнено разное. Эта таблица — ключ ко всей работе: где стоит значение, Ника отвечает по существу, где прочерк — фразой «сведений нет».</p>
+<table>
+<thead><tr><th>Язык</th><th>Автор</th><th>Год</th><th>Реализация</th><th>Стандарт</th><th>Организация</th></tr></thead>
+<tbody>
+<tr><td class="k">Python</td><td>Гвидо ван Россум</td><td>1991 год</td><td>CPython</td><td><span class="no">—</span></td><td>Python Software Foundation</td></tr>
+<tr><td class="k">Си</td><td>Деннис Ритчи</td><td>1972 год</td><td>GCC</td><td>ISO/IEC 9899:2018</td><td>Международная организация по стандартизации</td></tr>
+<tr><td class="k">Си++</td><td>Бьёрн Страуструп</td><td>1985 год</td><td>GCC</td><td>ISO/IEC 14882:2020</td><td>Международная организация по стандартизации</td></tr>
+<tr><td class="k">Java</td><td>Джеймс Гослинг</td><td>1995 год</td><td>виртуальная машина Java</td><td><span class="no">—</span></td><td>Oracle Corporation</td></tr>
+<tr><td class="k">JavaScript</td><td>Брендан Эйх</td><td>1995 год</td><td><span class="no">—</span></td><td>ECMA-262</td><td><span class="no">—</span></td></tr>
+<tr><td class="k">Haskell</td><td>Саймон Пейтон Джонс</td><td>1990 год</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+<tr><td class="k">Пролог</td><td>Ален Колмероэ</td><td>1972 год</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+<tr><td class="k">язык ассемблера x86</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+</tbody>
+</table>
+<p>Пробелы настоящие: они остались с первой лабораторной, файлы которой в этой работе не менялись. Из 40 сочетаний «вопрос × язык» 25 дают ответ по существу и 15 — фразу «сведений нет».</p>
+</article>
+
+<article><h3>ЛР2 — система понимает вопрос</h3>
+<p>Во второй лабораторной появились правила распознавания: по тексту сообщения они назначают ему класс и сущность. Там это было сделано для вопросов «Что такое …?», «На что декомпозируется …?» и «Кто создал …?». В третьей тот же приём применён к четырём новым типам вопросов, а правила про автора доработаны.</p>
+<p>Wit.ai не используется: штатный токен сервис отвергает, поэтому распознавание выполняют логические правила в самой базе знаний.</p>
+</article>
+
+<h2 class="sec" id="s5">5. Что требовалось и что сделано</h2>
+<p class="sec-note">Задание методички по пунктам.</p>
+
+<article><h3>Требование → результат</h3>
+<table>
+<thead><tr><th>Что требует методичка</th><th>Что сделано</th></tr></thead>
+<tbody>
+<tr><td>Логические правила покрывают каждый класс фраз</td><td>Шесть классов фраз — шесть правил ответа, по одному на класс</td></tr>
+<tr><td>Правила используют не только класс сообщения, но и выделенную сущность</td><td>В условии пяти правил «по существу» есть <code>rrel_entity</code>: правило смотрит, о каком языке вопрос и что о нём записано</td></tr>
+<tr><td>Разные ответы на одно и то же сообщение в зависимости от состояния базы знаний</td><td>Три пары вопросов в сценарии: реализация Python / Haskell, стандарт Си / Python, организация Java / JavaScript</td></tr>
+<tr><td>Ответ виден в пользовательском интерфейсе</td><td>Все восемь вопросов сценария отвечают в окне чата</td></tr>
+<tr><td>Фразы не повторяются</td><td>12 разных фраз</td></tr>
+<tr><td>Не менее двух фраз на класс</td><td>Ровно по две в каждом из шести классов</td></tr>
+<tr><td>Не менее трёх фраз с шаблоном на весь диалог</td><td>Десять</td></tr>
+</tbody>
+</table>
+</article>
+
+<article><h3>Что добавлено в базу знаний</h3>
+<table>
+<thead><tr><th>Что</th><th>Сколько</th><th>Зачем</th></tr></thead>
+<tbody>
+<tr><td>Классы сообщений</td><td>4 новых и общий класс</td><td>год создания, реализация, стандарт, организация; пятый, про автора, был с ЛР2</td></tr>
+<tr><td>Правила распознавания</td><td>40</td><td>каждый из пяти типов вопроса для каждого из восьми языков, по четыре формулировки</td></tr>
+<tr><td>Правила ответа</td><td>5 новых</td><td>четыре «по существу» и одно «сведений нет»; шестое, про автора, было с ЛР2</td></tr>
+<tr><td>Классы фраз и фразы</td><td>5 классов, 10 фраз</td><td>восемь фраз с шаблоном и две без; ещё две, про автора, были с ЛР2</td></tr>
+</tbody>
+</table>
+<div class="mine"><b>про числа и про ЛР2</b><p>В ЛР2 правил распознавания было 67, из них 7 про автора с двумя формулировками. В ЛР3 эти семь заменены: в них добавлен общий класс, две формулировки и восьмой язык. Всего правил распознавания теперь 100: 58 «Что такое …?», 2 «На что декомпозируется …?» и 40 новых. Формулировка «Кто автор Пролог?» стала «Кто автор Пролога?».</p></div>
+</article>
+
+<p class="part">Часть II · как это работает</p>
+
+<h2 class="sec" id="s6">6. Путь одного вопроса через систему</h2>
+<p class="sec-note">Что происходит от нажатия кнопки до ответа. Пример — «Какая реализация у Python?». Строки в серых блоках — записи из настоящего журнала решателя, в сокращении.</p>
+
+<article><h3>Семь шагов</h3>
+<ol class="flow">
+<li><span class="t">Сообщение попадает в базу знаний <span class="who stock">штатное</span></span>
+<span class="d">Окно чата создаёт в базе узел-сообщение и вешает на него ссылку с текстом. Появление сообщения запускает главного агента диалога.</span>
+<pre><code>MessageReplyAgent started
+Text link is found</code></pre></li>
+
+<li><span class="t">Запускается программа обработки сообщения <span class="who stock">штатное</span></span>
+<span class="d">Это записанная в базе последовательность шагов: кого из агентов звать и в каком порядке. Сначала распознавание, в конце — формирование ответа.</span>
+<pre><code>NonAtomicActionInterpreterAgent started</code></pre></li>
+
+<li><span class="t">Распознавание: какой это вопрос и о чём <span class="who ours">наша работа</span></span>
+<span class="d">Агент перебирает правила распознавания и сравнивает текст сообщения с образцами. У правила про реализацию Python совпал первый из четырёх образцов. Правило дописывает в базу три вещи: сообщение — вопрос о реализации; оно же — вопрос о свойстве языка; его сущность — Python.</span>
+<pre><code>There is 113 formulas in 1 set
+Compute atomic logical formula if_implementation_of_python_lang_1 true
+Message is classified.</code></pre></li>
+
+<li><span class="t">Промежуточные шаги программы <span class="who stock">штатное</span></span>
+<span class="d">Дальше в программе стоят штатные агенты поиска слова по букве и погоды. Каждый видит, что вопрос не его, и сразу завершается.</span>
+<pre><code>FindWordInSetByFirstLetterAgent: the message isn’t about letter search</code></pre></li>
+
+<li><span class="t">Выбор правила ответа <span class="who ours">наша работа</span></span>
+<span class="d">Агент ответа перебирает правила по приоритетам. Правило <code>lr_answer_about_implementation</code> проверяет четыре условия: это сообщение; это вопрос о реализации; у него есть сущность; у этой сущности в базе записана реализация. Все четыре выполнены. Перебор останавливается на первом сработавшем правиле.</span>
+<pre><code>StandardMessageReplyAgent started
+There is 7 formulas in 2 set
+Trying to generate by formula: lr_answer_about_implementation
+Compute atomic logical formula  true
+Target is achieved
+MessageHandler: the logic rule lr_answer_about_implementation is found</code></pre></li>
+
+<li><span class="t">Сборка фразы <span class="who ours">наша работа</span></span>
+<span class="d">К правилу привязан класс фраз. Агент берёт из него одну из двух фраз и её структуру-образец, по образцу находит в базе название языка и название реализации и подставляет их в пропуски.</span>
+<pre><code>MessageHandler: the phrase with the content
+  "Реализация языка программирования ${_language_name_impl} — ${_impl_name}." is found
+PhraseGenerationAgent started
+Generated text: "Реализация языка программирования Python — CPython."</code></pre></li>
+
+<li><span class="t">Ответ появляется в чате <span class="who stock">штатное</span></span>
+<span class="d">Готовый текст записывается в базу как ответное сообщение, окно чата его показывает.</span>
+<pre><code>MessageReplyAgent finished</code></pre></li>
+</ol>
+<div class="plain"><b>что из этого сделано в работе</b><p>Агенты и порядок шагов были в NIKA. В работе добавлено то, чем они пользуются: правила распознавания (шаг 3), правила ответа (шаг 5), фразы и их образцы (шаг 6).</p></div>
+</article>
+
+<article><h3>То же самое одной схемой</h3>
+<pre><code>«Какая реализация у Python?»
+   ↓ правило распознавания сравнивает текст с образцами
+сообщение ∈ concept_message_about_implementation
+сообщение ∈ concept_message_about_language_property
+сообщение → rrel_entity → python_language
+   ↓ правило ответа проверяет: у python_language есть nrel_language_implementation?  да
+класс фраз: concept_phrase_about_implementation
+   ↓ образец фразы: python_language → реализация → cpython_interpreter → его название
+«Реализация языка программирования Python — CPython.»</code></pre>
+</article>
+
+<h2 class="sec" id="s7">7. Правило распознавания вопроса</h2>
+<p class="sec-note">Приём из ЛР2, применённый к новым вопросам.</p>
+
+<article><h3>Что правило говорит</h3>
+<pre><code>ЕСЛИ  текст = «Какая реализация у Python?»
+  ИЛИ текст = «Какая реализация используется для Python?»
+  ИЛИ текст = «Чем реализован Python?»
+  ИЛИ текст = «Какая реализация у Python»                      <span class="c">← без знака вопроса</span>
+ТО    сообщение ∈ concept_message_about_implementation         <span class="c">← частный класс</span>
+      сообщение ∈ concept_message_about_language_property      <span class="c">← общий класс</span>
+      сообщение → rrel_entity → python_language                <span class="c">← сущность</span></code></pre>
+<p>Файл <code>logic_rules/classification/lr_classify_implementation_of_python_lang_message.gwf</code>. Таких правил 40: пять типов вопроса на восемь языков.</p>
+</article>
+
+<article><h3>Формулировки, которые система понимает</h3>
+<table>
+<thead><tr><th>Тип вопроса</th><th>Формулировки (X — название языка)</th></tr></thead>
+<tbody>
+<tr><td class="k">автор</td><td>Кто создал X? · Кто автор X? · Кто разработал X? · Кто создал X</td></tr>
+<tr><td class="k">год создания</td><td>В каком году создан X? · Когда создан X? · Когда появился X? · В каком году создан X</td></tr>
+<tr><td class="k">реализация</td><td>Какая реализация у X? · Какая реализация используется для X? · Чем реализован X? · Какая реализация у X</td></tr>
+<tr><td class="k">стандарт</td><td>Какой стандарт у X? · Каким стандартом описан X? · Какой стандарт действует для X? · Какой стандарт у X</td></tr>
+<tr><td class="k">сопровождающая организация</td><td>Кто сопровождает X? · Какая организация сопровождает X? · Кто поддерживает X? · Кто сопровождает X</td></tr>
+</tbody>
+</table>
+<p>Названия языков: Python, Си, Си++, Java, JavaScript, Haskell, Пролог, язык ассемблера x86. Там, где по-русски нужен родительный падеж, склоняемые названия стоят в нём: «Какая реализация у Пролога?», «Кто автор языка ассемблера x86?».</p>
+<div class="mine"><b>ограничение, о котором надо сказать самому</b><p>Текст сравнивается <b>посимвольно</b>: регистр, знак вопроса и формулировка значимы. Вопрос, набранный иначе, система не узнает и ответит фразой непонимания. Поэтому правила сделаны на все сочетания «тип вопроса × язык» и в каждом по четыре формулировки.</p></div>
+</article>
+
+<article><h3>Зачем сообщению два класса сразу</h3>
+<p>Частный класс нужен правилу ответа по существу («это вопрос именно о реализации»). Общий класс нужен правилу «сведений нет»: ему всё равно, о каком свойстве спросили, лишь бы это был вопрос о свойстве языка.</p>
+<p>Казалось бы, достаточно частного: в базе записано, что «вопрос о реализации» входит в «вопрос о свойстве языка». Но принадлежность классу по включению сама не распространяется — если дуги от общего класса к сообщению нет, поиск её не найдёт. Поэтому правило распознавания создаёт обе дуги явно.</p>
+</article>
+
+<h2 class="sec" id="s8">8. Правило ответа: разбор</h2>
+<p class="sec-note">Главное в третьей лабораторной. Все пять правил «по существу» устроены одинаково.</p>
+
+<article><h3>Что правило говорит</h3>
+<pre><code>ЕСЛИ  _message ∈ concept_message                             <span class="c">1. это сообщение</span>
+  И   _message ∈ concept_message_about_implementation        <span class="c">2. это вопрос о реализации</span>
+  И   _message → rrel_entity → _entity                       <span class="c">3. в нём выделена сущность</span>
+  И   _entity → nrel_language_implementation → _value        <span class="c">4. у этой сущности в базе ЕСТЬ реализация</span>
+ТО    создать ответное сообщение _reply_message
+      и связать его с вопросом отношением nrel_reply</code></pre>
+<p>Файл <code>logic_rules/answer/lr_answer_about_implementation.gwf</code>. Все четыре условия лежат в одном контуре, а элементы одного контура связаны «и» — правило срабатывает, только когда верны все.</p>
+<p>Подчёркивание значит переменную. Когда система накладывает условие на базу, она подбирает значения: <code>_message</code> → наше сообщение, <code>_entity</code> → <code>python_language</code>, <code>_value</code> → <code>cpython_interpreter</code>.</p>
+</article>
+
+<article><h3>Три вещи, которые надо понимать про это правило</h3>
+<p><strong>Правило не пишет текст.</strong> Оно создаёт пустое ответное сообщение и указывает, из какого класса фраз взять слова. Указатель называется <code>nrel_answer_pattern</code> и ведёт на <code>concept_phrase_about_implementation</code>.</p>
+<p><strong>Четвёртое условие — проверка наличия данных.</strong> Переменная <code>_value</code> больше нигде не используется. Она нужна только для того, чтобы правило не сработало, если реализация у языка не записана. Зачем это нужно — <a href="#s10">раздел 10</a>.</p>
+<p><strong>У правила есть приоритет.</strong> Оно входит во множество <code>concept_answer_on_standard_message_rule_priority_2</code>. Правило «сведений нет» — в множестве третьего приоритета и проверяется позже.</p>
+</article>
+
+<article><h3>Чем пять правил отличаются друг от друга</h3>
+<table>
+<thead><tr><th>Правило</th><th>Вопрос</th><th>Отношение в условии 4</th></tr></thead>
+<tbody>
+<tr><td><code>lr_answer_about_author</code></td><td>об авторе</td><td><code>nrel_language_author</code></td></tr>
+<tr><td><code>lr_answer_about_creation_year</code></td><td>о годе создания</td><td><code>nrel_creation_year</code></td></tr>
+<tr><td><code>lr_answer_about_implementation</code></td><td>о реализации</td><td><code>nrel_language_implementation</code></td></tr>
+<tr><td><code>lr_answer_about_standard</code></td><td>о стандарте</td><td><code>nrel_language_standard</code></td></tr>
+<tr><td><code>lr_answer_about_maintainer</code></td><td>о сопровождающей организации</td><td><code>nrel_maintaining_organization</code></td></tr>
+</tbody>
+</table>
+<p>Отношения в третьем столбце — исследуемые отношения из первой лабораторной. Так третья лабораторная опирается на первую. У каждого правила свой класс сообщения в условии 2 и свой класс фраз.</p>
+</article>
+
+<article><h3>Чем правило ответа отличается от правила распознавания</h3>
+<table>
+<thead><tr><th></th><th>Правило распознавания</th><th>Правило ответа</th></tr></thead>
+<tbody>
+<tr><td class="k">На какой вопрос отвечает</td><td>о чём это сообщение</td><td>откуда брать заготовку ответа</td></tr>
+<tr><td class="k">Что в условии</td><td>текст совпал с образцом</td><td>на сообщении есть нужный класс и в базе есть данные</td></tr>
+<tr><td class="k">Что в следствии</td><td>класс и сущность на сообщении</td><td>ответное сообщение</td></tr>
+<tr><td class="k">Указатель на класс фраз</td><td>нет</td><td>есть, <code>nrel_answer_pattern</code></td></tr>
+<tr><td class="k">Кто исполняет</td><td>агент классификации</td><td>агент вывода внутри агента ответа</td></tr>
+</tbody>
+</table>
+</article>
+
+<h2 class="sec" id="s9">9. Фраза с шаблоном: разбор</h2>
+<p class="sec-note">Откуда берётся текст ответа. Файл <code>phrases/examples/concept_phrase_about_implementation.scs</code>.</p>
+
+<article><h3>Из чего состоит</h3>
+<p><strong>Две фразы</strong> — текст с пропусками. Система берёт любую из двух, поэтому на один и тот же вопрос формулировка бывает разной:</p>
+<pre><code>Реализация языка программирования ${_language_name_impl} — ${_impl_name}.
+Для языка программирования ${_language_name_impl} используется реализация «${_impl_name}».</code></pre>
+<p><strong>Структура-образец</strong> — маршрут по базе, который приводит к словам для пропусков:</p>
+<pre><code>сообщение ──rrel_entity──▶ язык программирования
+                              ├──nrel_main_idtf──────────────▶ его русское название  → ${_language_name_impl}
+                              └──nrel_language_implementation─▶ реализация
+                                                                  └──nrel_main_idtf──▶ её название → ${_impl_name}</code></pre>
+<p><strong>Объявление переменных</strong> <code>_language_name_impl</code> и <code>_impl_name</code> — чтобы система знала, какое место образца соответствует какому пропуску.</p>
+</article>
+
+<article><h3>Как это записано в файле</h3>
+<pre><code><span class="c">/* 1. две переменные-ссылки и их имена для подстановки */</span>
+@var_language_name_impl = _[];;
+@var_language_name_impl =&gt; nrel_system_identifier: [_language_name_impl];;
+@var_impl_name = _[];;
+@var_impl_name =&gt; nrel_system_identifier: [_impl_name];;
+
+<span class="c">/* 2. структура-образец */</span>
+@tpl_impl = [*
+    concept_message _-&gt; _message;;
+    _message _-&gt; rrel_entity:: _language_impl;;
+    _language_impl _=&gt; nrel_main_idtf:: @var_language_name_impl (* _&lt;- lang_ru;; *);;
+    _language_impl _=&gt; nrel_language_implementation:: _implementation;;
+    _implementation _=&gt; nrel_main_idtf:: @var_impl_name (* _&lt;- lang_ru;; *);;
+*];;
+
+<span class="c">/* 3. фраза: принадлежит классу, русская, привязана к образцу */</span>
+concept_phrase_about_implementation -&gt;
+    [Реализация языка программирования ${_language_name_impl} — ${_impl_name}.]
+    (* &lt;- lang_ru;; =&gt; nrel_phrase_template: @tpl_impl;; *);;</code></pre>
+<table>
+<thead><tr><th>Знак</th><th>Что значит</th></tr></thead>
+<tbody>
+<tr><td><code>@имя</code></td><td>локальное имя внутри файла, чтобы сослаться на элемент ниже</td></tr>
+<tr><td><code>_[]</code></td><td>переменная-ссылка: «какой-то текст, пока неизвестно какой»</td></tr>
+<tr><td><code>[* … *]</code></td><td>контур: всё внутри — одна структура</td></tr>
+<tr><td><code>_-&gt;</code>, <code>_=&gt;</code></td><td>те же дуги, но переменные: «такая дуга должна найтись»</td></tr>
+<tr><td><code>отношение::</code></td><td>две точки: дуга, которой отношение помечает связь, тоже переменная</td></tr>
+<tr><td><code>${_имя}</code></td><td>пропуск в тексте; имя должно совпасть с именем переменной из пункта 1</td></tr>
+</tbody>
+</table>
+<p>Обе фразы класса пользуются одним образцом: маршрут по базе один, формулировки разные.</p>
+</article>
+
+<article><h3>Все двенадцать фраз</h3>
+<table>
+<thead><tr><th>Класс фраз</th><th>Фразы</th></tr></thead>
+<tbody>
+<tr><td class="k">об авторе</td><td>Автор языка программирования … — ….<br>Язык программирования … создал ….</td></tr>
+<tr><td class="k">о годе создания</td><td>Год создания языка программирования … — ….<br>…: год создания — ….</td></tr>
+<tr><td class="k">о реализации</td><td>Реализация языка программирования … — ….<br>Для языка программирования … используется реализация «…».</td></tr>
+<tr><td class="k">о стандарте</td><td>Стандарт языка программирования … — ….<br>Язык программирования … описан стандартом ….</td></tr>
+<tr><td class="k">о сопровождающей организации</td><td>Язык программирования … сопровождает ….<br>Сопровождением языка программирования … занимается ….</td></tr>
+<tr><td class="k">«сведений нет»</td><td>В базе знаний нет таких сведений об этом языке программирования.<br>Этого о данном языке программирования я пока не знаю.</td></tr>
+</tbody>
+</table>
+<p>У фраз «сведений нет» шаблона нет: в их тексте нечего подставлять.</p>
+</article>
+
+<article><h3>Два ограничения, о которых надо знать</h3>
+<ul>
+<li><b>Не больше двух пропусков в одной фразе.</b> С тремя <code>${…}</code> фраза не собирается.</li>
+<li><b>Имена переменных общие на всю базу.</b> Поэтому в каждом файле фраз они свои: <code>_language_name_impl</code>, <code>_language_name_std</code>, <code>_language_name_year</code>. Одинаковые имена в двух файлах — и фразы молча перестают собираться.</li>
+</ul>
+</article>
+
+<h2 class="sec" id="s10">10. Когда сведений нет: один вопрос — разные ответы</h2>
+<p class="sec-note">Главный козырь защиты. Это прямое выполнение пункта задания про «различные ответы в зависимости от состояния базы знаний».</p>
+
+<article><h3>Что отвечает система</h3>
+<table>
+<thead><tr><th>Вопрос</th><th>В базе записано?</th><th>Ответ</th></tr></thead>
+<tbody>
+<tr><td>Какая реализация у Python?</td><td class="yes">да, CPython</td><td>Реализация языка программирования Python — CPython.</td></tr>
+<tr><td>Какая реализация у Haskell?</td><td class="no">нет</td><td>В базе знаний нет таких сведений об этом языке программирования.</td></tr>
+<tr><td>Какой стандарт у Си?</td><td class="yes">да, ISO/IEC 9899:2018</td><td>Стандарт языка программирования Си — ISO/IEC 9899:2018.</td></tr>
+<tr><td>Какой стандарт у Python?</td><td class="no">нет</td><td>Этого о данном языке программирования я пока не знаю.</td></tr>
+<tr><td>Кто сопровождает Java?</td><td class="yes">да, Oracle Corporation</td><td>Язык программирования Java сопровождает Oracle Corporation.</td></tr>
+<tr><td>Кто сопровождает JavaScript?</td><td class="no">нет</td><td>одна из двух фраз «сведений нет»</td></tr>
+</tbody>
+</table>
+<p>В каждой паре формулировка вопроса одна и та же, различается только язык. Ответы разные, и разницу создаёт исключительно содержимое базы. Сам текст может оказаться второй фразой того же класса — система берёт любую из двух.</p>
+</article>
+
+<article><h3>Как устроено правило «сведений нет»</h3>
+<p>Правило <code>lr_answer_about_unknown_language_property</code>, третий приоритет. Его условие короче — всего два утверждения:</p>
+<pre><code>ЕСЛИ  _message ∈ concept_message
+  И   _message ∈ concept_message_about_language_property   <span class="c">← любой вопрос о свойстве языка</span>
+ТО    создать ответное сообщение</code></pre>
+<p>К нему привязан класс из двух фраз без шаблона. Правилу неважно, о каком свойстве спросили, — вот зачем нужен общий класс.</p>
+</article>
+
+<article><h3>Почему это работает: порядок проверки правил</h3>
+<p>Так выглядит вопрос «Какая реализация у Haskell?» в настоящем журнале (строки про штатные правила пропущены):</p>
+<pre><code>There is 7 formulas in 2 set                                  <span class="c">← правила второго приоритета</span>
+Trying to generate by formula: lr_answer_about_maintainer
+Trying to generate by formula: lr_answer_about_standard
+Trying to generate by formula: lr_answer_about_implementation  <span class="c">← у Haskell нет реализации: не сработало</span>
+Trying to generate by formula: lr_answer_about_creation_year
+Trying to generate by formula: lr_answer_about_author
+There is 5 formulas in 3 set                                  <span class="c">← правила третьего приоритета</span>
+Trying to generate by formula: lr_answer_about_unknown_language_property
+Compute atomic logical formula  true                          <span class="c">← это вопрос о свойстве языка: сработало</span>
+Target is achieved
+Generated text: "Этого о данном языке программирования я пока не знаю."</code></pre>
+</article>
+
+<article><h3>Что будет, если убрать четвёртое условие</h3>
+<p>Можно подумать, что проверка наличия данных в правиле лишняя: пусть правило сработает всегда, а если фразе нечем заполнить пропуски, система сама перейдёт к правилу «сведений нет».</p>
+<p>Так не получится. Агент вывода останавливается на первом сработавшем правиле (<code>Target is achieved</code>) и назад не возвращается. Правило второго приоритета сработало бы и для Haskell, фраза с шаблоном не собралась бы — и ответа не было бы вовсе:</p>
+<pre><code>Target is achieved                            <span class="c">← перебор остановлен</span>
+Error: Answer isn't found.                    <span class="c">← фраза не собралась</span>
+Error: Reply message not generated.           <span class="c">← молчание</span></code></pre>
+<div class="plain"><b>вывод</b><p>Проверка «есть ли данные» должна стоять в самом правиле — это и есть четвёртое условие. Тогда для Haskell правило второго приоритета не срабатывает, перебор идёт дальше и доходит до правила третьего.</p></div>
+</article>
+
+<h2 class="sec" id="s11">11. Карта файлов</h2>
+<p class="sec-note">Что где лежит. Корень — <code>kb/extra/section_subject_domain_of_programming_languages/</code>.</p>
+
+<article><h3>Каталог работы</h3>
+<pre><code>section_subject_domain_of_programming_languages/
+│
+├── concepts/, relations/                       <span class="c">ЛР1: классы, экземпляры, отношения</span>
+│   └── concepts/instances/languages/               <span class="c">восемь языков и их свойства — источник ответов</span>
+│
+├── messages/
+│   ├── concept_message_about_author.scs            <span class="c">ЛР2: вопрос об авторе</span>
+│   ├── concept_message_about_creation_year.scs     <span class="hl">ЛР3</span> <span class="c">вопрос о годе создания</span>
+│   ├── …implementation, …standard, …maintainer     <span class="hl">ЛР3</span> <span class="c">ещё три типа вопроса</span>
+│   └── concept_message_about_language_property.scs <span class="hl">ЛР3</span> <span class="c">общий класс</span>
+├── logic_rules/
+│   ├── classification/
+│   │   ├── lr_classify_what_is_*, …subdividing_of_*    <span class="c">ЛР2: 60 правил</span>
+│   │   └── lr_classify_&lt;тип&gt;_of_&lt;язык&gt;_message.gwf     <span class="hl">ЛР3</span> <span class="c">40 правил</span>
+│   └── answer/
+│       ├── lr_answer_about_author.gwf                  <span class="c">ЛР2</span>
+│       ├── lr_answer_about_creation_year.gwf           <span class="hl">ЛР3</span> <span class="c">ещё …implementation, …standard, …maintainer</span>
+│       └── lr_answer_about_unknown_language_property.gwf  <span class="hl">ЛР3</span> <span class="c">третий приоритет</span>
+└── phrases/
+    ├── concept_phrase_about_*.scs                      <span class="c">объявления шести классов фраз</span>
+    └── examples/concept_phrase_about_*.scs             <span class="c">сами фразы и образцы, по файлу на класс</span></code></pre>
+</article>
+
+<article><h3>Что лежит в папке ЛР3</h3>
+<table>
+<thead><tr><th>Файл</th><th>Что это</th></tr></thead>
+<tbody>
+<tr><td><code>ЛР3_Отчет.docx</code> / <code>.pdf</code></td><td>отчёт для сдачи</td></tr>
+<tr><td><code>Сценарий_диалога.md</code></td><td>восемь вопросов сценария с классами, сущностями, правилами и ответами</td></tr>
+<tr><td><code>Шпаргалка_к_защите_ЛР3.html</code> / <code>.pdf</code></td><td>этот документ</td></tr>
+<tr><td><code>ИНСТРУКЦИЯ_ЛР3.md</code></td><td>как перенести папку базы в свой репозиторий и проверить</td></tr>
+<tr><td><code>Скриншоты/</code></td><td>рисунки отчёта</td></tr>
+</tbody>
+</table>
+</article>
+
+<h2 class="sec" id="s12">12. Как запустить и показать</h2>
+<p class="sec-note">Команды выполняются в каталоге репозитория <code>nika</code>.</p>
+
+<article><h3>Запуск и перезапуск</h3>
+<pre><code>docker compose up -d --no-build        <span class="c"># поднять систему; база знаний собирается минуту-две</span>
+docker compose ps                      <span class="c"># problem-solver должен быть healthy</span></code></pre>
+<p>После любого перезапуска решателя нужно перезапустить и агенты на Python — именно в таком порядке:</p>
+<pre><code>docker compose restart problem-solver
+docker compose restart py-sc-server</code></pre>
+<p>Без второй команды Ника бесконечно «печатает».</p>
+</article>
+
+<article><h3>Сценарий диалога — восемь вопросов</h3>
+<p>Отправлять кнопкой с самолётиком, Enter не работает. Следующий вопрос — после ответа на предыдущий.</p>
+<table>
+<thead><tr><th>№</th><th>Вопрос</th><th>Ответ системы в проверочном прогоне</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Какая реализация у Python?</td><td>Для языка программирования Python используется реализация «CPython».</td></tr>
+<tr><td>2</td><td>Какая реализация у Haskell?</td><td>В базе знаний нет таких сведений об этом языке программирования.</td></tr>
+<tr><td>3</td><td>Какой стандарт у Си?</td><td>Стандарт языка программирования Си — ISO/IEC 9899:2018.</td></tr>
+<tr><td>4</td><td>Какой стандарт у Python?</td><td>В базе знаний нет таких сведений об этом языке программирования.</td></tr>
+<tr><td>5</td><td>Кто сопровождает Java?</td><td>Язык программирования Java сопровождает Oracle Corporation.</td></tr>
+<tr><td>6</td><td>Кто сопровождает JavaScript?</td><td>Этого о данном языке программирования я пока не знаю.</td></tr>
+<tr><td>7</td><td>В каком году создан Си++?</td><td>Год создания языка программирования Си++ — 1985 год.</td></tr>
+<tr><td>8</td><td>Кто создал Haskell?</td><td>Язык программирования Haskell создал Саймон Пейтон Джонс.</td></tr>
+</tbody>
+</table>
+<p>Формулировка ответа может оказаться второй из двух фраз класса — это нормально, система выбирает любую.</p>
+<figure>
+<img src="Скриншоты/01_диалог_часть1.png" alt="Окно диалога NIKA с первыми вопросами сценария">
+<figcaption>Начало сценария в окне чата: пары «реализация Python / Haskell» и «стандарт Си / Python».</figcaption>
+</figure>
+</article>
+
+<article><h3>Что открыть в sc-web</h3>
+<p>Адрес вида <code>localhost:8000/?sys_id=идентификатор</code> или идентификатор в строке поиска.</p>
+<table>
+<thead><tr><th>Идентификатор</th><th>Что показать</th></tr></thead>
+<tbody>
+<tr><td><code>python_language</code> и <code>haskell_language</code></td><td>у Python есть «реализация языка*», у Haskell нет — причина разных ответов</td></tr>
+<tr><td><code>concept_phrase_about_implementation</code></td><td>класс фраз: две фразы с пропусками</td></tr>
+<tr><td><code>lr_answer_about_implementation</code></td><td>правило ответа, его приоритет и привязанный класс фраз</td></tr>
+<tr><td><code>lr_answer_about_unknown_language_property</code></td><td>правило третьего приоритета</td></tr>
+<tr><td><code>concept_message_about_language_property</code></td><td>общий класс и пять частных классов в нём</td></tr>
+<tr><td><code>lr_classify_implementation_of_python_lang_message</code></td><td>правило распознавания</td></tr>
+</tbody>
+</table>
+</article>
+
+<article><h3>Порядок показа</h3>
+<ol>
+<li>Задать вопросы 1 и 2 сценария. Сказать: «Формулировка одна, ответы разные — потому что разное состояние базы знаний».</li>
+<li>В sc-web открыть <code>python_language</code>, потом <code>haskell_language</code>: показать, что у второго нет реализации.</li>
+<li>Открыть <code>lr_answer_about_implementation</code>: четыре условия, четвёртое — наличие реализации.</li>
+<li>Открыть <code>concept_phrase_about_implementation</code>: две фразы с пропусками.</li>
+<li>Открыть <code>lr_answer_about_unknown_language_property</code>: третий приоритет.</li>
+<li>Задать остальные вопросы сценария.</li>
+</ol>
+<div class="say"><b>сказать вслух</b><p>Ответ строится в два шага. Логическое правило проверяет класс сообщения, сущность и наличие данных в базе и указывает класс фраз. Затем агент генерации берёт фразу этого класса и по её структуре-образцу подставляет значения из базы знаний. Если данных нет, правило второго приоритета не срабатывает, и отвечает правило третьего.</p></div>
+</article>
+
+<h2 class="sec" id="s13">13. Если что-то пошло не так</h2>
+<p class="sec-note">Что бывает на живом показе и что с этим делать.</p>
+
+<article><h3>Признак → причина → действие</h3>
+<table>
+<thead><tr><th>Что видно</th><th>Почему</th><th>Что делать</th></tr></thead>
+<tbody>
+<tr><td>Enter не отправляет сообщение</td><td>так устроено окно чата</td><td>отправлять кнопкой с самолётиком</td></tr>
+<tr><td>При первом открытии чата красная панель с <code>TypeError … 'addr'</code></td><td>ошибка окна чата при пустой истории</td><td>закрыть панель кнопкой «Close», чат под ней рабочий</td></tr>
+<tr><td>«Сформулируйте, пожалуйста, по-другому», «Я не понимаю Вас» и подобное</td><td>текст не совпал ни с одним образцом: другая буква, регистр, название языка</td><td>набрать вопрос точно как в таблице формулировок</td></tr>
+<tr><td>Фраза «сведений нет» вместо ответа по существу</td><td>у этого языка свойство в базе не записано — так и задумано</td><td>свериться с таблицей в разделе 4</td></tr>
+<tr><td>Вопрос набран верно, ответа нет секунд десять</td><td>решатель NIKA изредка теряет уже готовый ответ, чаще при быстрой подаче вопросов</td><td>задать тот же вопрос ещё раз</td></tr>
+<tr><td>Ника перестала отвечать совсем, страницы sc-web не открываются</td><td>решатель завис — ошибка самой NIKA, к базе знаний отношения не имеет</td><td>две команды перезапуска из раздела 12, подождать минуту-две</td></tr>
+<tr><td>После перезапуска пропала история чата</td><td>база знаний собирается заново</td><td>ничего, это штатно</td></tr>
+</tbody>
+</table>
+<div class="mine"><b>совет</b><p>Перед защитой перезапустить систему и один раз прогнать весь сценарий. Вопросы задавать по одному и ждать ответа. Лишние вкладки с sc-web на время показа лучше закрыть.</p></div>
+</article>
+
+<p class="part">Часть III · защита</p>
+
+<h2 class="sec" id="s14">14. Вопросы к защите</h2>
+<p class="sec-note">Восемь вопросов из методички. За устные ответы — три балла из десяти.</p>
+
+<article class="short"><h3>1. Что такое формальная теория? Приведите пример.</h3>
+Множество высказываний, считающихся истинными в рамках этой теории. Часть из них принимается за <b>аксиомы</b>, остальные <b>доказываются</b> на основе аксиом и правил вывода в рамках той же теории.
+<p>Пример из нашей работы: формальная теория — база знаний NIKA. Аксиомы — факты предметной области из ЛР1 (<code>python_language =nrel_language_implementation=&gt; cpython_interpreter</code>) и логические правила ответа. Выводимые высказывания — порождённые ответные сообщения и связи <code>nrel_reply</code>.</p></article>
+
+<article class="short"><h3>2. Что такое высказывание, какими они бывают?</h3>
+Высказывание — структура из sc-констант и/или sc-переменных либо логическая связка, которую можно трактовать как истинную или ложную в рамках предметной области.
+<p>Два разбиения:</p>
+<ul>
+<li><b>атомарное</b> (содержит хотя бы один sc-элемент, не являющийся знаком другого высказывания) и <b>неатомарное</b>;</li>
+<li><b>фактографическое</b> и <b>логическая формула</b>.</li>
+</ul></article>
+
+<article class="short"><h3>3. В чём отличие фактографического высказывания от логической формулы?</h3>
+<b>Наличие sc-переменных.</b> Фактографическое высказывание — атомарное, в состав которого не входит ни одной sc-переменной (или все элементы которого сами фактографические). Логическая формула — атомарное высказывание, содержащее хотя бы одну sc-переменную, либо неатомарное, хотя бы один элемент которого является логической формулой.
+<p>Факт описывает конкретную ситуацию (<code>python_language =nrel_language_implementation=&gt; cpython_interpreter</code>), формула — закономерность, применимую ко многим ситуациям (условие нашего правила с <code>_message</code> и <code>_entity</code>).</p></article>
+
+<article class="short"><h3>4. Какие бывают логические связки?</h3>
+<b>Конъюнкция</b> — истинна, когда истинны все компоненты. <b>Дизъюнкция</b> — когда истинен хотя бы один. <b>Отрицание</b> — когда единственный элемент ложен. <b>Импликация</b> — «если … то». <b>Эквивалентность</b>.
+<p>В базе знаний это неролевые отношения <code>nrel_conjunction</code>, <code>nrel_disjunction</code>, <code>nrel_implication</code>, <code>nrel_equivalence</code> и отношение отрицания. В нашей работе использованы импликация (в каждом правиле) и дизъюнкция (четыре формулировки одного вопроса).</p></article>
+
+<article class="short"><h3>5. В каком случае высказывание является бессмысленным?</h3>
+Когда его нельзя трактовать ни как истинное, ни как ложное в рамках данной предметной области. Практически это происходит при <b>нарушении области определения отношения</b>: элементы связаны отношением, для которого они не входят в первый или второй домен.
+<p>Пример: <code>year_1991 =nrel_language_implementation=&gt; pip_package_manager</code> — синтаксически конструкция построена, но <code>nrel_language_implementation</code> задано как отношение «язык программирования → реализация языка», поэтому высказывание бессмысленно, а не ложно.</p></article>
+
+<article class="short"><h3>6. Чем можно заменить конъюнкцию двух атомарных формул?</h3>
+<b>Одной атомарной формулой</b> — объединением их структур в один контур. Элементы, лежащие в одном контуре атомарной формулы, по умолчанию связаны конъюнктивно, поэтому отдельная связка <code>nrel_conjunction</code> не нужна.
+<p>Именно так устроено условие наших правил: четыре высказывания (это сообщение, класс вопроса, сущность, наличие отношения) лежат в одном контуре и работают как конъюнкция.</p></article>
+
+<article class="short"><h3>7. Что такое шаблон, для чего он нужен? Какие операции возможны с шаблонами?</h3>
+Шаблон — sc-конструкция, содержащая sc-переменные и задающая искомую или порождаемую структуру.
+<p>Операции: <b>поиск</b> по шаблону (сопоставление с подстановкой значений переменных), <b>генерация</b> конструкции по шаблону, <b>проверка существования</b>, <b>поиск с параметрами</b> — часть переменных связывается заранее.</p>
+<p>В нашей работе используются оба применения: условие правила — шаблон для поиска, следствие — шаблон для генерации, структура-образец фразы — шаблон для поиска с заранее связанной переменной <code>_message</code>.</p></article>
+
+<article class="short"><h3>8. Какие кванторы накладываются по умолчанию на атомарные логические формулы и на импликацию?</h3>
+На атомарную логическую формулу — <b>квантор всеобщности</b> по всем входящим в неё переменным.
+<p>На импликацию — квантор всеобщности по переменным, входящим в <b>посылку</b>; на переменные, встречающиеся только в <b>заключении</b>, накладывается квантор существования: при выводе такие элементы порождаются.</p>
+<p>В нашем правиле <code>_message</code>, <code>_entity</code>, <code>_value</code> — под всеобщностью, а <code>_reply_message</code> встречается только в следствии и потому порождается заново для каждого сообщения.</p></article>
+
+<h2 class="sec" id="s15">15. Задачи: логические правила</h2>
+<p class="sec-note">Формализовать высказывание в виде логического правила. Важен метод, а не заученный ответ.</p>
+<p>Обозначения: контур <code>[* … *]</code> — атомарная формула, элементы внутри связаны конъюнктивно; <code>_x</code> — переменная.</p>
+
+<article class="short"><h3>1. Если время больше 23 или меньше 8 часов, телефон в беззвучном режиме</h3>
+<pre>ЕСЛИ = дизъюнкция:
+  К1 = [* _phone _=> nrel_current_time:: _t;; _t _=> nrel_greater:: [23:00];; *]
+  К2 = [* _phone _=> nrel_current_time:: _t;; _t _=> nrel_less::    [08:00];; *]
+  nrel_disjunction -> {К1; К2}
+ТО = [* concept_silent_mode _-> _phone;; *]
+(дизъюнкция => ТО) &lt;- nrel_implication</pre></article>
+
+<article class="short"><h3>2. Если температура воды не меньше 100 °C, вода закипает</h3>
+<pre>ЕСЛИ = [* concept_water _-> _w;; _w _=> nrel_temperature:: _t;;
+          ОТРИЦАНИЕ( _t _=> nrel_less:: [100] );; *]
+ТО   = [* concept_boiling _-> _w;; *]</pre>
+<p>«Не меньше» выражается отрицанием «меньше»: отношение отрицания над атомарной формулой.</p></article>
+
+<article class="short"><h3>3. Если сообщение пришло после конца рабочего дня, ответа не будет</h3>
+<pre>ЕСЛИ = [* concept_message _-> _m;; _m _=> nrel_time:: _t;;
+          _t _=> nrel_later:: end_of_working_day;; *]
+ТО   = ОТРИЦАНИЕ( [* (_m _=> _r) _&lt;- nrel_reply;; *] )</pre></article>
+
+<article class="short"><h3>4. Транзитивность отношения «предок»</h3>
+<pre>ЕСЛИ = [* _x _=> nrel_ancestor:: _y;;
+          _y _=> nrel_ancestor:: _z;; *]      ← конъюнкция «по умолчанию»
+ТО   = [* _x _=> nrel_ancestor:: _z;; *]</pre>
+<p>Классический пример: две атомарные формулы объединены в один контур, отдельная связка не нужна (вопрос 6).</p></article>
+
+<article class="short"><h3>5. Яблоко: (красное ∨ невкусное) ∧ (зелёное ∨ вкусное) → красное ∨ зелёное</h3>
+<pre>Д1 = дизъюнкция { [* concept_red _-> _a;; *] ;
+                  ОТРИЦАНИЕ([* concept_tasty _-> _a;; *]) }
+Д2 = дизъюнкция { [* concept_green _-> _a;; *] ;
+                  [* concept_tasty _-> _a;; *] }
+ЕСЛИ = конъюнкция { Д1; Д2 }
+ТО   = дизъюнкция { [* concept_red _-> _a;; *] ; [* concept_green _-> _a;; *] }</pre></article>
+
+<article class="short"><h3>6. Студент ИИ понял главную проблему → проучился не зря</h3>
+<pre>ЕСЛИ = [* concept_ai_student _-> _s;;
+          _s _=> nrel_understands:: main_problem_of_modern_ai;; *]
+ТО   = [* concept_studied_not_in_vain _-> _s;; *]</pre></article>
+
+<article class="short"><h3>7. Нет дыма без огня</h3>
+<pre>ЕСЛИ = [* concept_smoke _-> _smoke;; *]
+ТО   = [* concept_fire _-> _fire;; _smoke _=> nrel_cause:: _fire;; *]</pre>
+<p>Переменная <code>_fire</code> встречается только в заключении — на неё накладывается квантор существования (вопрос 8): «для всякого дыма <b>существует</b> огонь».</p></article>
+
+<article class="short"><h3>8. Без труда не выловишь и рыбку из пруда</h3>
+<pre>ЕСЛИ = ОТРИЦАНИЕ( [* _human _=> nrel_applies:: _labour;; *] )
+ТО   = ОТРИЦАНИЕ( [* _human _=> nrel_caught::  _fish;;   *] )</pre></article>
+
+<article class="short"><h3>9. Дважды в год лето не бывает</h3>
+<pre>ОТРИЦАНИЕ( [* _year _-> rrel_1:: _summer_1;;
+              _year _-> rrel_2:: _summer_2;;
+              ОТРИЦАНИЕ( _summer_1 _=> nrel_identical:: _summer_2 );; *] )</pre>
+<p>Читается: не существует года, которому принадлежат два <i>различных</i> лета.</p></article>
+
+<article class="short"><h3>10. Гардероб работает и у студента идёт занятие → куртка сдана</h3>
+<pre>ЕСЛИ = [* concept_working_cloakroom _-> _cloakroom;;
+          _student _=> nrel_current_lesson:: _lesson;;
+          _student _=> nrel_jacket::         _jacket;; *]
+ТО   = [* _jacket _=> nrel_handed_over_to:: _cloakroom;; *]</pre></article>
+
+<h2 class="sec" id="s16">16. Задачи: фразы с шаблоном</h2>
+<p class="sec-note">Формализовать фразу, в которую подставляются значения из базы знаний.</p>
+<p>Схема одинакова для всех пяти: на каждое подставляемое значение — своя переменная-ссылка с системным идентификатором, все они собираются в одну структуру-образец.</p>
+
+<article class="short"><h3>4. БГУИР (полный разбор)</h3>
+<pre>@v_year  = _[];; @v_year  => nrel_system_identifier: [_year];;
+@v_addr  = _[];; @v_addr  => nrel_system_identifier: [_addr];;
+@v_count = _[];; @v_count => nrel_system_identifier: [_count];;
+@v_spec  = _[];; @v_spec  => nrel_system_identifier: [_spec];;
+@v_name  = _[];; @v_name  => nrel_system_identifier: [_name];;
+
+@tpl_university = [*
+    concept_message _-> _message;;
+    _message _-> rrel_entity:: _univ;;
+    _univ _=> nrel_main_idtf::         @v_name  (* _&lt;- lang_ru;; *);;
+    _univ _=> nrel_foundation_year::   @v_year  (* _&lt;- lang_ru;; *);;
+    _univ _=> nrel_address::           @v_addr  (* _&lt;- lang_ru;; *);;
+    _univ _=> nrel_number_of_students::@v_count (* _&lt;- lang_ru;; *);;
+    _univ _=> nrel_specialization::    @v_spec  (* _&lt;- lang_ru;; *);;
+*];;
+
+concept_phrase_about_university ->
+  [Университет ${_name} основан в ${_year} году, главный корпус находится
+   по адресу ${_addr}. Количество учащихся - ${_count},
+   специализация университета - ${_spec}.]
+  (* &lt;- lang_ru;; => nrel_phrase_template: @tpl_university;; *);;</pre></article>
+
+<article class="short"><h3>Остальные — по той же схеме</h3>
+<table>
+<tr><th>Задача</th><th>Переменные шаблона</th></tr>
+<tr><td>1. Класс «9В»</td><td>_class_name, _total, _excellent, _good, _bad, _rating_place, _subject</td></tr>
+<tr><td>2. Студент Иванов</td><td>_surname, _course, _average_mark, _housing, _company</td></tr>
+<tr><td>3. Аудитория 612</td><td>_room, _tables, _computers, _fire_safety_person</td></tr>
+<tr><td>5. Треугольник АВС</td><td>_triangle, _perimeter, _area, _type, _sides_ratio</td></tr>
+</table>
+<div class="tip">Ключевая мысль, которую хотят услышать: <b>фраза с шаблоном не хранит текст ответа</b>. Она хранит текст с «дырками» и структуру-образец, по которой эти дырки заполняются из базы знаний. Если нужной конструкции в базе нет — фраза не собирается, и ответа не будет вовсе. Поэтому наличие данных проверяется заранее, в самом правиле ответа: когда данных нет, срабатывает другое правило, и система отвечает фразой «сведений нет». <b>Про число подстановок:</b> в задачах фраза формализуется целиком, как в методичке. В самой NIKA фраза больше чем с двумя подстановками не собирается — там её пришлось бы разбить на несколько фраз.</div></article>
+
+<h2 class="sec" id="s17">17. Что ещё спросят</h2>
+
+<article class="short"><h3>Почему у сообщения два класса сразу — частный и общий?</h3>
+<p>Принадлежность классу по отношению включения в sc-памяти сама не распространяется. Правило «сведений нет» ищет дугу <code>concept_message_about_language_property -&gt; _message</code>, поэтому правило распознавания создаёт её явно, вместе с дугой частного класса.</p>
+</article>
+
+<article class="short"><h3>Почему на один и тот же вопрос ответ формулируется по-разному?</h3>
+<p>В каждом классе фраз две фразы, и система берёт любую из них. Это требование задания: фразы не должны повторяться, и на класс их должно быть не менее двух.</p>
+</article>
+
+<article class="short"><h3>Где здесь используются сущности из первой лабораторной?</h3>
+<p>В условии правила: <code>_message → rrel_entity → _entity</code>, где <code>_entity</code> — экземпляр языка из ЛР1 (<code>python_language</code>, <code>c_language</code>, <code>haskell_language</code> …). И в структуре-образце фразы: значение берётся по исследуемому отношению ЛР1 — <code>nrel_language_author</code>, <code>nrel_creation_year</code>, <code>nrel_language_implementation</code>, <code>nrel_language_standard</code>, <code>nrel_maintaining_organization</code> — и по его русскому идентификатору.</p>
+</article>
+
+<article class="short"><h3>Что будет, если спросить про язык, которого нет в базе?</h3>
+<p>Ни одно правило распознавания не узнает формулировку: сообщение не получит ни класса, ни сущности, и система ответит штатной фразой непонимания. Правила сопоставляют текст сообщения дословно.</p>
+</article>
+
+<article class="short"><h3>Чем фраза «сведений нет» отличается от фразы непонимания?</h3>
+<p>Фраза непонимания — штатная, она выдаётся, когда вопрос не распознан вовсе. Фраза «сведений нет» — из этой работы: вопрос распознан, язык и тип вопроса определены, но нужного отношения у языка в базе нет.</p>
+</article>
+
+<article class="short"><h3>Что изменилось в правилах про автора по сравнению с ЛР2?</h3>
+<p>В следствие добавлен общий класс <code>concept_message_about_language_property</code>, формулировок стало четыре вместо двух, и добавлено правило для восьмого языка — языка ассемблера x86, у которого автор в базе не записан. Теперь на вопрос о его авторе система отвечает фразой «сведений нет», а не фразой непонимания.</p>
+</article>
+
+<footer>
+  <p>Каталог работы: <code>kb/extra/section_subject_domain_of_programming_languages</code>. Ветка <code>tpis-2023</code>.</p>
+</footer>
+
+</div>
+</body></html>

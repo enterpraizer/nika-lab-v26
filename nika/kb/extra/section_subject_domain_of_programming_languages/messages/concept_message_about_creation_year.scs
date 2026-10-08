@@ -1,0 +1,34 @@
+/* Класс сообщений ЛР3: вопрос о свойстве «год создания» языка программирования.
+   Сообщение попадает в класс по логическому правилу классификации
+   (множество concept_classify_message_rule_priority_1). */
+
+concept_message_about_creation_year
+<- sc_node_class;
+<- concept_intent_possible_class;
+=> nrel_main_idtf:
+    [сообщение о годе создания языка программирования]
+    (* <- lang_ru;; *);
+    [message about programming language creation year]
+    (* <- lang_en;; *);
+=> nrel_wit_ai_idtf:
+    [about_creation_year];
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (сообщение о годе создания языка программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Сообщение о годе создания языка программирования - атомарное сообщение, содержащее язык программирования, год создания которого требуется найти.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_atomic_message;
+            concept_programming_language;
+            concept_calendar_year
+        };;
+    *);;

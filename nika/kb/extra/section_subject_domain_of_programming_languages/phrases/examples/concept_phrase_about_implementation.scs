@@ -1,0 +1,54 @@
+/* Фразы ответа класса concept_phrase_about_implementation (ЛР3).
+
+   В тексте фразы ${...} — место подстановки; имя в скобках совпадает
+   с nrel_system_identifier переменной-ссылки. Подстановок в каждой фразе две:
+   с тремя агент генерации фраз фразу не собирает.
+   Обе фразы класса используют один образец @tpl_impl. */
+
+@var_language_name_impl = _[];;
+@var_language_name_impl
+=> nrel_system_identifier:
+	[_language_name_impl];;
+
+@var_impl_name = _[];;
+@var_impl_name
+=> nrel_system_identifier:
+	[_impl_name];;
+
+/* Образец: сообщение, выделенный в нём язык программирования, его русский
+   идентификатор, значение отношения nrel_language_implementation и русский идентификатор
+   этого значения. Если у языка такого отношения нет, образец не находится. */
+@tpl_impl = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_impl;;
+
+	_language_impl
+	_=> nrel_main_idtf::
+		@var_language_name_impl
+		(* _<- lang_ru;; *);;
+
+	_language_impl
+	_=> nrel_language_implementation:: _implementation;;
+
+	_implementation
+	_=> nrel_main_idtf::
+		@var_impl_name
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_implementation ->
+	[Реализация языка программирования ${_language_name_impl} — ${_impl_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_impl;;
+	*);;
+
+concept_phrase_about_implementation ->
+	[Для языка программирования ${_language_name_impl} используется реализация «${_impl_name}».]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_impl;;
+	*);;

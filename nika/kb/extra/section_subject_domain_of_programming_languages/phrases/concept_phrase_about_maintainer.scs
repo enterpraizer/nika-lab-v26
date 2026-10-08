@@ -1,0 +1,34 @@
+/* Класс фраз ответа (ЛР3). Сами фразы и образец — в phrases/examples/concept_phrase_about_maintainer.scs */
+
+concept_phrase_about_maintainer
+<- sc_node_class;
+=> nrel_main_idtf:
+	[фраза об организации, сопровождающей язык программирования]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[phrase about programming language maintainer]
+	(* <- lang_en;; *);
+<= nrel_inclusion:
+	concept_phrase;
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (фраза об организации, сопровождающей язык программирования)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Фраза об организации, сопровождающей язык программирования - фраза, сообщающая, какая организация сопровождает указанный язык программирования.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_phrase;
+			concept_programming_language;
+			concept_software_development_organization;
+			nrel_maintaining_organization
+		};;
+	*);;

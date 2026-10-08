@@ -1,0 +1,54 @@
+/* Фразы ответа класса concept_phrase_about_maintainer (ЛР3).
+
+   В тексте фразы ${...} — место подстановки; имя в скобках совпадает
+   с nrel_system_identifier переменной-ссылки. Подстановок в каждой фразе две:
+   с тремя агент генерации фраз фразу не собирает.
+   Обе фразы класса используют один образец @tpl_org. */
+
+@var_language_name_org = _[];;
+@var_language_name_org
+=> nrel_system_identifier:
+	[_language_name_org];;
+
+@var_org_name = _[];;
+@var_org_name
+=> nrel_system_identifier:
+	[_org_name];;
+
+/* Образец: сообщение, выделенный в нём язык программирования, его русский
+   идентификатор, значение отношения nrel_maintaining_organization и русский идентификатор
+   этого значения. Если у языка такого отношения нет, образец не находится. */
+@tpl_org = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_org;;
+
+	_language_org
+	_=> nrel_main_idtf::
+		@var_language_name_org
+		(* _<- lang_ru;; *);;
+
+	_language_org
+	_=> nrel_maintaining_organization:: _organization;;
+
+	_organization
+	_=> nrel_main_idtf::
+		@var_org_name
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_maintainer ->
+	[Язык программирования ${_language_name_org} сопровождает ${_org_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_org;;
+	*);;
+
+concept_phrase_about_maintainer ->
+	[Сопровождением языка программирования ${_language_name_org} занимается ${_org_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_org;;
+	*);;

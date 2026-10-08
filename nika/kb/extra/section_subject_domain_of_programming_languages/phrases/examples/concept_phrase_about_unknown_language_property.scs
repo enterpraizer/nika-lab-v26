@@ -1,0 +1,10 @@
+/* Фразы класса concept_phrase_about_unknown_language_property (ЛР3).
+   Образца у них нет: подставлять нечего, текст выдаётся как есть. */
+
+concept_phrase_about_unknown_language_property ->
+	[В базе знаний нет таких сведений об этом языке программирования.]
+	(* <- lang_ru;; *);;
+
+concept_phrase_about_unknown_language_property ->
+	[Этого о данном языке программирования я пока не знаю.]
+	(* <- lang_ru;; *);;

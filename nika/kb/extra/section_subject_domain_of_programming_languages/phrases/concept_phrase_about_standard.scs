@@ -1,0 +1,34 @@
+/* Класс фраз ответа (ЛР3). Сами фразы и образец — в phrases/examples/concept_phrase_about_standard.scs */
+
+concept_phrase_about_standard
+<- sc_node_class;
+=> nrel_main_idtf:
+	[фраза о стандарте языка программирования]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[phrase about programming language standard]
+	(* <- lang_en;; *);
+<= nrel_inclusion:
+	concept_phrase;
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (фраза о стандарте языка программирования)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Фраза о стандарте языка программирования - фраза, сообщающая, каким стандартом описан указанный язык программирования.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_phrase;
+			concept_programming_language;
+			concept_language_standard;
+			nrel_language_standard
+		};;
+	*);;
