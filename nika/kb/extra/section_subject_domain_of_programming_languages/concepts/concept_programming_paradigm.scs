@@ -1,0 +1,43 @@
+concept_programming_paradigm
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [парадигма программирования]
+    (* <- lang_ru;; *);
+    [programming paradigm]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Парадигма программирования — совокупность идей и понятий, определяющих стиль написания компьютерных программ и способ мышления программиста при их разработке.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Современные языки редко следуют одной парадигме: большинство из них мультипарадигменные и предоставляют средства сразу нескольких подходов.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (парадигма программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Парадигма программирования — система понятий и принципов, определяющая способ построения программ и класс поддерживающих её языков программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_paradigm;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Парадигма_программирования]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_programming_methodology
+    (* => nrel_main_idtf:
+            [методология программирования]
+            (* <- lang_ru;; *);;
+    *);;

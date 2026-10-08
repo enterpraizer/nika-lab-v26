@@ -1,0 +1,38 @@
+concept_low_level_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [язык программирования низкого уровня]
+    (* <- lang_ru;; *);
+    [low-level programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Язык программирования низкого уровня — язык, конструкции которого непосредственно соответствуют командам процессора и особенностям его архитектуры.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Языки низкого уровня применяются там, где нужен полный контроль над аппаратурой: в драйверах, загрузчиках, встраиваемых системах и критичных по скорости фрагментах кода.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (язык программирования низкого уровня)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Язык программирования низкого уровня — язык программирования, операторы которого находятся во взаимно однозначном соответствии с машинными командами процессора.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_low_level_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Низкоуровневый_язык_программирования]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

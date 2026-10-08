@@ -1,0 +1,46 @@
+nrel_developer_organization
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+    [место работы разработчика*]
+    (* <- lang_ru;; *);
+    [developer organization*]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Связывает разработчика языка программирования с организацией, в которой велась разработка языка.]
+    (* <- lang_ru;; *);
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_first_domain: concept_programming_language_developer;
+=> nrel_second_domain: concept_software_development_organization;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language_developer;
+            concept_software_development_organization
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (место работы разработчика*)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Место работы разработчика* — бинарное ориентированное отношение, связывающее разработчика языка программирования с организацией, в которой велась разработка языка.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language_developer;
+            concept_software_development_organization
+        };;
+    *);;

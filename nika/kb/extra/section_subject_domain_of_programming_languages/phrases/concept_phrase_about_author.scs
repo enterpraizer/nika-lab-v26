@@ -1,0 +1,36 @@
+/* Класс фраз ответа на вопрос об авторе языка программирования.
+   Конкретные фразы класса и связанный с ними контур-образец описаны
+   в phrases/examples/concept_phrase_about_author.scs */
+
+concept_phrase_about_author
+<- sc_node_class;
+=> nrel_main_idtf:
+	[фраза об авторе языка программирования]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[phrase about programming language author]
+	(* <- lang_en;; *);
+<= nrel_inclusion:
+	concept_phrase;
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (фраза об авторе языка программирования)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Фраза об авторе языка программирования - фраза, сообщающая, кто спроектировал указанный язык программирования.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_phrase;
+			concept_programming_language;
+			concept_programming_language_developer;
+			nrel_language_author
+		};;
+	*);;

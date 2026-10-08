@@ -1,0 +1,18 @@
+prolog_language
+<- concept_programming_language;
+<- concept_interpreted_programming_language;
+<- concept_high_level_programming_language;
+<- concept_logic_programming_language;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Пролог]
+    (* <- lang_ru;; *);
+    [Prolog]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Пролог — язык логического программирования, программа на котором представляет собой множество фактов и правил, а вычисление сводится к логическому выводу на них.]
+    (* <- lang_ru;; *);
+=> nrel_language_author: alain_colmerauer;
+=> nrel_creation_year: year_1972;
+=> nrel_supported_paradigm: paradigm_logic_programming;
+-> rrel_main_paradigm: paradigm_logic_programming;;

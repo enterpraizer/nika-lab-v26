@@ -1,0 +1,42 @@
+concept_standard_library
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [стандартная библиотека]
+    (* <- lang_ru;; *);
+    [standard library]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Стандартная библиотека — набор модулей и функций, поставляемый вместе с реализацией языка программирования и доступный любой программе без установки дополнительных компонентов.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Состав стандартной библиотеки во многом определяет удобство языка: чем она полнее, тем реже приходится подключать сторонние компоненты.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (стандартная библиотека)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Стандартная библиотека — библиотека программных компонентов, входящая в состав стандарта или базовой поставки языка программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_standard_library
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Стандартная_библиотека]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_software_library
+    (* => nrel_main_idtf:
+            [библиотека программных компонентов]
+            (* <- lang_ru;; *);;
+    *);;

@@ -1,0 +1,14 @@
+iso_organization
+<- concept_software_development_organization;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Международная организация по стандартизации]
+    (* <- lang_ru;; *);
+    [International Organization for Standardization]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [ISO]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Международная организация по стандартизации — организация, выпускающая международные стандарты, в том числе стандарты языков программирования.]
+    (* <- lang_ru;; *);;

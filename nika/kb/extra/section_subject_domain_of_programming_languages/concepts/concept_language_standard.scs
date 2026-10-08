@@ -1,0 +1,42 @@
+concept_language_standard
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [стандарт языка программирования]
+    (* <- lang_ru;; *);
+    [programming language standard]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Стандарт языка программирования — нормативный документ, фиксирующий синтаксис, семантику и требования к реализациям языка программирования.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Наличие стандарта делает язык независимым от конкретного производителя и позволяет программам, написанным по стандарту, работать с любой соответствующей реализацией.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (стандарт языка программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Стандарт языка программирования — документ, устанавливающий требования к синтаксису и семантике языка программирования и к его реализациям.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_language_standard
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Стандарт]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_normative_document
+    (* => nrel_main_idtf:
+            [нормативный документ]
+            (* <- lang_ru;; *);;
+    *);;

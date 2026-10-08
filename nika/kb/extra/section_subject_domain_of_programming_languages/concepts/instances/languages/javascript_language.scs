@@ -1,0 +1,27 @@
+javascript_language
+<- concept_programming_language;
+<- concept_interpreted_programming_language;
+<- concept_high_level_programming_language;
+<- concept_dynamically_typed_programming_language;
+<- concept_object_oriented_programming_language;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [JavaScript]
+    (* <- lang_ru;; *);
+    [JavaScript]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [JS]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [JavaScript — мультипарадигменный язык программирования с динамической типизацией, изначально предназначенный для написания сценариев, исполняемых в веб-браузере.]
+    (* <- lang_ru;; *);
+=> nrel_language_author: brendan_eich;
+=> nrel_creation_year: year_1995;
+=> nrel_supported_paradigm: paradigm_object_oriented_programming;
+    paradigm_functional_programming;
+=> nrel_influenced_by: java_language;
+=> nrel_language_standard: ecma_262;
+=> nrel_package_manager: npm_package_manager;
+=> nrel_ide_support: visual_studio_code_ide;
+-> rrel_current_standard: ecma_262;;

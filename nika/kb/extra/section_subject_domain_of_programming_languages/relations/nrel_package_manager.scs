@@ -1,0 +1,46 @@
+nrel_package_manager
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+    [менеджер пакетов языка*]
+    (* <- lang_ru;; *);
+    [package manager of language*]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Связывает язык программирования со штатным средством управления внешними библиотеками.]
+    (* <- lang_ru;; *);
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_first_domain: concept_programming_language;
+=> nrel_second_domain: concept_package_manager;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language;
+            concept_package_manager
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (менеджер пакетов языка*)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Менеджер пакетов языка* — бинарное ориентированное отношение, связывающее язык программирования с программным средством, обеспечивающим установку и обновление библиотек для этого языка.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language;
+            concept_package_manager
+        };;
+    *);;

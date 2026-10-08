@@ -1,0 +1,38 @@
+concept_interpreted_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [интерпретируемый язык программирования]
+    (* <- lang_ru;; *);
+    [interpreted programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Интерпретируемый язык программирования — язык, программы на котором выполняются интерпретатором путём последовательного анализа и исполнения конструкций исходного текста.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Интерпретация замедляет выполнение программы, но упрощает отладку и делает программу переносимой: достаточно наличия интерпретатора для целевой платформы.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (интерпретируемый язык программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Интерпретируемый язык программирования — язык программирования, реализация которого предполагает выполнение программы интерпретатором без предварительной компиляции в машинный код.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_interpreted_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Интерпретируемый_язык_программирования]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

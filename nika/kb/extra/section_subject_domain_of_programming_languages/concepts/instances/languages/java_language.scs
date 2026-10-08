@@ -1,0 +1,27 @@
+java_language
+<- concept_programming_language;
+<- concept_compiled_programming_language;
+<- concept_high_level_programming_language;
+<- concept_statically_typed_programming_language;
+<- concept_object_oriented_programming_language;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Java]
+    (* <- lang_ru;; *);
+    [Java]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [Ява]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Java — строго типизированный объектно-ориентированный язык программирования, программы на котором компилируются в байт-код и исполняются виртуальной машиной, что обеспечивает независимость от аппаратной платформы.]
+    (* <- lang_ru;; *);
+=> nrel_language_author: james_gosling;
+=> nrel_creation_year: year_1995;
+=> nrel_supported_paradigm: paradigm_object_oriented_programming;
+=> nrel_influenced_by: cpp_language;
+=> nrel_language_implementation: java_virtual_machine;
+=> nrel_maintaining_organization: oracle_corporation;
+=> nrel_ide_support: visual_studio_code_ide;
+-> rrel_reference_implementation: java_virtual_machine;
+-> rrel_main_paradigm: paradigm_object_oriented_programming;;

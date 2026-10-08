@@ -1,0 +1,38 @@
+concept_interpreter
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [интерпретатор]
+    (* <- lang_ru;; *);
+    [interpreter]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Интерпретатор — программа, выполняющая исходный текст программы путём его анализа и непосредственного исполнения конструкций языка.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Интерпретатор читает программу по частям, поэтому ошибка в редко исполняемой ветви может проявиться только при попадании выполнения в эту ветвь.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (интерпретатор)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Интерпретатор — реализация языка программирования, выполняющая программу без её предварительной компиляции в машинный код.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_interpreter;
+            concept_programming_language_implementation
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Интерпретатор]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language_implementation;;

@@ -1,0 +1,46 @@
+nrel_implementation_language
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+    [язык реализации*]
+    (* <- lang_ru;; *);
+    [implementation language*]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Связывает реализацию языка программирования с языком, на котором она написана.]
+    (* <- lang_ru;; *);
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_first_domain: concept_programming_language_implementation;
+=> nrel_second_domain: concept_programming_language;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language_implementation;
+            concept_programming_language
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (язык реализации*)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Язык реализации* — бинарное ориентированное отношение, связывающее реализацию языка программирования с языком программирования, на котором эта реализация разработана.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language_implementation;
+            concept_programming_language
+        };;
+    *);;

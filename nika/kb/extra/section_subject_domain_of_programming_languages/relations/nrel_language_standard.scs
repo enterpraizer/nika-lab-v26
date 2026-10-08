@@ -1,0 +1,46 @@
+nrel_language_standard
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+    [стандарт языка программирования*]
+    (* <- lang_ru;; *);
+    [standard of programming language*]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Связывает язык программирования с нормативным документом, фиксирующим его синтаксис и семантику.]
+    (* <- lang_ru;; *);
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_first_domain: concept_programming_language;
+=> nrel_second_domain: concept_language_standard;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language;
+            concept_language_standard
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (стандарт языка программирования*)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Стандарт языка программирования* — бинарное ориентированное отношение, связывающее язык программирования с документом, устанавливающим требования к этому языку.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language;
+            concept_language_standard
+        };;
+    *);;

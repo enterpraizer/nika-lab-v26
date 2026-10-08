@@ -1,0 +1,46 @@
+/* Экземпляры понятия календарный год */
+
+year_1972
+<- concept_calendar_year;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [1972 год]
+    (* <- lang_ru;; *);
+    [1972]
+    (* <- lang_en;; *);;
+
+year_1985
+<- concept_calendar_year;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [1985 год]
+    (* <- lang_ru;; *);
+    [1985]
+    (* <- lang_en;; *);;
+
+year_1990
+<- concept_calendar_year;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [1990 год]
+    (* <- lang_ru;; *);
+    [1990]
+    (* <- lang_en;; *);;
+
+year_1991
+<- concept_calendar_year;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [1991 год]
+    (* <- lang_ru;; *);
+    [1991]
+    (* <- lang_en;; *);;
+
+year_1995
+<- concept_calendar_year;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [1995 год]
+    (* <- lang_ru;; *);
+    [1995]
+    (* <- lang_en;; *);;

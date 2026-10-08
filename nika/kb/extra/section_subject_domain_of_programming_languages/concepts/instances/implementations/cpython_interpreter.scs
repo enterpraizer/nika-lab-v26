@@ -1,0 +1,13 @@
+cpython_interpreter
+<- concept_programming_language_implementation;
+<- concept_interpreter;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [CPython]
+    (* <- lang_ru;; *);
+    [CPython]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [CPython — эталонная реализация языка Python, транслирующая исходный текст программы в байт-код и исполняющая его собственной виртуальной машиной.]
+    (* <- lang_ru;; *);
+=> nrel_implementation_language: c_language;;

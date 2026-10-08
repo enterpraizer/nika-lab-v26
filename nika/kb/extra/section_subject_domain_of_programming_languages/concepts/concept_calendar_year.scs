@@ -1,0 +1,42 @@
+concept_calendar_year
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [календарный год]
+    (* <- lang_ru;; *);
+    [calendar year]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Календарный год — единица измерения времени, используемая в данной предметной области для указания года появления языка программирования.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Год создания языка указывается приблизительно: между началом разработки, первой работающей реализацией и публичным выпуском может пройти несколько лет.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (календарный год)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Календарный год — отрезок времени продолжительностью в один год, обозначаемый порядковым номером по григорианскому календарю.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_calendar_year
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Календарный_год]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_time_interval
+    (* => nrel_main_idtf:
+            [промежуток времени]
+            (* <- lang_ru;; *);;
+    *);;

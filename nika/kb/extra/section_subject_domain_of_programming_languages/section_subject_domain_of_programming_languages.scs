@@ -1,0 +1,87 @@
+section_subject_domain_of_programming_languages
+=> nrel_main_idtf:
+    [Раздел. Предметная область языков программирования]
+    (* <- lang_ru;; *);
+    [Section. Subject domain of programming languages]
+    (* <- lang_en;; *);
+<- atomic_section;;
+
+section_subject_domain_of_programming_languages = [*
+    subject_domain_of_programming_languages
+    <- sc_node_struct;
+    => nrel_main_idtf:
+        [Предметная область языков программирования]
+        (* <- lang_ru;; *);
+        [Subject domain of programming languages]
+        (* <- lang_en;; *);
+    <- subject_domain;
+    -> rrel_maximum_studied_object_class:
+        concept_programming_language;
+        concept_programming_paradigm;
+        concept_programming_language_implementation;
+        concept_language_standard;
+        concept_programming_language_developer;
+        concept_software_development_organization;
+        concept_standard_library;
+        concept_integrated_development_environment;
+        concept_package_manager;
+        concept_calendar_year;
+    -> rrel_not_maximum_studied_object_class:
+        concept_compiled_programming_language;
+        concept_interpreted_programming_language;
+        concept_high_level_programming_language;
+        concept_low_level_programming_language;
+        concept_object_oriented_programming_language;
+        concept_functional_programming_language;
+        concept_procedural_programming_language;
+        concept_logic_programming_language;
+        concept_statically_typed_programming_language;
+        concept_dynamically_typed_programming_language;
+        concept_compiler;
+        concept_interpreter;
+        concept_virtual_machine;
+    -> rrel_explored_relation:
+        nrel_language_author;
+        nrel_creation_year;
+        nrel_supported_paradigm;
+        nrel_influenced_by;
+        nrel_language_standard;
+        nrel_language_implementation;
+        nrel_standard_library;
+        nrel_maintaining_organization;
+        nrel_package_manager;
+        nrel_ide_support;
+        nrel_implementation_language;
+        nrel_developer_organization;
+        nrel_source;
+        nrel_explanation;
+        rrel_reference_implementation;
+        rrel_current_standard;
+        rrel_main_paradigm;;
+*];;
+
+section_subject_domain_of_programming_languages
+-> rrel_key_sc_element:
+    subject_domain_of_programming_languages;
+        concept_programming_language;
+        concept_programming_paradigm;
+        concept_programming_language_implementation;
+        concept_language_standard;
+        concept_programming_language_developer;
+        concept_software_development_organization;
+        concept_standard_library;
+        concept_integrated_development_environment;
+        concept_package_manager;
+        concept_calendar_year;
+        nrel_language_author;
+        nrel_creation_year;
+        nrel_supported_paradigm;
+        nrel_influenced_by;
+        nrel_language_standard;
+        nrel_language_implementation;
+        nrel_standard_library;
+        nrel_maintaining_organization;
+        nrel_package_manager;
+        nrel_ide_support;
+        nrel_implementation_language;
+        nrel_developer_organization;;

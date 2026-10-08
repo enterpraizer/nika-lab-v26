@@ -1,0 +1,12 @@
+dennis_ritchie
+<- concept_programming_language_developer;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Деннис Ритчи]
+    (* <- lang_ru;; *);
+    [Dennis Ritchie]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Деннис Ритчи — американский учёный в области информатики, автор языка программирования Си и один из создателей операционной системы UNIX, лауреат премии Тьюринга 1983 года.]
+    (* <- lang_ru;; *);
+=> nrel_developer_organization: bell_labs;;

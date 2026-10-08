@@ -1,0 +1,46 @@
+nrel_source
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+    [источник сведений*]
+    (* <- lang_ru;; *);
+    [information source*]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Связывает описываемое понятие с внешним открытым источником, по тексту которого это понятие было формализовано.]
+    (* <- lang_ru;; *);
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_first_domain: concept_programming_language;
+=> nrel_second_domain: file;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language;
+            file
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (источник сведений*)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Источник сведений* — бинарное ориентированное отношение, связывающее понятие предметной области с файлом, содержащим ссылку на открытый источник, на основании которого построено описание этого понятия.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language;
+            file
+        };;
+    *);;

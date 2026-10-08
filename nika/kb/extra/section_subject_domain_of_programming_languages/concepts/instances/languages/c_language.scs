@@ -1,0 +1,28 @@
+c_language
+<- concept_programming_language;
+<- concept_compiled_programming_language;
+<- concept_high_level_programming_language;
+<- concept_statically_typed_programming_language;
+<- concept_procedural_programming_language;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Си]
+    (* <- lang_ru;; *);
+    [C]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [язык Си]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Си — компилируемый статически типизированный язык программирования общего назначения, разработанный для системного программирования и оказавший влияние на большинство современных языков.]
+    (* <- lang_ru;; *);
+=> nrel_language_author: dennis_ritchie;
+=> nrel_creation_year: year_1972;
+=> nrel_supported_paradigm: paradigm_procedural_programming;
+=> nrel_language_standard: iso_iec_9899_2018;
+=> nrel_language_implementation: gcc_compiler;
+=> nrel_standard_library: c_standard_library;
+=> nrel_maintaining_organization: iso_organization;
+=> nrel_ide_support: visual_studio_code_ide;
+-> rrel_current_standard: iso_iec_9899_2018;
+-> rrel_main_paradigm: paradigm_procedural_programming;;

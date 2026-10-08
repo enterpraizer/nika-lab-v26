@@ -1,0 +1,11 @@
+npm_package_manager
+<- concept_package_manager;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [npm]
+    (* <- lang_ru;; *);
+    [npm]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [npm — менеджер пакетов для языка JavaScript, входящий в поставку платформы Node.js.]
+    (* <- lang_ru;; *);;

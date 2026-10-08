@@ -1,0 +1,11 @@
+paradigm_procedural_programming
+<- concept_programming_paradigm;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [процедурное программирование]
+    (* <- lang_ru;; *);
+    [procedural programming]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Процедурное программирование — парадигма, в которой программа представляется последовательностью операторов и вызовов процедур, изменяющих состояние памяти.]
+    (* <- lang_ru;; *);;

@@ -1,0 +1,38 @@
+concept_procedural_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [процедурный язык программирования]
+    (* <- lang_ru;; *);
+    [procedural programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Процедурный язык программирования — язык, в котором программа представляется последовательностью операторов и вызовов процедур, изменяющих состояние памяти.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Процедурный подход исторически первым позволил разбивать программу на самостоятельные части и повторно использовать написанный код.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (процедурный язык программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Процедурный язык программирования — язык программирования, поддерживающий парадигму процедурного программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_procedural_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Процедурное_программирование]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

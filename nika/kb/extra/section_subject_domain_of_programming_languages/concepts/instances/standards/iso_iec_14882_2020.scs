@@ -1,0 +1,14 @@
+iso_iec_14882_2020
+<- concept_language_standard;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [ISO/IEC 14882:2020]
+    (* <- lang_ru;; *);
+    [ISO/IEC 14882:2020]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [C++20]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [ISO/IEC 14882:2020 — редакция международного стандарта языка программирования Си++.]
+    (* <- lang_ru;; *);;

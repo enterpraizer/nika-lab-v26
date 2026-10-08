@@ -1,0 +1,12 @@
+james_gosling
+<- concept_programming_language_developer;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Джеймс Гослинг]
+    (* <- lang_ru;; *);
+    [James Gosling]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Джеймс Гослинг — канадский программист, автор языка программирования Java.]
+    (* <- lang_ru;; *);
+=> nrel_developer_organization: oracle_corporation;;

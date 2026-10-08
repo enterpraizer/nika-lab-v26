@@ -1,0 +1,42 @@
+concept_software_development_organization
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [организация-разработчик программного обеспечения]
+    (* <- lang_ru;; *);
+    [software development organization]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Организация-разработчик программного обеспечения — юридическое лицо или объединение, осуществляющее разработку, сопровождение и распространение программных продуктов.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Организация может как разрабатывать язык, так и только сопровождать его: развивать реализацию, выпускать обновления и финансировать стандартизацию.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (организация-разработчик программного обеспечения)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Организация-разработчик программного обеспечения — организация, осуществляющая разработку и сопровождение программного обеспечения, в том числе языков программирования и их реализаций.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_software_development_organization
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Программное_обеспечение]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_organization
+    (* => nrel_main_idtf:
+            [организация]
+            (* <- lang_ru;; *);;
+    *);;

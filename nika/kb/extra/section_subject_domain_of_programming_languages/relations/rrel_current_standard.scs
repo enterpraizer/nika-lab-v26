@@ -1,0 +1,46 @@
+rrel_current_standard
+<- sc_node_role_relation;
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_main_idtf:
+    [действующая редакция стандарта']
+    (* <- lang_ru;; *);
+    [current standard']
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Роль стандарта языка программирования, являющегося действующим на текущий момент.]
+    (* <- lang_ru;; *);
+=> nrel_first_domain: concept_programming_language;
+=> nrel_second_domain: concept_language_standard;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language;
+            concept_language_standard
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (действующая редакция стандарта')]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Действующая редакция стандарта' — ролевое отношение, выделяющее среди стандартов языка программирования тот, который является действующим в настоящее время.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language;
+            concept_language_standard
+        };;
+    *);;

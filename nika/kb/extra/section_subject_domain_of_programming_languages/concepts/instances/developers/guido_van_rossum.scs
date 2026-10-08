@@ -1,0 +1,12 @@
+guido_van_rossum
+<- concept_programming_language_developer;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Гвидо ван Россум]
+    (* <- lang_ru;; *);
+    [Guido van Rossum]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Гвидо ван Россум — нидерландский программист, автор языка программирования Python.]
+    (* <- lang_ru;; *);
+=> nrel_developer_organization: python_software_foundation;;

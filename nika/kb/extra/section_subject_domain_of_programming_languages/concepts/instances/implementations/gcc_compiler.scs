@@ -1,0 +1,16 @@
+gcc_compiler
+<- concept_programming_language_implementation;
+<- concept_compiler;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [GCC]
+    (* <- lang_ru;; *);
+    [GNU Compiler Collection]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [набор компиляторов GNU]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [GCC — набор компиляторов проекта GNU, поддерживающий языки Си, Си++ и ряд других языков программирования.]
+    (* <- lang_ru;; *);
+=> nrel_implementation_language: c_language;;

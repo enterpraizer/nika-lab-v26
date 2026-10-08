@@ -1,0 +1,29 @@
+cpp_language
+<- concept_programming_language;
+<- concept_compiled_programming_language;
+<- concept_high_level_programming_language;
+<- concept_statically_typed_programming_language;
+<- concept_object_oriented_programming_language;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Си++]
+    (* <- lang_ru;; *);
+    [C++]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [C++]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Си++ — компилируемый статически типизированный язык программирования общего назначения, развивающий язык Си средствами объектно-ориентированного и обобщённого программирования.]
+    (* <- lang_ru;; *);
+=> nrel_language_author: bjarne_stroustrup;
+=> nrel_creation_year: year_1985;
+=> nrel_supported_paradigm: paradigm_object_oriented_programming;
+    paradigm_procedural_programming;
+=> nrel_influenced_by: c_language;
+=> nrel_language_standard: iso_iec_14882_2020;
+=> nrel_language_implementation: gcc_compiler;
+=> nrel_maintaining_organization: iso_organization;
+=> nrel_ide_support: visual_studio_code_ide;
+-> rrel_current_standard: iso_iec_14882_2020;
+-> rrel_main_paradigm: paradigm_object_oriented_programming;;

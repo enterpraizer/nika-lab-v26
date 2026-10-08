@@ -1,0 +1,46 @@
+nrel_influenced_by
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+    [создан под влиянием языка*]
+    (* <- lang_ru;; *);
+    [influenced by language*]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Связывает язык программирования с другим языком, оказавшим влияние на его синтаксис или семантику.]
+    (* <- lang_ru;; *);
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_first_domain: concept_programming_language;
+=> nrel_second_domain: concept_programming_language;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language;
+            concept_programming_language
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (создан под влиянием языка*)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Создан под влиянием языка* — бинарное ориентированное отношение, связывающее язык программирования с языком программирования, оказавшим существенное влияние на его проектирование.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language;
+            concept_programming_language
+        };;
+    *);;

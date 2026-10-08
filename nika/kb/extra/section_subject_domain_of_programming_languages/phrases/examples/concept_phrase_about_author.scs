@@ -1,0 +1,52 @@
+/* Фразы ответа класса concept_phrase_about_author.
+
+   Имя переменной, подставляемой в ${...}, задаётся через nrel_system_identifier.
+   Обе фразы класса используют один и тот же контур-образец @tpl_author. */
+
+@var_language_name = _[];;
+@var_language_name
+=> nrel_system_identifier:
+	[_language_name];;
+
+@var_author_name = _[];;
+@var_author_name
+=> nrel_system_identifier:
+	[_author_name];;
+
+/* Контур-образец: сообщение, выделенный в нём язык программирования,
+   его русский идентификатор, значение отношения nrel_language_author
+   и русский идентификатор этого значения. */
+@tpl_author = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language;;
+
+	_language
+	_=> nrel_main_idtf::
+		@var_language_name
+		(* _<- lang_ru;; *);;
+
+	_language
+	_=> nrel_language_author:: _author;;
+
+	_author
+	_=> nrel_main_idtf::
+		@var_author_name
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_author ->
+	[Автор языка программирования ${_language_name} — ${_author_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_author;;
+	*);;
+
+concept_phrase_about_author ->
+	[Язык программирования ${_language_name} создал ${_author_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_author;;
+	*);;

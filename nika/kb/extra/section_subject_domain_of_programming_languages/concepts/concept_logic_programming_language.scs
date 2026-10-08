@@ -1,0 +1,38 @@
+concept_logic_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [логический язык программирования]
+    (* <- lang_ru;; *);
+    [logic programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Логический язык программирования — язык, в котором программа задаётся набором фактов и правил, а вычисление сводится к логическому выводу на них.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Программист описывает, что известно и что требуется получить, а порядок вычислений определяет механизм логического вывода самой системы.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (логический язык программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Логический язык программирования — язык программирования, поддерживающий парадигму логического программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_logic_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Логическое_программирование]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

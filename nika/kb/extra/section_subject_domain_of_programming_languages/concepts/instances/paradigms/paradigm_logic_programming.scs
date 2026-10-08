@@ -1,0 +1,11 @@
+paradigm_logic_programming
+<- concept_programming_paradigm;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [логическое программирование]
+    (* <- lang_ru;; *);
+    [logic programming]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Логическое программирование — парадигма, основанная на описании предметной области фактами и правилами и получении результата средствами логического вывода.]
+    (* <- lang_ru;; *);;

@@ -1,0 +1,38 @@
+concept_high_level_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [язык программирования высокого уровня]
+    (* <- lang_ru;; *);
+    [high-level programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Язык программирования высокого уровня — язык, конструкции которого не отражают особенности архитектуры конкретной вычислительной машины и близки к естественному языку описания алгоритмов.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Чем выше уровень языка, тем меньше программист думает о регистрах, адресах и командах процессора и тем больше — о самой решаемой задаче.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (язык программирования высокого уровня)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Язык программирования высокого уровня — язык программирования, в котором отсутствует прямая зависимость конструкций языка от системы команд процессора.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_high_level_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Высокоуровневый_язык_программирования]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

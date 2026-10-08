@@ -1,0 +1,11 @@
+bell_labs
+<- concept_software_development_organization;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Bell Labs]
+    (* <- lang_ru;; *);
+    [Bell Labs]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Bell Labs — американская научно-исследовательская организация, в которой были разработаны языки программирования Си и Си++.]
+    (* <- lang_ru;; *);;

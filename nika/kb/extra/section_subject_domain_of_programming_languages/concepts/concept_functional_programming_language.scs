@@ -1,0 +1,38 @@
+concept_functional_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [функциональный язык программирования]
+    (* <- lang_ru;; *);
+    [functional programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Функциональный язык программирования — язык, в котором вычисление трактуется как вычисление значений функций, а изменяемое состояние и побочные эффекты минимизируются.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Отказ от изменяемого состояния упрощает рассуждение о правильности программы и её распараллеливание, поскольку результат функции зависит только от её аргументов.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (функциональный язык программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Функциональный язык программирования — язык программирования, поддерживающий парадигму функционального программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_functional_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Функциональное_программирование]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

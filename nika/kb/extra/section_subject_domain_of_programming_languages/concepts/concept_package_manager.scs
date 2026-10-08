@@ -1,0 +1,42 @@
+concept_package_manager
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [менеджер пакетов]
+    (* <- lang_ru;; *);
+    [package manager]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Менеджер пакетов — программное средство, автоматизирующее поиск, установку, обновление и удаление библиотек и их зависимостей.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Менеджер пакетов решает не только установку, но и задачу разрешения зависимостей, когда одна библиотека требует определённых версий других.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (менеджер пакетов)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Менеджер пакетов — программное средство, обеспечивающее управление внешними библиотеками для программ на некотором языке программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_package_manager
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Система_управления_пакетами]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_software_tool
+    (* => nrel_main_idtf:
+            [программное средство]
+            (* <- lang_ru;; *);;
+    *);;

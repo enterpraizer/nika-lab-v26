@@ -1,0 +1,11 @@
+alain_colmerauer
+<- concept_programming_language_developer;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Ален Колмероэ]
+    (* <- lang_ru;; *);
+    [Alain Colmerauer]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Ален Колмероэ — французский учёный, один из создателей языка логического программирования Пролог.]
+    (* <- lang_ru;; *);;

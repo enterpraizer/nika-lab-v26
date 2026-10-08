@@ -1,0 +1,11 @@
+simon_peyton_jones
+<- concept_programming_language_developer;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Саймон Пейтон Джонс]
+    (* <- lang_ru;; *);
+    [Simon Peyton Jones]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Саймон Пейтон Джонс — британский учёный в области информатики, один из создателей языка программирования Haskell.]
+    (* <- lang_ru;; *);;

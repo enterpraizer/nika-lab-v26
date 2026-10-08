@@ -1,0 +1,14 @@
+c_standard_library
+<- concept_standard_library;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [стандартная библиотека Си]
+    (* <- lang_ru;; *);
+    [C standard library]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [libc]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Стандартная библиотека Си — определённый стандартом языка набор заголовочных файлов и функций для ввода-вывода, работы со строками и памятью.]
+    (* <- lang_ru;; *);;

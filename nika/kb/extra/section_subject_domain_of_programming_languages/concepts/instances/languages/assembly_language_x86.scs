@@ -1,0 +1,18 @@
+assembly_language_x86
+<- concept_programming_language;
+<- concept_compiled_programming_language;
+<- concept_low_level_programming_language;
+<- concept_procedural_programming_language;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [язык ассемблера x86]
+    (* <- lang_ru;; *);
+    [x86 assembly language]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [ассемблер]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Язык ассемблера x86 — язык программирования низкого уровня, мнемонические команды которого находятся во взаимно однозначном соответствии с машинными командами процессоров архитектуры x86.]
+    (* <- lang_ru;; *);
+=> nrel_supported_paradigm: paradigm_procedural_programming;;

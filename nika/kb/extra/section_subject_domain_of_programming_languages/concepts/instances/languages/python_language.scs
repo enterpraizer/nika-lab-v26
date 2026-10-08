@@ -1,0 +1,32 @@
+python_language
+<- concept_programming_language;
+<- concept_interpreted_programming_language;
+<- concept_high_level_programming_language;
+<- concept_dynamically_typed_programming_language;
+<- concept_object_oriented_programming_language;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Python]
+    (* <- lang_ru;; *);
+    [Python]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [Питон]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Python — высокоуровневый язык программирования общего назначения с динамической типизацией и автоматическим управлением памятью, ориентированный на повышение производительности разработчика и читаемости кода.]
+    (* <- lang_ru;; *);
+=> nrel_language_author: guido_van_rossum;
+=> nrel_creation_year: year_1991;
+=> nrel_supported_paradigm: paradigm_object_oriented_programming;
+    paradigm_functional_programming;
+    paradigm_procedural_programming;
+=> nrel_influenced_by: c_language;
+=> nrel_language_implementation: cpython_interpreter;
+=> nrel_standard_library: python_standard_library;
+=> nrel_maintaining_organization: python_software_foundation;
+=> nrel_package_manager: pip_package_manager;
+=> nrel_ide_support: pycharm_ide;
+    visual_studio_code_ide;
+-> rrel_reference_implementation: cpython_interpreter;
+-> rrel_main_paradigm: paradigm_object_oriented_programming;;

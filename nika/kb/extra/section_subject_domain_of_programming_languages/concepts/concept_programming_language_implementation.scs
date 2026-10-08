@@ -1,0 +1,43 @@
+concept_programming_language_implementation
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [реализация языка программирования]
+    (* <- lang_ru;; *);
+    [programming language implementation]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Реализация языка программирования — программное средство, обеспечивающее выполнение программ, записанных на данном языке, путём их компиляции, интерпретации или исполнения в виртуальной машине.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Язык программирования и его реализация — разные сущности: язык задаётся стандартом или описанием, а реализаций у одного языка может быть несколько, и они могут отличаться поведением.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (реализация языка программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Реализация языка программирования — программная система, обеспечивающая выполнение программ, записанных на некотором языке программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language_implementation;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Транслятор]
+    (* <- lang_ru;; *);
+/* Разбиение реализаций языка программирования по способу выполнения программ */
+<= nrel_subdividing: {
+    concept_compiler;
+    concept_interpreter;
+    concept_virtual_machine
+};;

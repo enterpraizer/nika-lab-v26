@@ -1,0 +1,16 @@
+java_virtual_machine
+<- concept_programming_language_implementation;
+<- concept_virtual_machine;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [виртуальная машина Java]
+    (* <- lang_ru;; *);
+    [Java Virtual Machine]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [JVM]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Виртуальная машина Java — программная среда, исполняющая байт-код Java и обеспечивающая переносимость программ между аппаратными платформами.]
+    (* <- lang_ru;; *);
+=> nrel_implementation_language: cpp_language;;

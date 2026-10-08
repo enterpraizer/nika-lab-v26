@@ -1,0 +1,38 @@
+concept_compiled_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [компилируемый язык программирования]
+    (* <- lang_ru;; *);
+    [compiled programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Компилируемый язык программирования — язык, программы на котором перед выполнением транслируются компилятором в машинный код или в код промежуточного представления.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Деление на компилируемые и интерпретируемые языки условно и относится не к самому языку, а к способу его реализации: для одного языка могут существовать и компилятор, и интерпретатор.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (компилируемый язык программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Компилируемый язык программирования — язык программирования, реализация которого предполагает предварительную трансляцию исходного текста программы в исполняемый код.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_compiled_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Компилируемый_язык_программирования]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

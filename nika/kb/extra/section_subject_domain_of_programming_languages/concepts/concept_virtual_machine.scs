@@ -1,0 +1,38 @@
+concept_virtual_machine
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [виртуальная машина]
+    (* <- lang_ru;; *);
+    [virtual machine]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Виртуальная машина — программная среда, исполняющая программы, представленные в виде промежуточного (байт-)кода, и изолирующая их от конкретной аппаратной платформы.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Виртуальная машина является промежуточным звеном между байт-кодом и аппаратурой, что позволяет выполнять одну и ту же скомпилированную программу на разных платформах.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (виртуальная машина)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Виртуальная машина — реализация языка программирования, исполняющая программы в виде промежуточного кода на произвольной аппаратной платформе.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_virtual_machine;
+            concept_programming_language_implementation
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Виртуальная_машина]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language_implementation;;

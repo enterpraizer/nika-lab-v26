@@ -1,0 +1,42 @@
+concept_integrated_development_environment
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [интегрированная среда разработки]
+    (* <- lang_ru;; *);
+    [integrated development environment]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Интегрированная среда разработки — комплекс программных средств, объединяющий редактор исходного кода, средства сборки, отладчик и другие инструменты разработчика.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Среда разработки не является частью языка и может поддерживать сразу несколько языков программирования.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (интегрированная среда разработки)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Интегрированная среда разработки — программная система, объединяющая инструменты разработки программ на одном или нескольких языках программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_integrated_development_environment
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Интегрированная_среда_разработки]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_software_tool
+    (* => nrel_main_idtf:
+            [программное средство]
+            (* <- lang_ru;; *);;
+    *);;

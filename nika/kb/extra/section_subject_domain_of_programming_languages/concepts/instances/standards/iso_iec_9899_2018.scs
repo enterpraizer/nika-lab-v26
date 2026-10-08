@@ -1,0 +1,14 @@
+iso_iec_9899_2018
+<- concept_language_standard;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [ISO/IEC 9899:2018]
+    (* <- lang_ru;; *);
+    [ISO/IEC 9899:2018]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [C17]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [ISO/IEC 9899:2018 — действующая редакция международного стандарта языка программирования Си.]
+    (* <- lang_ru;; *);;

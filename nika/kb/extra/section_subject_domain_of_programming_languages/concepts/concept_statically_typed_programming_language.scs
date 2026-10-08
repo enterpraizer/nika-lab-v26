@@ -1,0 +1,38 @@
+concept_statically_typed_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [язык программирования со статической типизацией]
+    (* <- lang_ru;; *);
+    [statically typed programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Язык со статической типизацией — язык, в котором типы всех выражений определяются и проверяются на этапе компиляции, что позволяет обнаруживать часть ошибок до выполнения программы.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Статическая типизация позволяет обнаружить часть ошибок до запуска программы и даёт компилятору информацию для оптимизаций, но требует явного описания типов.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (язык программирования со статической типизацией)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Язык программирования со статической типизацией — язык программирования, в котором проверка типов выполняется до выполнения программы.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_statically_typed_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Статическая_типизация]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

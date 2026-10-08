@@ -1,0 +1,38 @@
+concept_dynamically_typed_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [язык программирования с динамической типизацией]
+    (* <- lang_ru;; *);
+    [dynamically typed programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Язык с динамической типизацией — язык, в котором тип связывается со значением во время выполнения программы, а не с переменной на этапе компиляции.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Динамическая типизация ускоряет написание программ и делает код короче, но переносит обнаружение ошибок типов на время выполнения.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (язык программирования с динамической типизацией)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Язык программирования с динамической типизацией — язык программирования, в котором проверка типов выполняется во время выполнения программы.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_dynamically_typed_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Динамическая_типизация]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

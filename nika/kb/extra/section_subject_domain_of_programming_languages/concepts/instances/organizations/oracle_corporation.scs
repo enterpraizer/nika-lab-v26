@@ -1,0 +1,11 @@
+oracle_corporation
+<- concept_software_development_organization;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Oracle Corporation]
+    (* <- lang_ru;; *);
+    [Oracle Corporation]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Oracle Corporation — американская корпорация, сопровождающая платформу Java после приобретения компании Sun Microsystems.]
+    (* <- lang_ru;; *);;

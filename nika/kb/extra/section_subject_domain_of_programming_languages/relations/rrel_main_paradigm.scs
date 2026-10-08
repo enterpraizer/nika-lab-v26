@@ -1,0 +1,46 @@
+rrel_main_paradigm
+<- sc_node_role_relation;
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_main_idtf:
+    [основная парадигма']
+    (* <- lang_ru;; *);
+    [main paradigm']
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Роль парадигмы программирования, средства поддержки которой являются для языка основными и определяют стиль написания программ на нём.]
+    (* <- lang_ru;; *);
+=> nrel_first_domain: concept_programming_language;
+=> nrel_second_domain: concept_programming_paradigm;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language;
+            concept_programming_paradigm
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (основная парадигма')]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Основная парадигма' — ролевое отношение, выделяющее среди поддерживаемых языком программирования парадигм ту, которая определяет принятый в нём стиль написания программ.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language;
+            concept_programming_paradigm
+        };;
+    *);;

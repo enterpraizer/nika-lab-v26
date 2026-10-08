@@ -1,0 +1,835 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<title>Защита ЛР2 по ТиИСПИС</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#FFFFFF; --surface:#FAFAF8; --surface-2:#F0EFEB;
+  --ink:#1A1A18; --ink-2:#4A4A46; --ink-3:#77766F;
+  --line:#DEDCD5; --line-strong:#C2BFB5;
+  --accent:#3F4A8A; --accent-soft:#E8EAF4; --accent-ink:#2C3566;
+  --mark:#8A5A20; --mark-soft:#F7EEE1;
+  --ok:#2F6B4A; --ok-soft:#E6F1EA;
+  --serif:"PT Serif",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.6}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.1rem 3rem}
+
+header{padding:2rem 0 1.1rem;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-ink);margin:0 0 .5rem}
+h1{font-family:var(--serif);font-weight:700;font-size:2.1rem;line-height:1.12;margin:0 0 .4rem}
+.sub{color:var(--ink-2);margin:0;font-size:.98rem}
+
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin:1.2rem 0 0}
+.facts h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 .55rem;font-weight:600}
+.fact{display:flex;justify-content:space-between;gap:1rem;padding:.32rem 0;
+  border-bottom:1px dashed var(--line);align-items:baseline}
+.fact:last-child{border-bottom:0}
+.fact dt{color:var(--ink-2);font-size:.92rem;margin:0}
+.fact dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+
+.part{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-ink);border-top:2px solid var(--ink);padding-top:.7rem;margin:2.8rem 0 0}
+h2.sec{font-family:var(--serif);font-weight:700;font-size:1.45rem;margin:2.2rem 0 .25rem}
+.part + h2.sec{margin-top:.5rem}
+.sec-note{color:var(--ink-3);font-size:.9rem;margin:0 0 1rem}
+
+nav.toc{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin:1.4rem 0 0}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 .5rem;font-weight:600}
+nav.toc ol{margin:0;padding-left:1.3rem;columns:2;column-gap:2rem;font-size:.92rem}
+nav.toc li{margin:.15rem 0;break-inside:avoid}
+nav.toc a{color:var(--accent-ink);text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+nav.toc .how{margin:.7rem 0 0;color:var(--ink-2);font-size:.9rem}
+
+article{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin-bottom:.7rem}
+article h3{display:flex;gap:.7rem;align-items:flex-start;margin:0 0 .6rem;
+  font-size:1rem;font-weight:600;line-height:1.4}
+.n{font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--accent-ink);
+  background:var(--accent-soft);border-radius:4px;padding:.1rem .4rem;flex:none;margin-top:.12rem}
+article p{margin:.55rem 0;color:var(--ink-2);font-size:.95rem}
+article p strong{color:var(--ink);font-weight:600}
+article ul,article ol{margin:.5rem 0;padding-left:1.1rem;color:var(--ink-2);font-size:.95rem}
+article ol{padding-left:1.4rem}
+article li{margin:.25rem 0}
+
+.say,.mine,.plain{padding:.6rem .8rem;border-radius:0 5px 5px 0;margin:.7rem 0 0}
+.say{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.mine{background:var(--mark-soft);border-left:3px solid var(--mark)}
+.plain{background:var(--ok-soft);border-left:3px solid var(--ok)}
+.say>b,.mine>b,.plain>b{display:block;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.2rem}
+.say>b{color:var(--accent-ink)} .mine>b{color:var(--mark)} .plain>b{color:var(--ok)}
+.say p,.mine p,.plain p{margin:0;color:var(--ink);font-size:.92rem}
+
+code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);
+  padding:.08em .32em;border-radius:3px;color:var(--ink)}
+pre{font-family:var(--mono);font-size:.78rem;line-height:1.5;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:6px;padding:.7rem .8rem;overflow-x:auto;
+  margin:.7rem 0;color:var(--ink)}
+pre code{background:none;padding:0}
+pre .c{color:var(--ink-3)}
+pre .hl{background:#FFF3C4;border-radius:2px}
+
+table{border-collapse:collapse;width:100%;font-size:.88rem;margin:.7rem 0}
+th,td{text-align:left;padding:.42rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+td.k{white-space:nowrap;font-weight:600;color:var(--ink)}
+
+/* путь сообщения */
+.flow{list-style:none;margin:.8rem 0 .2rem;padding:0;counter-reset:step}
+.flow li{position:relative;margin:0;padding:0 0 1rem 2.6rem;counter-increment:step}
+.flow li::before{content:counter(step);position:absolute;left:0;top:0;width:1.7rem;height:1.7rem;
+  border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:.8rem;
+  display:flex;align-items:center;justify-content:center}
+.flow li::after{content:"";position:absolute;left:.82rem;top:1.8rem;bottom:.1rem;width:2px;background:var(--line-strong)}
+.flow li:last-child{padding-bottom:0}
+.flow li:last-child::after{display:none}
+.flow .t{display:block;font-weight:600;color:var(--ink);font-size:.98rem}
+.flow .who{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  border-radius:3px;padding:.02rem .35rem;margin-left:.4rem;vertical-align:.08em}
+.who.ours{background:var(--mark-soft);color:var(--mark)}
+.who.stock{background:var(--surface-2);color:var(--ink-3)}
+.flow .d{display:block;color:var(--ink-2);font-size:.92rem;margin-top:.15rem}
+.flow pre{margin:.45rem 0 0;font-size:.72rem}
+
+figure{margin:.8rem 0 .3rem}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line-strong);border-radius:6px}
+figcaption{color:var(--ink-3);font-size:.84rem;margin-top:.35rem}
+
+footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:.85rem}
+
+@page{size:A4;margin:14mm 13mm}
+@media print{
+  body{font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  header{padding-top:0}
+  h1{font-size:20pt}
+  h2.sec{font-size:14pt;break-after:avoid}
+  .sec-note{break-after:avoid}
+  .part{break-after:avoid}
+  article{margin-bottom:5pt}
+  article.short{break-inside:avoid;page-break-inside:avoid}
+  .say,.mine,.plain{break-inside:avoid}
+  article h3{font-size:11pt;break-after:avoid}
+  article p,article ul,article ol{font-size:9.5pt}
+  .say p,.mine p,.plain p{font-size:9pt}
+  pre{font-size:8pt;break-inside:avoid}
+  .flow li{break-inside:avoid}
+  .flow pre{font-size:7pt}
+  .facts,nav.toc,figure{break-inside:avoid}
+  table{font-size:9pt}
+  tr{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head><body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">ТиИСПИС · БГУИР · каф. ИИТ</p>
+  <h1>Защита ЛР2 по ТиИСПИС</h1>
+  <p class="sub">Классификация сообщений, вариант №26 — «Языки программирования». Сначала объяснение с нуля: что это за система, что сделано и как оно работает. Потом 8 вопросов преподавателя, задачи и сценарий защиты.</p>
+
+  <dl class="facts">
+    <h2>Это надо назвать не задумываясь</h2>
+    <div class="fact"><dt>Типов вопросов реализовано</dt><dd>3</dd></div>
+    <div class="fact"><dt>Правил классификации</dt><dd>67 файлов <code>.gwf</code></dd></div>
+    <div class="fact"><dt>Формулировок вопросов</dt><dd>134, по две в правиле</dd></div>
+    <div class="fact"><dt>Свой класс сообщений</dt><dd><code>concept_message_about_author</code></dd></div>
+    <div class="fact"><dt>Правило ответа / фразы</dt><dd>1 / 2</dd></div>
+    <div class="fact"><dt>Множество правил</dt><dd><code>concept_classify_message_rule_priority_1</code></dd></div>
+    <div class="fact"><dt>Wit.ai</dt><dd>не использован, <code>no-auth</code></dd></div>
+  </dl>
+</header>
+
+<nav class="toc">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#s1">Вся работа за две минуты</a></li>
+    <li><a href="#s2">Что такое NIKA</a></li>
+    <li><a href="#s3">Словарь</a></li>
+    <li><a href="#s4">Что было до ЛР2</a></li>
+    <li><a href="#s5">Что требовалось и что сделано</a></li>
+    <li><a href="#s6">Путь одного вопроса через систему</a></li>
+    <li><a href="#s7">Правило классификации: разбор</a></li>
+    <li><a href="#s8">Три типа вопросов: откуда ответ</a></li>
+    <li><a href="#s9">Свой класс, правило ответа, фразы</a></li>
+    <li><a href="#s10">Почему без Wit.ai</a></li>
+    <li><a href="#s11">Карта файлов</a></li>
+    <li><a href="#s12">Как запустить и показать</a></li>
+    <li><a href="#s13">Если что-то пошло не так</a></li>
+    <li><a href="#s14">Вопросы к защите</a></li>
+    <li><a href="#s15">Задачи</a></li>
+    <li><a href="#s16">Сценарий защиты</a></li>
+    <li><a href="#s17">Что ещё спросят</a></li>
+  </ol>
+  <p class="how">Если времени мало: разделы 1, 6, 7 и 16. Если работу видишь впервые — читай подряд с первого.</p>
+</nav>
+
+<p class="part">Часть I · с нуля</p>
+
+<h2 class="sec" id="s1">1. Вся работа за две минуты</h2>
+<p class="sec-note">Что это было, что сделано и чем закончилось.</p>
+
+<article><h3>Суть</h3>
+<p>Есть учебная система <strong>NIKA</strong> — чат-ассистент, который отвечает на вопросы не из заготовленных текстов, а из <strong>базы знаний</strong>. В первой лабораторной в эту базу были занесены знания о языках программирования: что такое компилятор, кто автор Python, какие бывают языки.</p>
+<p>Но одних знаний мало. Когда человек пишет «Кто создал Python?», система видит просто строку символов. Чтобы ответить, ей нужно понять две вещи: <strong>что хотят узнать</strong> (автора) и <strong>о чём спрашивают</strong> (о Python). Это и есть <strong>классификация сообщения</strong> — тема второй лабораторной.</p>
+<p>В работе система научена понимать три типа вопросов:</p>
+<table>
+<thead><tr><th>Вопрос</th><th>Что хотят узнать</th><th>Пример ответа Ники</th></tr></thead>
+<tbody>
+<tr><td>Что такое компилятор?</td><td>описание понятия</td><td>компилятор - Компилятор — программа, переводящая исходный текст…</td></tr>
+<tr><td>Кто создал Python?</td><td>автора языка</td><td>Автор языка программирования Python — Гвидо ван Россум.</td></tr>
+<tr><td>На что декомпозируется язык программирования?</td><td>на какие виды делится понятие</td><td>язык программирования разбивается на логический язык программирования, процедурный…</td></tr>
+</tbody>
+</table>
+<p>Сделано это <strong>логическими правилами</strong> вида «если текст сообщения такой-то, то это вопрос такого-то класса о такой-то сущности». Правил 67, каждое знает две формулировки одного вопроса. Все 134 формулировки проверены в живом диалоге — на каждую Ника отвечает правильно.</p>
+<div class="plain"><b>главная мысль</b><p>Система не «угадывает» смысл. Она сравнивает текст вопроса с образцами из правил, находит совпавшее правило, по нему узнаёт класс вопроса и сущность, а потом другим правилом достаёт ответ из базы знаний.</p></div>
+</article>
+
+<h2 class="sec" id="s2">2. Что такое NIKA</h2>
+<p class="sec-note">Из чего состоит система и что где открывать.</p>
+
+<article><h3>Три части системы</h3>
+<table>
+<thead><tr><th>Часть</th><th>Что это</th><th>Простыми словами</th></tr></thead>
+<tbody>
+<tr><td class="k">База знаний</td><td>граф из понятий и связей между ними, записанный на языке SC-код</td><td>всё, что система знает: «Python — язык программирования», «автор Python — Гвидо ван Россум»</td></tr>
+<tr><td class="k">Решатель задач</td><td>набор программ-<b>агентов</b>, каждый делает одно действие над базой</td><td>то, что система умеет: распознать вопрос, найти ответ, собрать фразу</td></tr>
+<tr><td class="k">Интерфейс</td><td>окно чата и окно просмотра базы</td><td>то, что видит человек</td></tr>
+</tbody>
+</table>
+<p>Важно: и знания, и правила, и тексты ответов лежат в одной и той же базе знаний. Вторая лабораторная не написала ни строчки программного кода — она <strong>добавила в базу новые знания</strong>: правила распознавания вопросов.</p>
+</article>
+
+<article><h3>Три адреса</h3>
+<table>
+<thead><tr><th>Адрес</th><th>Что там</th><th>Зачем на защите</th></tr></thead>
+<tbody>
+<tr><td class="k"><code>localhost:3033</code></td><td>диалоговое окно Ники</td><td>задать вопрос и получить ответ</td></tr>
+<tr><td class="k"><code>localhost:8000</code></td><td>sc-web — просмотр базы знаний</td><td>показать правило, класс сообщений, само сообщение</td></tr>
+<tr><td class="k"><code>localhost:8090</code></td><td>sc-сервер, к нему подключаются два окна выше</td><td>открывать не нужно</td></tr>
+</tbody>
+</table>
+<p>Система запускается четырьмя контейнерами Docker. Главный — <code>problem-solver</code>: при старте он собирает базу знаний из файлов и запускает агентов. Остальные три — sc-web, окно чата и агенты на Python.</p>
+</article>
+
+<h2 class="sec" id="s3">3. Словарь</h2>
+<p class="sec-note">Слова, без которых дальше не разобраться. Десять минут — и остальное читается легко.</p>
+
+<article class="long"><h3>Из чего состоит база знаний</h3>
+<table>
+<thead><tr><th>Слово</th><th>Что значит</th><th>Пример из работы</th></tr></thead>
+<tbody>
+<tr><td class="k">узел</td><td>обозначение чего угодно: предмета, понятия, отношения</td><td><code>python_language</code></td></tr>
+<tr><td class="k">дуга</td><td>связь между двумя элементами</td><td>от класса к его экземпляру</td></tr>
+<tr><td class="k">ссылка</td><td>узел с содержимым — текстом, числом, картинкой</td><td><code>[Что такое компилятор?]</code></td></tr>
+<tr><td class="k">класс (понятие)</td><td>множество однотипных объектов. Имя начинается с <code>concept_</code></td><td><code>concept_programming_language</code></td></tr>
+<tr><td class="k">экземпляр</td><td>конкретный объект, элемент класса</td><td><code>python_language</code> — экземпляр класса «язык программирования»</td></tr>
+<tr><td class="k">неролевое отношение</td><td>связь между двумя объектами. Имя начинается с <code>nrel_</code>, по-русски со звёздочкой</td><td><code>nrel_language_author</code> — «автор языка программирования*»</td></tr>
+<tr><td class="k">ролевое отношение</td><td>роль элемента внутри чего-то. Имя начинается с <code>rrel_</code>, по-русски с апострофом</td><td><code>rrel_entity</code> — «сущность'»: о чём сообщение</td></tr>
+<tr><td class="k">переменная</td><td>«любой подходящий элемент». Имя начинается с подчёркивания</td><td><code>_message</code> — любое сообщение</td></tr>
+<tr><td class="k">структура (контур)</td><td>кусок графа, обведённый рамкой, с которым работают как с одним целым</td><td>посылка правила — структура «сообщение с таким-то текстом»</td></tr>
+<tr><td class="k">шаблон</td><td>структура с переменными. Система ищет в базе всё, что на неё похоже</td><td>«какое-то сообщение, текст которого — „Что такое компилятор?“»</td></tr>
+</tbody>
+</table>
+</article>
+
+<article class="long"><h3>Слова про диалог</h3>
+<table>
+<thead><tr><th>Слово</th><th>Что значит</th><th>Пример из работы</th></tr></thead>
+<tbody>
+<tr><td class="k">сообщение</td><td>узел в базе, который появляется, когда человек отправил текст в чат. Текст висит на нём ссылкой</td><td>узел с текстом «Кто создал Python?»</td></tr>
+<tr><td class="k">класс сообщения</td><td>намерение: что хотят узнать. В Wit.ai это называется intent</td><td><code>concept_message_about_author</code> — вопрос об авторе</td></tr>
+<tr><td class="k">сущность сообщения</td><td>о чём именно спрашивают. Привязывается к сообщению ролью <code>rrel_entity</code></td><td><code>python_language</code></td></tr>
+<tr><td class="k">классификация</td><td>определить класс сообщения и его сущность</td><td>«Кто создал Python?» → вопрос об авторе, сущность Python</td></tr>
+<tr><td class="k">логическое правило</td><td>запись «если в базе есть вот это, то добавь вот это». Имя начинается с <code>lr_</code></td><td><code>lr_classify_what_is_compiler_message</code></td></tr>
+<tr><td class="k">правило классификации</td><td>правило, которое по тексту сообщения назначает класс и сущность</td><td>67 файлов <code>lr_classify_*.gwf</code></td></tr>
+<tr><td class="k">правило ответа</td><td>правило, которое по классу сообщения решает, какой фразой отвечать</td><td><code>lr_answer_about_author</code></td></tr>
+<tr><td class="k">фраза с шаблоном</td><td>текст ответа с пропусками <code>${…}</code>, куда подставляются значения из базы</td><td>«Автор языка программирования ${_language_name} — ${_author_name}.»</td></tr>
+<tr><td class="k">агент</td><td>программа решателя, которая запускается, когда в базе появилось задание для неё</td><td>агент классификации, агент ответа, агент генерации фразы</td></tr>
+</tbody>
+</table>
+</article>
+
+<article><h3>Два формата файлов</h3>
+<p>Базу знаний пишут в файлах двух видов. Оба описывают одно и то же — граф.</p>
+<ul>
+<li><code>.scs</code> — <b>текстом</b>. Так записаны понятия, экземпляры, класс сообщений, фразы.</li>
+<li><code>.gwf</code> — <b>рисунком</b> (внутри это XML с узлами, дугами и их координатами). Так записаны все логические правила.</li>
+</ul>
+<p>Правила классификации написаны в <code>.gwf</code>, потому что текстовый шаблон правила из репозитория NIKA нерабочий, а графический — проверенный. Каждое из 67 правил — копия штатного рабочего правила, в которой заменены имена, сущность и два текста вопроса.</p>
+</article>
+
+<h2 class="sec" id="s4">4. Что было до ЛР2</h2>
+<p class="sec-note">На что опирается работа. Первая лабораторная сдана.</p>
+
+<article><h3>Предметная область из ЛР1</h3>
+<p>В базу занесено 23 класса, 17 отношений и 40 экземпляров. Классы — «язык программирования», «компилятор», «парадигма программирования» и другие. Экземпляры — восемь языков, семь их авторов, организации, стандарты, инструменты. Вот как выглядит один экземпляр, язык Python, в сокращении:</p>
+<pre><code>python_language
+&lt;- concept_programming_language;              <span class="c">/* это язык программирования */</span>
+&lt;- concept_interpreted_programming_language;  <span class="c">/* и ещё интерпретируемый */</span>
+=&gt; nrel_main_idtf:
+    [Python] (* &lt;- lang_ru;; *);              <span class="c">/* русское название */</span>
+=&gt; nrel_note:
+    [Python — высокоуровневый язык программирования общего назначения…]
+    (* &lt;- lang_ru;; *);                       <span class="c">/* описание: отсюда берётся ответ на «Что такое Python?» */</span>
+=&gt; nrel_language_author: guido_van_rossum;    <span class="c">/* автор: отсюда ответ на «Кто создал Python?» */</span>
+=&gt; nrel_creation_year: year_1991;;</code></pre>
+<p>Читается так: <code>&lt;-</code> — «принадлежит классу», <code>=&gt;</code> — «связан отношением», в квадратных скобках — текст, <code>;;</code> — конец предложения.</p>
+<div class="plain"><b>зачем это здесь</b><p>Ответы во второй лабораторной не придуманы заново. Они достаются из того, что было записано в первой: описание — из <code>nrel_note</code>, автор — из <code>nrel_language_author</code>, виды понятия — из <code>nrel_subdividing</code>.</p></div>
+</article>
+
+<h2 class="sec" id="s5">5. Что требовалось и что сделано</h2>
+<p class="sec-note">Задание методички по пунктам.</p>
+
+<article class="long"><h3>Требование → результат</h3>
+<table>
+<thead><tr><th>Что требует методичка</th><th>Что сделано</th></tr></thead>
+<tbody>
+<tr><td>Сценарий диалога минимум из 8 сообщений: 4 вопроса и 4 ответа</td><td>Четыре вопроса, которые задействуют все три класса сообщений. Ответы в отчёте приведены дословно, как их выдала Ника</td></tr>
+<tr><td>Обучить классификатор на вопрос «Что такое …?» для каждой формализованной сущности</td><td>58 правил: для всех 23 классов и 35 экземпляров. Про людей вопрос звучит «Кто такой …?»</td></tr>
+<tr><td>Выделить классы и сущности сообщений; у каждого сообщения хотя бы один класс</td><td>Три класса сообщений, из них один собственный. Сущность выделяется ролью <code>rrel_entity</code></td></tr>
+<tr><td>Экспорт из Wit.ai в папку <code>classification/</code></td><td>Не делался: Wit.ai не использован. Вместо экспорта в репозитории лежат сами правила <code>.gwf</code> — <a href="#s10">раздел 10</a></td></tr>
+<tr><td>Отчёт с тестированием</td><td>Отчёт с семью рисунками</td></tr>
+</tbody>
+</table>
+</article>
+
+<article><h3>Что добавлено в базу знаний</h3>
+<table>
+<thead><tr><th>Что</th><th>Сколько</th><th>Зачем</th></tr></thead>
+<tbody>
+<tr><td>Правила «Что такое …?» / «Кто такой …?»</td><td>58</td><td>распознать вопрос об описании понятия или объекта</td></tr>
+<tr><td>Правила «Кто создал …?»</td><td>7</td><td>распознать вопрос об авторе языка — по одному на язык, у которого автор записан</td></tr>
+<tr><td>Правила «На что декомпозируется …?»</td><td>2</td><td>распознать вопрос о видах понятия — для двух понятий, у которых записано разбиение</td></tr>
+<tr><td>Класс сообщений об авторе</td><td>1</td><td>в NIKA такого класса не было</td></tr>
+<tr><td>Правило ответа об авторе</td><td>1</td><td>чтобы на вопрос своего класса система могла ответить</td></tr>
+<tr><td>Класс фраз и две фразы с шаблоном</td><td>1 + 2</td><td>текст ответа об авторе</td></tr>
+</tbody>
+</table>
+<p>Всего 71 новый файл. Последние три строки формально относятся к третьей лабораторной, но без них вопрос «Кто создал …?» распознавался бы, а ответа не было бы.</p>
+</article>
+
+<p class="part">Часть II · как это работает</p>
+
+<h2 class="sec" id="s6">6. Путь одного вопроса через систему</h2>
+<p class="sec-note">Что происходит от нажатия кнопки до ответа. Пример — «Кто создал Python?». Строки в серых блоках — настоящие записи из журнала решателя.</p>
+
+<article class="long"><h3>Шесть шагов</h3>
+<ol class="flow">
+<li><span class="t">Сообщение попадает в базу знаний <span class="who stock">штатное</span></span>
+<span class="d">Окно чата создаёт в базе новый узел-сообщение и вешает на него ссылку с текстом. С этого момента вопрос — такой же элемент базы, как Python или компилятор. Появление сообщения запускает главного агента диалога.</span>
+<pre><code>MessageReplyAgent started
+Text link is found</code></pre></li>
+
+<li><span class="t">Запускается программа обработки сообщения <span class="who stock">штатное</span></span>
+<span class="d">Это записанная в базе последовательность шагов: кого из агентов звать и в каком порядке. Первым в ней стоит агент классификации по логическим правилам, и только если он не справился — агент Wit.ai.</span>
+<pre><code>NonAtomicActionInterpreterAgent started</code></pre></li>
+
+<li><span class="t">Классификация: какое правило подходит <span class="who ours">наша работа</span></span>
+<span class="d">Агент берёт все правила из множества <code>concept_classify_message_rule_priority_1</code> и по очереди проверяет каждое: совпадает ли текст сообщения с одним из двух образцов в правиле. У правила про Python совпал первый образец. Правило срабатывает и дописывает в базу две вещи: сообщение принадлежит классу «сообщение об авторе», его сущность — Python.</span>
+<pre><code>Trying to generate by formula: lr_classify_author_of_python_lang_message
+Compute atomic logical formula if_author_of_python_lang_1 true
+Logical formula is generated
+Message is classified.
+AlternativeMessageTopicClassificationAgent finished</code></pre></li>
+
+<li><span class="t">Выбор правила ответа <span class="who ours">наша работа</span></span>
+<span class="d">Агент ответа перебирает правила ответа по приоритетам. Наше правило <code>lr_answer_about_author</code> проверяет три условия: это сообщение об авторе, у него есть сущность, и у этой сущности в базе записан автор. Все три выполнены — правило срабатывает и указывает, из какого класса фраз брать текст.</span>
+<pre><code>StandardMessageReplyAgent started
+Trying to generate by formula: lr_answer_about_author
+Target is achieved
+MessageHandler: the logic rule lr_answer_about_author is found</code></pre></li>
+
+<li><span class="t">Сборка фразы <span class="who ours">наша работа</span></span>
+<span class="d">Агент генерации берёт одну из двух фраз класса и её шаблон. По шаблону находит в базе название языка и имя автора и подставляет их вместо <code>${_language_name}</code> и <code>${_author_name}</code>.</span>
+<pre><code>MessageHandler: the phrase with the content
+  "Автор языка программирования ${_language_name} — ${_author_name}." is found
+PhraseGenerationAgent started
+Generated text: "Автор языка программирования Python — Гвидо ван Россум."</code></pre></li>
+
+<li><span class="t">Ответ появляется в чате <span class="who stock">штатное</span></span>
+<span class="d">Готовый текст записывается в базу как ответное сообщение, окно чата его показывает.</span>
+<pre><code>MessageReplyAgent finished</code></pre></li>
+</ol>
+<div class="plain"><b>что из этого сделано в работе</b><p>Сам механизм — агенты и порядок шагов — штатный, он был в NIKA. В работе добавлено то, чем этот механизм пользуется: правила шага 3, а для вопроса об авторе ещё правило шага 4 и фразы шага 5.</p></div>
+</article>
+
+<article><h3>То же самое одной схемой</h3>
+<pre><code>«Кто создал Python?»
+   ↓ правило классификации сравнивает текст с образцами
+сообщение ∈ concept_message_about_author
+сообщение → rrel_entity → python_language
+   ↓ правило ответа проверяет, что в базе есть автор
+python_language → nrel_language_author → guido_van_rossum
+   ↓ фраза подставляет русские названия в шаблон
+«Автор языка программирования Python — Гвидо ван Россум.»</code></pre>
+</article>
+
+<h2 class="sec" id="s7">7. Правило классификации: разбор</h2>
+<p class="sec-note">Самая важная часть работы. Все 67 правил устроены одинаково, достаточно понять одно.</p>
+
+<article class="long"><h3>Что правило говорит</h3>
+<pre><code>ЕСЛИ  текст сообщения = «Что такое компилятор?»
+  ИЛИ текст сообщения = «Что значит компилятор?»
+ТО    сообщение ∈ concept_message_about_entity     <span class="c">← класс: вопрос о сущности</span>
+      сообщение → rrel_entity → concept_compiler   <span class="c">← сущность: компилятор</span></code></pre>
+<p>На языке логики это <strong>импликация</strong>: посылка «если» и следствие «то». Посылка — <strong>дизъюнкция</strong> («или») двух условий, по одному на формулировку.</p>
+</article>
+
+<article class="long"><h3>Как это выглядит в базе знаний</h3>
+<figure>
+<img src="Скриншоты/03_правило_классификации.png" alt="Правило классификации в sc-web: пять страниц одна под другой">
+<figcaption>Правило <code>lr_classify_what_is_compiler_message</code> в sc-web. Сверху вниз: само правило, его посылка-дизъюнкция, два условия с текстами вопроса, следствие.</figcaption>
+</figure>
+<p>На рисунке пять кусков, читаются сверху вниз:</p>
+<ol>
+<li><b>Правило.</b> Узел с именем правила. У него есть «главный ключевой sc-элемент'» — та самая импликация <code>(… ⇒ …)</code>, и он входит во «множество правил классификации сообщения первого приоритета».</li>
+<li><b>Посылка.</b> Узел, помеченный как «дизъюнкция*», в который входят два условия: <code>if_what_is_compiler_1</code> и <code>if_what_is_compiler_2</code>.</li>
+<li><b>Первое условие.</b> Шаблон: «есть <code>_message</code>, оно принадлежит классу „сообщение“, и его текст — „Что такое компилятор?“». Подчёркивание в <code>_message</code> значит «любое сообщение».</li>
+<li><b>Второе условие.</b> То же самое с текстом «Что значит компилятор?».</li>
+<li><b>Следствие.</b> «То же <code>_message</code> принадлежит классу „сообщение о сущности“, и его сущность' — компилятор».</li>
+</ol>
+</article>
+
+<article><h3>Что делает набор узлов правилом</h3>
+<p>Чтобы агент нашёл правило и понял, как его читать, вокруг импликации есть обвязка. Она одинакова у всех 67 правил.</p>
+<table>
+<thead><tr><th>Элемент</th><th>Зачем нужен</th></tr></thead>
+<tbody>
+<tr><td><code>concept_classify_message_rule_priority_1</code></td><td>множество, из которого агент классификации берёт правила. Не входит в него — агент правило не увидит</td></tr>
+<tr><td><code>rrel_main_key_sc_element</code></td><td>показывает, где у правила сама формула</td></tr>
+<tr><td><code>nrel_implication</code></td><td>помечает связь «посылка → следствие» как импликацию</td></tr>
+<tr><td><code>nrel_disjunction</code></td><td>помечает посылку как «или» из двух условий</td></tr>
+<tr><td><code>atomic_logical_formula</code></td><td>помечает каждое условие и следствие как простое утверждение, которое можно проверить поиском по базе</td></tr>
+<tr><td><code>concept_template_with_links</code></td><td>говорит, что в условии есть ссылка с текстом и сравнивать надо её содержимое</td></tr>
+<tr><td><code>nrel_sc_text_translation</code></td><td>отношение, которым текст привязан к сообщению</td></tr>
+</tbody>
+</table>
+</article>
+
+<article><h3>Чем отличаются 67 правил друг от друга</h3>
+<p>Только тремя вещами: именем правила, двумя текстами вопроса и тем, что стоит в следствии — классом сообщения и сущностью.</p>
+<table>
+<thead><tr><th>Файл правила</th><th>Тексты в посылке</th><th>Класс в следствии</th><th>Сущность</th></tr></thead>
+<tbody>
+<tr><td><code>…what_is_compiler…</code></td><td>Что такое компилятор? / Что значит компилятор?</td><td>о сущности</td><td><code>concept_compiler</code></td></tr>
+<tr><td><code>…what_is_guido_van_rossum…</code></td><td>Кто такой Гвидо ван Россум? / Кто это Гвидо ван Россум?</td><td>о сущности</td><td><code>guido_van_rossum</code></td></tr>
+<tr><td><code>…author_of_python_lang…</code></td><td>Кто создал Python? / Кто автор Python?</td><td>об авторе</td><td><code>python_language</code></td></tr>
+<tr><td><code>…subdividing_of_programming_lang…</code></td><td>На что декомпозируется язык программирования? / Каким бывает язык программирования?</td><td>о разбиении</td><td><code>concept_programming_language</code></td></tr>
+</tbody>
+</table>
+<div class="mine"><b>ограничение, о котором надо знать</b><p>Текст сравнивается <b>посимвольно</b>. «что такое компилятор?» с маленькой буквы или «Что такое компилятор» без вопросительного знака правило не узнает — проверено в диалоге, Ника отвечает фразой непонимания. Поэтому правил много и в каждом по две формулировки.</p></div>
+</article>
+
+<h2 class="sec" id="s8">8. Три типа вопросов: откуда берётся ответ</h2>
+<p class="sec-note">Классификация у всех трёх наша. Различается то, кто строит ответ.</p>
+
+<article class="long"><h3>Сравнение</h3>
+<table>
+<thead><tr><th></th><th>Что такое …?</th><th>На что декомпозируется …?</th><th>Кто создал …?</th></tr></thead>
+<tbody>
+<tr><td class="k">Класс сообщения</td><td><code>concept_message_about_entity</code>, штатный</td><td><code>concept_message_about_subdividing</code>, штатный</td><td><code>concept_message_about_author</code>, <b>свой</b></td></tr>
+<tr><td class="k">Правил классификации</td><td>58</td><td>2</td><td>7</td></tr>
+<tr><td class="k">Правило ответа</td><td>штатное <code>lr_message_about_entity</code></td><td>штатное <code>lr_message_about_subdividing</code></td><td><b>своё</b> <code>lr_answer_about_author</code></td></tr>
+<tr><td class="k">Фраза ответа</td><td>штатная: <code>${…} - ${_note}.</code></td><td>штатная: <code>${…} разбивается на $...{_subdividing}.</code></td><td><b>свои</b>, две штуки</td></tr>
+<tr><td class="k">Что берётся из базы</td><td>описание <code>nrel_note</code></td><td>разбиение <code>nrel_subdividing</code></td><td>автор <code>nrel_language_author</code></td></tr>
+</tbody>
+</table>
+<p>Первые два типа заработали сразу после добавления правил классификации: классы сообщений, правила ответа и фразы для них уже были в NIKA. Третий тип собран целиком — <a href="#s9">раздел 9</a>.</p>
+</article>
+
+<article><h3>Три особенности ответов, которые видно на экране</h3>
+<ul>
+<li><b>«компилятор - Компилятор — программа… код..»</b> Название стоит дважды, а в конце две точки. Это штатная фраза NIKA: она пишет название, дефис, описание и точку. Описание в базе само начинается с названия и заканчивается точкой.</li>
+<li><b>Декомпозиция выводит одно разбиение из четырёх.</b> У языка программирования в базе четыре разбиения: по способу выполнения, по уровню, по типизации, по парадигме. Штатная фраза показывает одно из них.</li>
+<li><b>На «Кто создал …?» ответ бывает двух видов.</b> «Автор языка программирования Python — Гвидо ван Россум.» или «Язык программирования Python создал Гвидо ван Россум.» — система берёт любую из двух фраз класса.</li>
+</ul>
+</article>
+
+<article><h3>Что в журнале выглядит как ошибка, но ошибкой не является</h3>
+<p>На каждый вопрос «Что такое …?» в журнале решателя появляется строка <code>[Error]: Answer isn't found.</code> Это нормально. Система сначала пробует фразу с определением понятия, она не собирается, и тогда берётся вторая фраза — с описанием <code>nrel_note</code>. Ответ в чате при этом есть.</p>
+</article>
+
+<h2 class="sec" id="s9">9. Свой класс, правило ответа, фразы</h2>
+<p class="sec-note">Всё, что понадобилось, чтобы заработал вопрос «Кто создал …?».</p>
+
+<article><h3>Класс сообщений</h3>
+<p>Файл <code>messages/concept_message_about_author.scs</code>. Объявляет новое понятие «сообщение об авторе языка программирования» и включает его в число классов, которые система вообще может назначить сообщению.</p>
+<pre><code>concept_message_about_author
+&lt;- sc_node_class;                       <span class="c">/* это класс */</span>
+&lt;- concept_intent_possible_class;       <span class="c">/* это возможный класс сообщения */</span>
+=&gt; nrel_main_idtf:
+    [сообщение об авторе языка программирования] (* &lt;- lang_ru;; *);
+=&gt; nrel_wit_ai_idtf: [about_author];    <span class="c">/* имя для Wit.ai — по спецификации класса */</span></code></pre>
+<p>У класса есть и определение на естественном языке. Идентификатор для Wit.ai задан, потому что так положено описывать класс сообщений, хотя сам сервис не используется.</p>
+</article>
+
+<article><h3>Правило ответа</h3>
+<p>Файл <code>logic_rules/answer/lr_answer_about_author.gwf</code>. Тоже импликация, но другая по смыслу: не «какой это вопрос», а «чем на него отвечать».</p>
+<pre><code>ЕСЛИ  _message ∈ concept_message_about_author   <span class="c">← вопрос уже распознан как вопрос об авторе</span>
+  И   _message → rrel_entity → _entity          <span class="c">← у него выделена сущность</span>
+  И   _entity → nrel_language_author → _value   <span class="c">← и у этой сущности в базе есть автор</span>
+ТО    создать ответное сообщение _reply_message
+      и связать его с вопросом отношением nrel_reply</code></pre>
+<p>К правилу отношением <code>nrel_answer_pattern</code> привязан класс фраз <code>concept_phrase_about_author</code> — оттуда берётся текст ответа. Правило входит во множество правил ответа второго приоритета.</p>
+<div class="plain"><b>зачем третье условие</b><p>Оно проверяет, что данные для ответа есть. Если спросить об авторе языка, у которого автор не записан, правило не сработает, и система ответит фразой непонимания, а не замолчит.</p></div>
+</article>
+
+<article><h3>Фразы с шаблоном</h3>
+<p>Файл <code>phrases/examples/concept_phrase_about_author.scs</code>. В нём три вещи.</p>
+<p><strong>Две фразы</strong> — текст с пропусками:</p>
+<pre><code>Автор языка программирования ${_language_name} — ${_author_name}.
+Язык программирования ${_language_name} создал ${_author_name}.</code></pre>
+<p><strong>Структура-образец</strong> — описание того, что найти в базе, чтобы заполнить пропуски. По-русски она читается так:</p>
+<pre><code>есть сообщение _message
+его сущность — _language
+русское название _language       → это ${_language_name}
+автор _language — _author
+русское название _author         → это ${_author_name}</code></pre>
+<p><strong>Объявление двух переменных</strong> <code>_language_name</code> и <code>_author_name</code> — чтобы система знала, какие места образца соответствуют каким пропускам во фразе.</p>
+<p>Обе фразы пользуются одним образцом. Сам класс фраз объявлен в соседнем файле <code>phrases/concept_phrase_about_author.scs</code>.</p>
+</article>
+
+<h2 class="sec" id="s10">10. Почему без Wit.ai</h2>
+<p class="sec-note">Про это спросят обязательно. Лучше сказать самому.</p>
+
+<article><h3>Что такое Wit.ai и что с ним случилось</h3>
+<p><strong>Wit.ai</strong> — облачный сервис: ему показывают примеры фраз с разметкой, он обучается и потом сам определяет класс и сущности у похожих фраз. Методичка предлагает обучать классификатор именно в нём.</p>
+<p>NIKA обращается к сервису с токеном доступа. Токен, который лежит в репозитории, сервис отвергает:</p>
+<pre><code>{"code":"no-auth","error":"Invalid user: FB log-in user is no longer supported"}</code></pre>
+<p>Поэтому использован второй способ классификации, который есть в самой NIKA, — <strong>логическими правилами</strong>. Его выполняет штатный агент <code>AlternativeMessageTopicClassificationAgent</code>, в базе NIKA для таких правил есть своя папка <code>lr_alternative_classification</code>.</p>
+</article>
+
+<article><h3>Чем два способа отличаются</h3>
+<table>
+<thead><tr><th></th><th>Wit.ai</th><th>Логические правила</th></tr></thead>
+<tbody>
+<tr><td class="k">Где хранится знание о вопросах</td><td>во внешнем сервисе</td><td>в базе знаний, рядом с остальными знаниями</td></tr>
+<tr><td class="k">Как «обучают»</td><td>размечают примеры фраз</td><td>пишут правило с образцами текста</td></tr>
+<tr><td class="k">Похожая, но другая формулировка</td><td>скорее всего распознает</td><td>не распознает: сравнение посимвольное</td></tr>
+<tr><td class="k">Нужен интернет и токен</td><td>да</td><td>нет</td></tr>
+<tr><td class="k">Что сдаётся в репозиторий</td><td>экспорт JSON</td><td>файлы правил <code>.gwf</code></td></tr>
+</tbody>
+</table>
+<p>Настройки системы при этом не менялись: в программе обработки сообщения агент логических правил стоит первым, а к Wit.ai система обращается, только если ни одно правило не подошло.</p>
+<div class="say"><b>сказать вслух</b><p>Штатный токен Wit.ai сервис отвергает с ошибкой <code>no-auth</code>, поэтому классификация сделана логическими правилами — это штатный механизм NIKA. Требование «обучить классификатор» выполнено: знание о том, как распознать вопрос, записано правилами в самой базе знаний.</p></div>
+</article>
+
+<h2 class="sec" id="s11">11. Карта файлов</h2>
+<p class="sec-note">Что где лежит и что из этого сделано во второй лабораторной.</p>
+
+<article class="long"><h3>Каталог работы</h3>
+<pre><code>kb/extra/section_subject_domain_of_programming_languages/
+│
+├── section_subject_domain_of_programming_languages.scs   <span class="c">ЛР1: описание предметной области</span>
+├── concepts/                                             <span class="c">ЛР1: 23 класса</span>
+│   └── instances/                                        <span class="c">ЛР1: 40 экземпляров</span>
+├── relations/                                            <span class="c">ЛР1: 17 отношений</span>
+│
+├── messages/                                             <span class="hl">ЛР2</span>
+│   └── concept_message_about_author.scs                  <span class="c">свой класс сообщений</span>
+├── logic_rules/                                          <span class="hl">ЛР2</span>
+│   ├── classification/                                   <span class="c">67 правил классификации</span>
+│   │   ├── lr_classify_what_is_*.gwf                     <span class="c">58 — «Что такое …?»</span>
+│   │   ├── lr_classify_author_of_*.gwf                   <span class="c"> 7 — «Кто создал …?»</span>
+│   │   └── lr_classify_subdividing_of_*.gwf              <span class="c"> 2 — «На что декомпозируется …?»</span>
+│   └── answer/
+│       └── lr_answer_about_author.gwf                    <span class="c">правило ответа об авторе</span>
+└── phrases/                                              <span class="hl">ЛР2</span>
+    ├── concept_phrase_about_author.scs                   <span class="c">класс фраз</span>
+    └── examples/
+        └── concept_phrase_about_author.scs               <span class="c">две фразы и структура-образец</span></code></pre>
+<p>Всё, что лежит в <code>kb/extra/</code>, система подхватывает сама при сборке базы — нигде дополнительно регистрировать файлы не нужно.</p>
+</article>
+
+<article><h3>Что лежит в папке ЛР2</h3>
+<table>
+<thead><tr><th>Файл</th><th>Что это</th></tr></thead>
+<tbody>
+<tr><td><code>ЛР2_Отчет.docx</code> / <code>.pdf</code></td><td>отчёт для сдачи, семь рисунков</td></tr>
+<tr><td><code>Шпаргалка_к_защите_ЛР2.html</code> / <code>.pdf</code></td><td>этот документ</td></tr>
+<tr><td><code>ИНСТРУКЦИЯ_ЛР2.md</code></td><td>как перенести папку в свой репозиторий, запустить и проверить</td></tr>
+<tr><td><code>Скриншоты/</code></td><td>семь рисунков отчёта отдельными файлами</td></tr>
+</tbody>
+</table>
+</article>
+
+<h2 class="sec" id="s12">12. Как запустить и показать</h2>
+<p class="sec-note">Команды выполняются в каталоге репозитория <code>nika</code>.</p>
+
+<article><h3>Запуск</h3>
+<pre><code>docker compose up -d --no-build        <span class="c"># поднять систему; база знаний собирается минуту-две</span>
+docker compose ps                      <span class="c"># problem-solver должен быть healthy</span></code></pre>
+<p>Проверить, что база собралась целиком и без ошибок:</p>
+<pre><code>docker compose logs problem-solver | grep -E "\[[0-9]+/[0-9]+\]" | tail -1</code></pre>
+<p>В выведенной строке должны стоять два одинаковых числа, например <code>[1773/1773]</code>: собрано столько файлов, сколько найдено.</p>
+</article>
+
+<article><h3>Перезапуск после изменения файлов базы</h3>
+<pre><code>docker compose restart problem-solver
+docker compose restart py-sc-server</code></pre>
+<p>Обе команды и именно в таком порядке. Вторую забывать нельзя: агенты на Python после перезапуска решателя сами не переподключаются, и без неё Ника бесконечно «печатает» и не отвечает.</p>
+</article>
+
+<article><h3>Что открыть в sc-web</h3>
+<p>В sc-web (<code>localhost:8000</code>) в строку поиска вводится идентификатор. То же можно открыть адресом вида <code>localhost:8000/?sys_id=идентификатор</code>.</p>
+<table>
+<thead><tr><th>Идентификатор</th><th>Что там видно</th></tr></thead>
+<tbody>
+<tr><td><code>concept_classify_message_rule_priority_1</code></td><td>множество правил: в списке все наши <code>lr_classify_*</code></td></tr>
+<tr><td><code>lr_classify_what_is_compiler_message</code></td><td>правило: импликация и принадлежность множеству</td></tr>
+<tr><td><code>if_what_is_compiler_1</code></td><td>первое условие правила с текстом «Что такое компилятор?»</td></tr>
+<tr><td><code>concept_message_about_author</code></td><td>свой класс сообщений; после вопроса об авторе в нём появляется сообщение</td></tr>
+<tr><td><code>concept_phrase_about_author</code></td><td>класс фраз и две фразы с шаблоном</td></tr>
+<tr><td><code>python_language</code></td><td>экземпляр из ЛР1: описание, автор, год</td></tr>
+</tbody>
+</table>
+</article>
+
+<article><h3>Как показать, что вопрос действительно классифицирован</h3>
+<ol>
+<li>Задать в чате «Кто создал Python?» и дождаться ответа.</li>
+<li>В sc-web открыть <code>concept_message_about_author</code>.</li>
+<li>В списке элементов класса найти сообщение без имени — оно показано как «<code>...</code>» — и щёлкнуть по нему.</li>
+<li>На странице сообщения видны текст вопроса, строка «сущность': Python» и принадлежность классу «сообщение об авторе языка программирования».</li>
+</ol>
+<figure>
+<img src="Скриншоты/07_сообщение_об_авторе.png" alt="Страница сообщения в sc-web: текст вопроса, сущность Python, класс сообщения">
+<figcaption>Сообщение «Кто создал Python?» после классификации: сущность' — Python, класс — сообщение об авторе языка программирования.</figcaption>
+</figure>
+</article>
+
+<h2 class="sec" id="s13">13. Если что-то пошло не так</h2>
+<p class="sec-note">Что бывает на живом показе и что с этим делать.</p>
+
+<article class="long"><h3>Признак → причина → действие</h3>
+<table>
+<thead><tr><th>Что видно</th><th>Почему</th><th>Что делать</th></tr></thead>
+<tbody>
+<tr><td>Enter не отправляет сообщение</td><td>так устроено окно чата</td><td>отправлять кнопкой с самолётиком</td></tr>
+<tr><td>При первом открытии чата красная панель с <code>TypeError … 'addr'</code></td><td>ошибка окна чата при пустой истории</td><td>закрыть панель кнопкой «Close», чат под ней рабочий</td></tr>
+<tr><td>«Сформулируйте, пожалуйста, по-другому», «Я не понимаю Вас», «Извините, я не знаю, как ответить»</td><td>текст не совпал ни с одним образцом: другая буква, регистр, нет знака вопроса</td><td>набрать вопрос точно как в правиле</td></tr>
+<tr><td>Вопрос набран верно, ответа нет секунд десять</td><td>решатель NIKA изредка теряет уже готовый ответ. Чаще, если задавать вопросы быстро один за другим</td><td>задать тот же вопрос ещё раз. Следующий вопрос задавать только после ответа</td></tr>
+<tr><td>Ника перестала отвечать совсем</td><td>решатель завис. Это тоже ошибка самой системы, за вечер проверки случалось несколько раз</td><td>перезапустить двумя командами из раздела 12 и подождать минуту-две</td></tr>
+<tr><td>Ника бесконечно «печатает» после перезапуска</td><td>перезапущен только <code>problem-solver</code></td><td><code>docker compose restart py-sc-server</code></td></tr>
+<tr><td>После перезапуска пропала история чата</td><td>база знаний собирается заново, сообщения в ней не сохраняются</td><td>ничего, это штатно</td></tr>
+</tbody>
+</table>
+<div class="mine"><b>совет</b><p>Перед защитой перезапустить систему и один раз задать все вопросы сценария. Если спросят, почему Ника не ответила с первого раза, сказать прямо: это известная нестабильность решателя, вопрос классифицируется правильно — это видно в sc-web по сообщению и его сущности.</p></div>
+</article>
+
+<p class="part">Часть III · защита</p>
+
+<h2 class="sec" id="s14">14. Вопросы к защите</h2>
+<p class="sec-note">Восемь вопросов из методички. За устные ответы — три балла из десяти.</p>
+
+<article class="short"><h3><span class="n">01</span>Что такое классификация? Какая цель задачи классификации? Как можно классифицировать сообщение?</h3>
+<p><strong>Классификация</strong> — задача разделения множества наблюдений на группы, называемые классами, на основе анализа их формального описания.</p>
+<p><strong>Цель в диалоге:</strong> понять намерение пользователя, выраженное на естественном языке, и извлечь из сообщения дополнительную информацию. От результата зависит, как система ответит.</p>
+<p><strong>Три способа классифицировать сообщение:</strong></p>
+<ul>
+<li><b>по теме</b> — определяется основная мысль, намерение (intent), и объекты, о которых речь (сущности);</li>
+<li><b>по времени</b> — событие в настоящем, прошедшем или будущем;</li>
+<li><b>по типу</b> — повествовательное, вопросительное, восклицательное.</li>
+</ul>
+<p>По времени и типу классифицируют по грамматическим признакам. По теме — требуется обучение классификатора. Дополнительно выделяют <b>признаки</b> (traits), например эмоциональную окраску: положительную, нейтральную, негативную.</p>
+<div class="mine"><b>из моей работы</b><p>Использована классификация по теме. Реализованы три класса сообщений, у каждого выделяется сущность через роль <code>rrel_entity</code>.</p></div>
+</article>
+
+<article class="short"><h3><span class="n">02</span>Какие функциональные возможности у сервиса Wit.ai? Какой принцип работы?</h3>
+<p><strong>Wit.ai</strong> — открытый облачный сервис обработки естественного языка. Даёт три вещи: класс намерения (<b>intent</b>), сущности сообщения (<b>entity</b>), класс признака (<b>trait</b>).</p>
+<p><strong>Принцип работы:</strong> разработчик создаёт приложение, задаёт список интентов и ролей сущностей, вводит разные по формулировке фразы и размечает их — указывает интент и выделяет сущности. Модель обучается и дальше классифицирует похожие сообщения, которых в обучении не было. Система обращается к сервису по HTTP, передавая текст и токен доступа, и получает JSON.</p>
+<p>Есть встроенные предобученные сущности: персона, время, расстояние, число, место, деньги, электронная почта. Методичка разрешает ими пользоваться, но не более двух.</p>
+<div class="say"><b>сказать вслух</b><p>В моей работе Wit.ai не использован: токен, который лежит в репозитории NIKA, сервис отвергает — API возвращает <code>no-auth</code>, «FB log-in user is no longer supported». Применена альтернативная классификация логическими правилами — она предусмотрена самой системой NIKA: в её базе знаний есть штатная папка таких правил <code>lr_alternative_classification</code>.</p></div>
+</article>
+
+<article class="short"><h3><span class="n">03</span>Алфавит ядра SC-кода и алфавит SC-кода: что из себя представляют, в чём различие?</h3>
+<p><strong>Алфавит ядра</strong> — минимальный набор типов sc-элементов, достаточный, чтобы записать любое знание:</p>
+<ul>
+<li>sc-узел;</li>
+<li>sc-коннекторы: sc-ребро (неориентированная связь) и sc-дуга (ориентированная), в том числе дуга принадлежности;</li>
+<li>sc-ссылка — файл с содержимым на внешнем языке.</li>
+</ul>
+<p><strong>Полный алфавит SC-кода</strong> — расширение ядра за счёт типизации: константность и переменность, постоянство и временность, позитивность, негативность и нечёткость дуг принадлежности, типы узлов — класс, структура, кортеж, ролевое и неролевое отношение.</p>
+<p><strong>Различие:</strong> ядро универсально и минимально, полный алфавит добавляет уточнения, которые не расширяют выразительную силу, но делают тексты компактнее, а обработку эффективнее. Любой текст расширенного алфавита разворачивается в текст ядра.</p>
+</article>
+
+<article class="short"><h3><span class="n">04</span>На чём основаны направления расширения Ядра SC-кода?</h3>
+<p>На <strong>типизации sc-элементов</strong> по двум линиям:</p>
+<ul>
+<li><b>синтаксическая</b> — уточняется вид элемента: константа или переменная, постоянный или временный, какого типа узел;</li>
+<li><b>семантическая</b> — элемент относится к классу через принадлежность, и его смысл задаётся связями в базе знаний.</li>
+</ul>
+<p>Смысл расширений в том, чтобы часто встречающиеся конструкции записывать одним элементом вместо развёрнутой подструктуры. Выразительности это не добавляет — повышает удобство записи и скорость обработки.</p>
+</article>
+
+<article class="short"><h3><span class="n">05</span>Приведите классификацию интеллектуальных систем</h3>
+<ul>
+<li><b>интеллектуальная справочная</b> — навигация по материалу и ответы на вопросы по нему;</li>
+<li><b>интеллектуальная обучающая</b> — обязательно реализует функции справочной, плюс обучает;</li>
+<li><b>интеллектуальная экспертная</b> — знания об узкой трудно формализуемой области, умеет объяснять решения;</li>
+<li>системы поддержки принятия решений;</li>
+<li>диалоговые системы и интеллектуальные ассистенты;</li>
+<li>многоагентные и робототехнические системы.</li>
+</ul>
+<div class="mine"><b>из моей работы</b><p>NIKA — обучающая экспертная система и одновременно диалоговый ассистент.</p></div>
+</article>
+
+<article class="short"><h3><span class="n">06</span>Что такое экспертная система? В чём её отличительная особенность?</h3>
+<p><strong>Экспертная система</strong> — интеллектуальная система, включающая знания об определённой слабо структурированной и трудно формализуемой узкой предметной области и способная предлагать пользователю разумные решения.</p>
+<p><strong>Отличительная особенность — способность объяснять решение</strong>, а не только выдавать результат. Обычная программа даёт ответ, экспертная система показывает, на основании каких знаний и по какой цепочке рассуждений он получен.</p>
+<div class="say"><b>сказать вслух</b><p>В моей работе это видно: ответ строится не готовой строкой, а выводом по базе знаний — правило находит связь «автор языка программирования*», и фраза подставляет найденное значение. Можно проследить, откуда взялся ответ.</p></div>
+</article>
+
+<article class="short"><h3><span class="n">07</span>Какие существуют формы представления знаний? Какая используется в работе?</h3>
+<ul>
+<li><b>логическая</b> — исчисление предикатов;</li>
+<li><b>продукционная</b> — правила вида «если … то …»;</li>
+<li><b>фреймовая</b> — структуры-фреймы со слотами;</li>
+<li><b>семантические сети</b> — граф из понятий и связей;</li>
+<li><b>онтологии</b>.</li>
+</ul>
+<p>В работе используются <strong>две формы</strong>. Основная — <b>семантическая сеть</b>: SC-код графовый язык, знания представлены узлами и связями. Правила классификации и ответа записаны в <b>продукционной</b> форме — как импликации «если текст сообщения такой, то класс такой».</p>
+</article>
+
+<article class="short"><h3><span class="n">08</span>Какие требования учитывать при составлении и формализации диалога?</h3>
+<ul>
+<li>каждое сообщение должно иметь хотя бы один класс;</li>
+<li>классы должны быть осмысленными и различимыми между собой;</li>
+<li>для одного класса задаётся несколько формулировок — пользователь спросит по-разному;</li>
+<li>сущности выделяются как существительные в именительном падеже;</li>
+<li>ответ должен опираться на знания, реально имеющиеся в базе;</li>
+<li>диалог должен быть связным: ответ соответствует заданному вопросу;</li>
+<li>при нераспознанном сообщении система выдаёт фразу непонимания, а не молчит.</li>
+</ul>
+<div class="mine"><b>из моей работы</b><p>В каждом правиле задано по две формулировки одного вопроса: «Что такое компилятор?» и «Что значит компилятор?». Сущности выделены в именительном падеже, как требует методичка.</p></div>
+</article>
+
+<h2 class="sec" id="s15">15. Задачи</h2>
+<p class="sec-note">Формализовать сообщение с выделением сущности. Важен метод, а не заученный ответ.</p>
+
+<article class="short"><h3>Метод</h3>
+<ul>
+<li>определить <b>тип</b> сообщения: вопрос, команда, утверждение;</li>
+<li>определить <b>класс</b> сообщения по теме — о чём оно;</li>
+<li>выделить <b>сущности</b> — ключевые объекты, о которых речь;</li>
+<li>при необходимости выделить <b>признак</b> (trait), например вежливость;</li>
+<li>записать на SCs: сообщение принадлежит классам, текст подключён через <code>nrel_sc_text_translation</code>, сущности выделены ролью <code>rrel_entity</code>.</li>
+</ul>
+<pre><code>message_1
+&lt;- concept_message;
+&lt;- concept_atomic_message;
+&lt;- concept_message_about_alarm_setting;
+=&gt; nrel_sc_text_translation:
+    [Поставь будильник на 7 утра.]
+    (* &lt;- lang_ru;; *);
+-&gt; rrel_entity: time_07_00;;</code></pre>
+</article>
+
+<article class="short"><h3>Разбор всех шести</h3>
+<table>
+<thead><tr><th></th><th>Сообщение</th><th>Класс</th><th>Сущности</th></tr></thead>
+<tbody>
+<tr><td><b>а</b></td><td>Поставь будильник на 7 утра</td><td>об установке будильника, команда</td><td>время 7:00</td></tr>
+<tr><td><b>б</b></td><td>Сколько стоит арбуз на рынке?</td><td>о цене товара, вопрос</td><td>арбуз, рынок</td></tr>
+<tr><td><b>в</b></td><td>Сколько ядер у процессора Intel Core i9-12900K?</td><td>о характеристике процессора, вопрос</td><td>Intel Core i9-12900K</td></tr>
+<tr><td><b>г</b></td><td>Что ты знаешь о «9В» классе?</td><td>о сущности, вопрос</td><td>класс 9В</td></tr>
+<tr><td><b>д</b></td><td>Расскажи о треугольнике АВС</td><td>о сущности, вопрос по смыслу</td><td>треугольник АВС</td></tr>
+<tr><td><b>е</b></td><td>Алиса, включи, пожалуйста, свет на кухне</td><td>об управлении устройством, команда</td><td>свет, кухня</td></tr>
+</tbody>
+</table>
+</article>
+
+<article class="short"><h3>На что обратить внимание</h3>
+<p><strong>Задача «е»</strong> — три момента сразу: две сущности (устройство и помещение), обращение «Алиса» сущностью не является, и есть признак вежливости из-за слова «пожалуйста». Это разобранный в методичке пример, его вероятнее всего и дадут.</p>
+<p><strong>Задачи «г» и «д»</strong> — самые простые: обе относятся к штатному классу <code>concept_message_about_entity</code>, тому же, что «Что такое компилятор?» в моей работе.</p>
+<p><strong>Задачи «а» и «в»</strong> — сущность выделяется встроенной сущностью Wit.ai: время в «а», число в «в». Методичка разрешает встроенные сущности, но не более двух.</p>
+<p><strong>Задача «б»</strong> — две сущности, вторая уточняет место. Если такого класса в базе нет, ответить система не сможет, и это нормально: формализация сообщения и наличие знаний для ответа — разные вещи.</p>
+</article>
+
+<h2 class="sec" id="s16">16. Сценарий защиты</h2>
+<p class="sec-note">Порядок, в котором показывать.</p>
+
+<article class="short"><h3><span class="n">1</span>Живой диалог</h3>
+<p>Открыть <code>localhost:3033</code> и задать три вопроса подряд:</p>
+<pre><code>Что такое компилятор?
+Кто создал Python?
+На что декомпозируется язык программирования?</code></pre>
+<p><b>Отправлять кнопкой</b>, Enter не работает. Следующий вопрос — только после ответа на предыдущий. Если ответа нет секунд десять — задать тот же вопрос ещё раз: решатель NIKA изредка теряет уже построенный ответ, это ошибка самой системы, а не базы знаний.</p>
+<div class="say"><b>сказать вслух</b><p>Реализовано три типа вопросов. Система распознаёт класс сообщения, выделяет сущность и строит ответ по шаблону из базы знаний.</p></div>
+</article>
+
+<article class="short"><h3><span class="n">2</span>Сразу проговорить про Wit.ai</h3>
+<div class="say"><b>сказать вслух</b><p>Wit.ai не использовался: штатный токен из репозитория сервис отвергает с ошибкой <code>no-auth</code>. Конфигурацию я не менял: агент логических правил в программе обработки сообщения идёт первым, а к Wit.ai система обращается, только если ни одно правило не сработало. Вместо него применена альтернативная классификация — она предусмотрена самой системой NIKA, штатная папка правил <code>lr_alternative_classification</code>. Правила лежат в множестве <code>concept_classify_message_rule_priority_1</code>, его читает штатный агент <code>AlternativeMessageTopicClassificationAgent</code>.</p></div>
+<p>Можно показать лог с ошибкой <code>no-auth</code> — это доказательство, а не оправдание.</p>
+</article>
+
+<article class="short"><h3><span class="n">3</span>Правило классификации</h3>
+<p>В sc-web открыть <code>lr_classify_what_is_compiler_message</code>.</p>
+<pre><code>ЕСЛИ текст = «Что такое компилятор?» ИЛИ «Что значит компилятор?»
+ТО  сообщение ∈ concept_message_about_entity
+    сообщение → rrel_entity → concept_compiler</code></pre>
+<div class="say"><b>сказать вслух</b><p>Правило — импликация. Посылка: дизъюнкция двух шаблонов с текстами вопроса. Следствие: класс сообщения и выделенная сущность через ролевое отношение <code>rrel_entity</code>.</p></div>
+</article>
+
+<article class="short"><h3><span class="n">4</span>Свой класс сообщений</h3>
+<p>Открыть <code>concept_message_about_author</code>.</p>
+<div class="say"><b>сказать вслух</b><p>Собственный класс. Задан идентификатор для Wit.ai через <code>nrel_wit_ai_idtf</code> — по спецификации, хотя сервис не используется. Класс добавлен во множество <code>concept_intent_possible_class</code>. Есть определение с переводом на естественный язык.</p></div>
+</article>
+
+<article class="short"><h3><span class="n">5</span>Как строится ответ</h3>
+<p>Открыть <code>concept_phrase_about_author</code>.</p>
+<pre><code>Автор языка программирования ${_language_name} — ${_author_name}.
+Язык программирования ${_language_name} создал ${_author_name}.</code></pre>
+<div class="say"><b>сказать вслух</b><p>Фраза — шаблон с подстановкой. Контур-образец ищет в базе цепочку: сообщение → выделенный язык → его русский идентификатор → автор через отношение «автор языка программирования*» → идентификатор автора. Найденные значения подставляются в текст.</p></div>
+</article>
+
+<h2 class="sec" id="s17">17. Что ещё спросят</h2>
+
+<article class="short"><h3>Почему 67 правил, а не одно?</h3>
+<p>Правило сопоставляет конкретный текст сообщения. «Что такое компилятор?» и «Что такое интерпретатор?» — разные тексты, значит разные правила. По две формулировки в каждом. В штатной базе NIKA сделано так же.</p>
+</article>
+
+<article class="short"><h3>Для чего именно работает «Что такое …?»</h3>
+<p>Для всех 23 классов и 35 экземпляров: языки, авторы, организации, стандарты, реализации, библиотеки, инструменты, парадигмы. Про людей вопрос звучит «Кто такой Гвидо ван Россум?». Календарных годов в покрытии нет: это значения отношения <code>nrel_creation_year</code>, описаний у них нет и предметом вопроса они не являются.</p>
+</article>
+
+<article class="short"><h3>Почему «что такое компилятор?» с маленькой буквы не распознаётся?</h3>
+<p>Правило сравнивает текст сообщения с образцом посимвольно: регистр, знак вопроса и формулировка значимы. Обобщать на похожие фразы умеет Wit.ai, логические правила — нет. Поэтому в каждом правиле по две формулировки, а на незнакомую фразу система отвечает одной из штатных фраз непонимания: «Сформулируйте, пожалуйста, по-другому», «Извините, я не знаю, как ответить», «Я не понимаю Вас».</p>
+</article>
+
+<article class="short"><h3>Где здесь «обучение классификатора», если Wit.ai нет?</h3>
+<p>Знание о том, как распознать сообщение, записано правилами в самой базе знаний. Их читает штатный агент <code>AlternativeMessageTopicClassificationAgent</code>: он стоит первым в программе обработки сообщения, раньше агента Wit.ai.</p>
+</article>
+
+<article class="short"><h3>Чем классификация отличается от ответа?</h3>
+<p>Классификация определяет класс сообщения и выделяет сущность. Ответ строится отдельным правилом по правилу вывода Modus Ponens и оформляется фразой-шаблоном. Это разные шаги: первые два типа вопросов отвечали сразу, потому что используют штатные классы с готовыми правилами ответа, а для своего класса пришлось написать и правило ответа, и фразу.</p>
+</article>
+
+<article class="short"><h3>Что такое <code>rrel_entity</code>?</h3>
+<p>Ролевое отношение, которым в сообщении выделяется ключевая сущность. Методичка уточняет: агент классификации использует только эту роль, остальная информация берётся из базы знаний.</p>
+</article>
+
+<article class="short"><h3>Почему класс сообщения — это понятие?</h3>
+<p>Это класс, множество однотипных сообщений. Конкретное сообщение пользователя — его экземпляр. Та же логика, что с абсолютными понятиями в первой лабораторной.</p>
+</article>
+
+<footer>
+  <p>Каталог работы: <code>kb/extra/section_subject_domain_of_programming_languages</code>. Ветка <code>tpis-2023</code>. Проверено в живом диалоге: 134 формулировки из 67 правил, сборка базы 1773/1773 файлов.</p>
+</footer>
+
+</div>
+</body></html>

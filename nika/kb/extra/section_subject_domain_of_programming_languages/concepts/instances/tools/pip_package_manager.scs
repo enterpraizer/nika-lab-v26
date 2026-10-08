@@ -1,0 +1,11 @@
+pip_package_manager
+<- concept_package_manager;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [pip]
+    (* <- lang_ru;; *);
+    [pip]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [pip — штатный менеджер пакетов языка Python, обеспечивающий установку библиотек из репозитория PyPI.]
+    (* <- lang_ru;; *);;

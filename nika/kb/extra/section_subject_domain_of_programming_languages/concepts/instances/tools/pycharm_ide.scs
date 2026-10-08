@@ -1,0 +1,11 @@
+pycharm_ide
+<- concept_integrated_development_environment;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [PyCharm]
+    (* <- lang_ru;; *);
+    [PyCharm]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [PyCharm — интегрированная среда разработки для языка программирования Python, включающая отладчик, средства рефакторинга и анализа кода.]
+    (* <- lang_ru;; *);;

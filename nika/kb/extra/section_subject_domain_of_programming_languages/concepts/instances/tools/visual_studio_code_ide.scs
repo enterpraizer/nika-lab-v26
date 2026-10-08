@@ -1,0 +1,14 @@
+visual_studio_code_ide
+<- concept_integrated_development_environment;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Visual Studio Code]
+    (* <- lang_ru;; *);
+    [Visual Studio Code]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [VS Code]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Visual Studio Code — расширяемый редактор исходного кода со средствами отладки и сборки, поддерживающий большинство распространённых языков программирования.]
+    (* <- lang_ru;; *);;

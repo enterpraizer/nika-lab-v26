@@ -1,0 +1,11 @@
+python_standard_library
+<- concept_standard_library;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [стандартная библиотека Python]
+    (* <- lang_ru;; *);
+    [Python standard library]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Стандартная библиотека Python — набор модулей, поставляемых вместе с интерпретатором и обеспечивающих работу с файлами, сетью, форматами данных и другими средствами.]
+    (* <- lang_ru;; *);;

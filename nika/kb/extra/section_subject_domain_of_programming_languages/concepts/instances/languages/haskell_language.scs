@@ -1,0 +1,20 @@
+haskell_language
+<- concept_programming_language;
+<- concept_compiled_programming_language;
+<- concept_high_level_programming_language;
+<- concept_statically_typed_programming_language;
+<- concept_functional_programming_language;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Haskell]
+    (* <- lang_ru;; *);
+    [Haskell]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Haskell — чисто функциональный язык программирования со статической типизацией, выводом типов и отложенными вычислениями.]
+    (* <- lang_ru;; *);
+=> nrel_language_author: simon_peyton_jones;
+=> nrel_creation_year: year_1990;
+=> nrel_supported_paradigm: paradigm_functional_programming;
+=> nrel_ide_support: visual_studio_code_ide;
+-> rrel_main_paradigm: paradigm_functional_programming;;

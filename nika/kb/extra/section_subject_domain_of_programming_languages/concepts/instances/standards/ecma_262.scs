@@ -1,0 +1,14 @@
+ecma_262
+<- concept_language_standard;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [ECMA-262]
+    (* <- lang_ru;; *);
+    [ECMA-262]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [ECMAScript]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [ECMA-262 — стандарт, определяющий язык ECMAScript, лежащий в основе языка программирования JavaScript.]
+    (* <- lang_ru;; *);;

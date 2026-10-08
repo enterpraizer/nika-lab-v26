@@ -1,0 +1,14 @@
+python_software_foundation
+<- concept_software_development_organization;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Python Software Foundation]
+    (* <- lang_ru;; *);
+    [Python Software Foundation]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [PSF]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Python Software Foundation — некоммерческая организация, отвечающая за развитие и сопровождение языка программирования Python.]
+    (* <- lang_ru;; *);;

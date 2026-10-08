@@ -1,0 +1,42 @@
+concept_programming_language_developer
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [разработчик языка программирования]
+    (* <- lang_ru;; *);
+    [programming language developer]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Разработчик языка программирования — человек, участвовавший в проектировании языка программирования, его синтаксиса, семантики и первой реализации.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Многие языки созданы не одним человеком, а комитетом или рабочей группой; в таких случаях автором принято называть инициатора и главного проектировщика языка.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (разработчик языка программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Разработчик языка программирования — человек, являющийся автором или соавтором некоторого языка программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language_developer
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Программист]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_human
+    (* => nrel_main_idtf:
+            [человек]
+            (* <- lang_ru;; *);;
+    *);;

@@ -1,0 +1,12 @@
+bjarne_stroustrup
+<- concept_programming_language_developer;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [Бьёрн Страуструп]
+    (* <- lang_ru;; *);
+    [Bjarne Stroustrup]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Бьёрн Страуструп — датский программист, автор языка программирования Си++.]
+    (* <- lang_ru;; *);
+=> nrel_developer_organization: bell_labs;;

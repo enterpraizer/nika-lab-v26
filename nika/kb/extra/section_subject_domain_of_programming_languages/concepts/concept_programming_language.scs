@@ -1,0 +1,64 @@
+concept_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [язык программирования]
+    (* <- lang_ru;; *);
+    [programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Язык программирования — формальный язык, предназначенный для записи компьютерных программ. Задаёт набор лексических, синтаксических и семантических правил, определяющих внешний вид программы и действия, которые выполнит исполнитель под её управлением.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Язык программирования отличается от естественного языка тем, что его синтаксис и семантика заданы формально и допускают однозначную машинную интерпретацию. Именно поэтому программа, записанная на нём, может быть выполнена вычислительной машиной без участия человека.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (язык программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Язык программирования — формальная знаковая система, предназначенная для записи алгоритмов в форме, допускающей их автоматическое выполнение вычислительной машиной.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Язык_программирования]
+    (* <- lang_ru;; *);
+<= nrel_inclusion:
+    concept_formal_language
+    (* => nrel_main_idtf:
+            [формальный язык]
+            (* <- lang_ru;; *);;
+    *);
+/* Разбиение по способу выполнения программ */
+<= nrel_subdividing: {
+    concept_compiled_programming_language;
+    concept_interpreted_programming_language
+};
+/* Разбиение по уровню абстракции */
+<= nrel_subdividing: {
+    concept_high_level_programming_language;
+    concept_low_level_programming_language
+};
+/* Разбиение по дисциплине типизации */
+<= nrel_subdividing: {
+    concept_statically_typed_programming_language;
+    concept_dynamically_typed_programming_language
+};
+/* Разбиение по основной поддерживаемой парадигме программирования */
+<= nrel_subdividing: {
+    concept_object_oriented_programming_language;
+    concept_functional_programming_language;
+    concept_procedural_programming_language;
+    concept_logic_programming_language
+};;

@@ -1,0 +1,38 @@
+concept_object_oriented_programming_language
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [объектно-ориентированный язык программирования]
+    (* <- lang_ru;; *);
+    [object-oriented programming language]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Объектно-ориентированный язык программирования — язык, поддерживающий представление программы в виде совокупности взаимодействующих объектов, каждый из которых является экземпляром некоторого класса.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Основными средствами таких языков являются классы, наследование, инкапсуляция и полиморфизм, позволяющие описывать предметную область в терминах взаимодействующих объектов.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (объектно-ориентированный язык программирования)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Объектно-ориентированный язык программирования — язык программирования, поддерживающий парадигму объектно-ориентированного программирования.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_object_oriented_programming_language;
+            concept_programming_language
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Объектно-ориентированное_программирование]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language;;

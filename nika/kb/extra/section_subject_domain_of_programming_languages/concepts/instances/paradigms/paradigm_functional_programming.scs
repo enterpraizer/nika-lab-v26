@@ -1,0 +1,11 @@
+paradigm_functional_programming
+<- concept_programming_paradigm;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [функциональное программирование]
+    (* <- lang_ru;; *);
+    [functional programming]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Функциональное программирование — парадигма, в которой вычисление трактуется как вычисление значений функций, а изменяемое состояние программы не используется.]
+    (* <- lang_ru;; *);;

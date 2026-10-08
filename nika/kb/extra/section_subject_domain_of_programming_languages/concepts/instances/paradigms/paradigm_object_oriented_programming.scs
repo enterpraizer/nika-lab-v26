@@ -1,0 +1,14 @@
+paradigm_object_oriented_programming
+<- concept_programming_paradigm;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [объектно-ориентированное программирование]
+    (* <- lang_ru;; *);
+    [object-oriented programming]
+    (* <- lang_en;; *);
+=> nrel_idtf:
+    [ООП]
+    (* <- lang_ru;; *);
+=> nrel_note:
+    [Объектно-ориентированное программирование — парадигма, в которой программа строится как совокупность объектов, каждый из которых является экземпляром класса и взаимодействует с другими объектами посредством вызова методов.]
+    (* <- lang_ru;; *);;

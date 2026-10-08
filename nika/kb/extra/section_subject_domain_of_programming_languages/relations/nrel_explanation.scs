@@ -1,0 +1,46 @@
+nrel_explanation
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+    [пояснение*]
+    (* <- lang_ru;; *);
+    [explanation*]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Связывает понятие с текстом, уточняющим особенности его использования и типичные заблуждения, связанные с ним.]
+    (* <- lang_ru;; *);
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_first_domain: concept_programming_language;
+=> nrel_second_domain: file;
+=> nrel_definitional_domain:
+    ...
+    (*
+    <= nrel_combination:
+        {
+            concept_programming_language;
+            file
+        };;
+    *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (пояснение*)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Пояснение* — бинарное ориентированное отношение, связывающее понятие с текстом, который дополняет его определение сведениями, не входящими в состав определения.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_programming_language;
+            file
+        };;
+    *);;

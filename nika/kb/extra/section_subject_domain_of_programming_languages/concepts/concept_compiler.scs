@@ -1,0 +1,38 @@
+concept_compiler
+<- sc_node_class;
+<- class;
+<- concept_wit_entity;
+=> nrel_main_idtf:
+    [компилятор]
+    (* <- lang_ru;; *);
+    [compiler]
+    (* <- lang_en;; *);
+=> nrel_note:
+    [Компилятор — программа, переводящая исходный текст программы с языка программирования в эквивалентный код на языке более низкого уровня, чаще всего в машинный код.]
+    (* <- lang_ru;; *);
+=> nrel_explanation:
+    [Компиляция выполняется один раз, поэтому готовая программа работает быстрее, но её нужно пересобирать под каждую целевую платформу.]
+    (* <- lang_ru;; *);
+<- rrel_key_sc_element:
+    ...
+    (*
+        => nrel_main_idtf:
+            [Опр. (компилятор)]
+            (* <- lang_ru;; *);;
+        <- definition;;
+        <= nrel_sc_text_translation:
+            ...
+            (*
+                -> rrel_example:
+                    [Компилятор — реализация языка программирования, осуществляющая трансляцию исходного текста программы в исполняемый код до её выполнения.]
+                    (* <- lang_ru;; *);;
+            *);;
+        <= nrel_using_constants: {
+            concept_compiler;
+            concept_programming_language_implementation
+        };;
+    *);
+=> nrel_source:
+    [https://ru.wikipedia.org/wiki/Компилятор]
+    (* <- lang_ru;; *);
+<= nrel_inclusion: concept_programming_language_implementation;;
