@@ -1,0 +1,697 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<title>Как читать шаблоны в gwf</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#FFFFFF; --surface:#FAFAF8; --surface-2:#F0EFEB;
+  --ink:#1A1A18; --ink-2:#4A4A46; --ink-3:#77766F;
+  --line:#DEDCD5; --line-strong:#C2BFB5;
+  --accent:#3F4A8A; --accent-soft:#E8EAF4; --accent-ink:#2C3566;
+  --mark:#8A5A20; --mark-soft:#F7EEE1;
+  --ok:#2F6B4A; --ok-soft:#E6F1EA;
+  --serif:"PT Serif",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.6}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.1rem 3rem}
+
+header{padding:2rem 0 1.1rem;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-ink);margin:0 0 .5rem}
+h1{font-family:var(--serif);font-weight:700;font-size:2.1rem;line-height:1.12;margin:0 0 .4rem}
+.sub{color:var(--ink-2);margin:0;font-size:.98rem}
+
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin:1.2rem 0 0}
+.facts h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 .55rem;font-weight:600}
+.fact{display:flex;justify-content:space-between;gap:1rem;padding:.32rem 0;
+  border-bottom:1px dashed var(--line);align-items:baseline}
+.fact:last-child{border-bottom:0}
+.fact dt{color:var(--ink-2);font-size:.92rem;margin:0}
+.fact dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+
+.part{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-ink);border-top:2px solid var(--ink);padding-top:.7rem;margin:2.8rem 0 0}
+h2.sec{font-family:var(--serif);font-weight:700;font-size:1.45rem;margin:2.2rem 0 .25rem}
+.part + h2.sec{margin-top:.5rem}
+.sec-note{color:var(--ink-3);font-size:.9rem;margin:0 0 1rem}
+
+nav.toc{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin:1.4rem 0 0}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 .5rem;font-weight:600}
+nav.toc ol{margin:0;padding-left:1.3rem;columns:2;column-gap:2rem;font-size:.92rem}
+nav.toc li{margin:.15rem 0;break-inside:avoid}
+nav.toc a{color:var(--accent-ink);text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+nav.toc .how{margin:.7rem 0 0;color:var(--ink-2);font-size:.9rem}
+
+article{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin-bottom:.7rem}
+article h3{display:flex;gap:.7rem;align-items:flex-start;margin:0 0 .6rem;
+  font-size:1rem;font-weight:600;line-height:1.4}
+.n{font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--accent-ink);
+  background:var(--accent-soft);border-radius:4px;padding:.1rem .4rem;flex:none;margin-top:.12rem}
+article p{margin:.55rem 0;color:var(--ink-2);font-size:.95rem}
+article p strong{color:var(--ink);font-weight:600}
+article ul,article ol{margin:.5rem 0;padding-left:1.1rem;color:var(--ink-2);font-size:.95rem}
+article ol{padding-left:1.4rem}
+article li{margin:.25rem 0}
+
+.say,.mine,.plain{padding:.6rem .8rem;border-radius:0 5px 5px 0;margin:.7rem 0 0}
+.say{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.mine{background:var(--mark-soft);border-left:3px solid var(--mark)}
+.plain{background:var(--ok-soft);border-left:3px solid var(--ok)}
+.say>b,.mine>b,.plain>b{display:block;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.2rem}
+.say>b{color:var(--accent-ink)} .mine>b{color:var(--mark)} .plain>b{color:var(--ok)}
+.say p,.mine p,.plain p{margin:0;color:var(--ink);font-size:.92rem}
+
+code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);
+  padding:.08em .32em;border-radius:3px;color:var(--ink)}
+pre{font-family:var(--mono);font-size:.78rem;line-height:1.5;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:6px;padding:.7rem .8rem;overflow-x:auto;
+  margin:.7rem 0;color:var(--ink)}
+pre code{background:none;padding:0}
+pre .c{color:var(--ink-3)}
+pre .hl{background:#FFF3C4;border-radius:2px}
+
+table{border-collapse:collapse;width:100%;font-size:.88rem;margin:.7rem 0}
+th,td{text-align:left;padding:.42rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+td.k{white-space:nowrap;font-weight:600;color:var(--ink)}
+
+/* путь сообщения */
+.flow{list-style:none;margin:.8rem 0 .2rem;padding:0;counter-reset:step}
+.flow li{position:relative;margin:0;padding:0 0 1rem 2.6rem;counter-increment:step}
+.flow li::before{content:counter(step);position:absolute;left:0;top:0;width:1.7rem;height:1.7rem;
+  border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:.8rem;
+  display:flex;align-items:center;justify-content:center}
+.flow li::after{content:"";position:absolute;left:.82rem;top:1.8rem;bottom:.1rem;width:2px;background:var(--line-strong)}
+.flow li:last-child{padding-bottom:0}
+.flow li:last-child::after{display:none}
+.flow .t{display:block;font-weight:600;color:var(--ink);font-size:.98rem}
+.flow .who{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  border-radius:3px;padding:.02rem .35rem;margin-left:.4rem;vertical-align:.08em}
+.who.ours{background:var(--mark-soft);color:var(--mark)}
+.who.stock{background:var(--surface-2);color:var(--ink-3)}
+.flow .d{display:block;color:var(--ink-2);font-size:.92rem;margin-top:.15rem}
+.flow pre{margin:.45rem 0 0;font-size:.72rem}
+
+figure{margin:.8rem 0 .3rem}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line-strong);border-radius:6px}
+figcaption{color:var(--ink-3);font-size:.84rem;margin-top:.35rem}
+
+footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:.85rem}
+
+@page{size:A4;margin:14mm 13mm}
+@media print{
+  body{font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  header{padding-top:0}
+  h1{font-size:20pt}
+  h2.sec{font-size:14pt;break-after:avoid}
+  .sec-note{break-after:avoid}
+  .part{break-after:avoid}
+  article{margin-bottom:5pt}
+  article.short{break-inside:avoid;page-break-inside:avoid}
+  .say,.mine,.plain{break-inside:avoid}
+  article h3{font-size:11pt;break-after:avoid}
+  article p,article ul,article ol{font-size:9.5pt}
+  .say p,.mine p,.plain p{font-size:9pt}
+  pre{font-size:8pt;break-inside:avoid}
+  .flow li{break-inside:avoid}
+  .flow pre{font-size:7pt}
+  .facts,nav.toc,figure{break-inside:avoid}
+  table{font-size:9pt}
+  tr{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+
+/* блоки, перенесённые из прежних шпаргалок */
+article{color:var(--ink-2);font-size:.95rem}
+article h3{color:var(--ink)}
+article pre{color:var(--ink)}
+.tip{background:var(--mark-soft);border-left:3px solid var(--mark);padding:.6rem .8rem;border-radius:0 5px 5px 0;
+  margin:.7rem 0;color:var(--ink);font-size:.92rem}
+.yes{color:var(--ok);font-weight:600} .no{color:#A33;font-weight:600}
+td.c,th.c{text-align:center}
+@media print{ .tip{break-inside:avoid;font-size:9pt} article{font-size:9.5pt} }
+td.k{white-space:normal}
+td code{overflow-wrap:anywhere}
+
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+table.small td,table.small th{font-size:.8rem;padding:.3rem .45rem}
+svg{display:block;margin:.6rem auto .2rem;background:#fff;border:1px solid var(--line,#ddd);border-radius:8px}
+svg .ct{fill:#f6f8fb;stroke:#34425a;stroke-width:1.6}
+svg .cl{font:11px "IBM Plex Sans",sans-serif;fill:#34425a;letter-spacing:.04em}
+svg .a1{stroke:#444;stroke-width:1.3;fill:none}
+svg .a2{stroke:#1d3a8a;stroke-width:5;fill:none}
+svg .a2i{stroke:#fff;stroke-width:2;fill:none}
+svg .cn{fill:#fff;stroke:#222;stroke-width:1.6}
+svg .vn{fill:#fff;stroke:#b3261e;stroke-width:1.8}
+svg .vl{fill:#fde8e6;stroke:#b3261e;stroke-width:1.8}
+svg .lk{fill:#fffbe6;stroke:#8a6d00;stroke-width:1.2}
+svg .lt{font:11.5px "IBM Plex Sans",sans-serif;fill:#222}
+svg .nc{font:12.5px "IBM Plex Mono",monospace;fill:#111}
+svg .nv{font:12.5px "IBM Plex Mono",monospace;fill:#b3261e}
+svg .co{fill:#1d3a8a} svg .cot{font:600 12px "IBM Plex Sans",sans-serif;fill:#fff}
+.legend{display:grid;grid-template-columns:auto 1fr;gap:.35rem .8rem;align-items:center;font-size:.9rem}
+.legend svg{margin:0;border:0;background:none;width:70px;height:24px}
+figure{margin:.4rem 0 .8rem} figcaption{font-size:.85rem}
+@media print{svg{break-inside:avoid} pre{break-inside:auto} table.small td,table.small th{font-size:7.5pt} nav.toc{break-inside:auto} .legend{font-size:9pt}}
+</style>
+</head><body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">ТиИСПИС · вариант 26 · ЛР3</p>
+  <h1>Как читать шаблоны в gwf</h1>
+  <p class="sub">Что нарисовано в файлах из папки «Шаблоны_в_gwf», как читать такой рисунок шаг за шагом и чем общий шаблон отличается от остальных.</p>
+  <dl class="facts">
+    <h2>Коротко</h2>
+    <div class="fact"><dt>Что такое gwf</dt><dd>рисунок графа в языке SCg, сохранённый в файл</dd></div>
+    <div class="fact"><dt>Что в каждом файле</dt><dd>класс фраз, две фразы и один образец</dd></div>
+    <div class="fact"><dt>Общий шаблон</dt><dd>в его образце 7 узлов и 6 дуг, отношения нет</dd></div>
+    <div class="fact"><dt>Обычный шаблон</dt><dd>в образце 12 узлов и 11 дуг, есть отношение</dd></div>
+  </dl>
+</header>
+
+<nav class="toc">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#g1">Что такое gwf и чем его открыть</a></li>
+    <li><a href="#g2">Условные знаки</a></li>
+    <li><a href="#g3">Три правила чтения</a></li>
+    <li><a href="#g4">Общий шаблон: весь файл</a></li>
+    <li><a href="#g5">Общий шаблон: образец по шагам</a></li>
+    <li><a href="#g6">Общий шаблон: фразы и класс</a></li>
+    <li><a href="#g7">Как система пользуется общим шаблоном</a></li>
+    <li><a href="#g8">Почему он общий: сравнение с обычным</a></li>
+    <li><a href="#g9">Все шесть файлов</a></li>
+    <li><a href="#g10">То же самое текстом: gwf и scs рядом</a></li>
+    <li><a href="#g11">Если открыть gwf как текст</a></li>
+    <li><a href="#g12">Что говорить на защите</a></li>
+  </ol>
+  <p class="how">Схемы в этом файле построены по координатам из самих gwf-файлов. В редакторе KBE расположение узлов то же; значки там нарисованы по правилам SCg и могут выглядеть иначе, чем здесь.</p>
+</nav>
+
+<p class="part">Часть I · как читать рисунок</p>
+
+<h2 class="sec" id="g1">1. Что такое gwf и чем его открыть</h2>
+<p class="sec-note">Знания в NIKA можно записать двумя способами: текстом и рисунком. gwf — это рисунок.</p>
+<article><h3>Два вида записи одного и того же</h3>
+<table>
+<thead><tr><th></th><th>Текст</th><th>Рисунок</th></tr></thead>
+<tbody>
+<tr><td class="k">Язык</td><td>SCs</td><td>SCg</td></tr>
+<tr><td class="k">Файл</td><td><code class="x">.scs</code></td><td><code class="x">.gwf</code></td></tr>
+<tr><td class="k">Что внутри</td><td>строки с именами и стрелками <code class="x">-&gt;</code>, <code class="x">=&gt;</code></td><td>узлы с координатами и дуги между ними, записанные в XML</td></tr>
+<tr><td class="k">Чем открыть</td><td>любым текстовым редактором</td><td>редактором KBE; как текст — тоже любым редактором</td></tr>
+</tbody>
+</table>
+<p>Система при сборке базы читает оба вида одинаково: и из текста, и из рисунка получаются одни и те же узлы и дуги. Поэтому файл фраз можно дать в любом из двух видов — но только в одном, иначе фразы задвоятся.</p>
+</article>
+
+<h2 class="sec" id="g2">2. Условные знаки</h2>
+<p class="sec-note">Знаков восемь. Больше в этих файлах ничего нет.</p>
+<article><h3>Что как нарисовано на схемах этого файла</h3>
+<div class="legend"><div><svg viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="arl2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs><circle cx="35" cy="12" r="8" class="cn"/></svg></div><div><b>Узел-константа.</b> Конкретный узел базы знаний: класс, отношение. Имя без подчёркивания в начале.</div><div><svg viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="arl2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs><rect x="27" y="4" width="16" height="16" class="vn"/></svg></div><div><b>Узел-переменная.</b> «Какой-то узел, пока неизвестно какой». Имя начинается с подчёркивания.</div><div><svg viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="arl2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs><rect x="23" y="3" width="24" height="18" class="vl"/></svg></div><div><b>Переменная-ссылка.</b> «Какой-то текст». Это место подстановки: сюда попадёт текст из базы.</div><div><svg viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="arl2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs><rect x="6" y="3" width="58" height="18" class="lk"/></svg></div><div><b>Ссылка с содержимым.</b> Готовый текст — фраза ответа.</div><div><svg viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="arl2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs><line x1="6" y1="12" x2="62" y2="12" class="a1" marker-end="url(#arl)"/></svg></div><div><b>Дуга принадлежности.</b> «Этот класс → его элемент» или «отношение → дуга, которую оно помечает».</div><div><svg viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="arl2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs><line x1="6" y1="12" x2="50" y2="12" class="a2"/><line x1="6" y1="12" x2="50" y2="12" class="a2i"/><line x1="49" y1="12" x2="62" y2="12" stroke="none" marker-end="url(#arl2)"/></svg></div><div><b>Общая дуга.</b> Связь двух объектов. Что это за связь, говорит отношение, от которого к этой дуге идёт дуга принадлежности.</div><div><svg viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="arl2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs><line x1="6" y1="12" x2="62" y2="12" class="a1" stroke-dasharray="6 4" marker-end="url(#arl)"/></svg></div><div><b>Пунктир.</b> Дуга-переменная: «какая-то дуга такого вида». Внутри образца все дуги такие.</div><div><svg viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="arl2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs><rect x="6" y="3" width="58" height="18" rx="6" class="ct"/></svg></div><div><b>Контур.</b> Обведённая область: всё, что внутри, — одна структура. Здесь это образец для поиска.</div></div>
+</article>
+<article><h3>Как отличить константу от переменной</h3>
+<p>Это главное, что надо видеть в образце.</p>
+<table>
+<thead><tr><th></th><th>Константа</th><th>Переменная</th></tr></thead>
+<tbody>
+<tr><td class="k">Что значит</td><td>конкретный узел, который в базе уже есть</td><td>«что-то», на место чего система подставит найденное</td></tr>
+<tr><td class="k">Имя</td><td>без подчёркивания: <code>concept_message</code>, <code>lang_ru</code></td><td>с подчёркиванием: <code>_message</code>, <code>_language_name_unknown</code></td></tr>
+<tr><td class="k">В файле</td><td><code class="x">type="node/const/…"</code></td><td><code class="x">type="node/var/…"</code></td></tr>
+</tbody>
+</table>
+</article>
+
+<h2 class="sec" id="g3">3. Три правила чтения</h2>
+<p class="sec-note">Их хватает, чтобы прочитать любой из шести файлов.</p>
+<article><h3>Правила</h3>
+<ol>
+<li><b>Дуга принадлежности читается «класс → элемент».</b> <code>concept_message → _message</code>: «<code class="x">_message</code> — это сообщение».</li>
+<li><b>Общая дуга сама ничего не значит, пока её не пометили.</b> К ней подходит дуга принадлежности от отношения, и она говорит, что это за связь. Общая дуга от языка к тексту плюс дуга от <code>nrel_main_idtf</code> к ней читаются вместе: «у языка есть основной идентификатор — вот этот текст».</li>
+<li><b>Начинать с фразы.</b> Найти прямоугольник с текстом, пройти по общей дуге, помеченной <code>nrel_phrase_template</code>, — она приведёт к контуру. Контур — это образец: что система должна найти в базе, чтобы заполнить пропуски в этой фразе.</li>
+</ol>
+<div class="plain"><b>дуга, которая входит в дугу</b><p>Во втором правиле дуга от отношения заканчивается не в узле, а на середине другой дуги. Так в SCg записывается «эта связь — такого-то вида». На схемах это видно: тонкая линия упирается в толстую.</p></div>
+</article>
+
+<p class="part">Часть II · общий шаблон</p>
+
+<h2 class="sec" id="g4">4. Общий шаблон: весь файл</h2>
+<p class="sec-note">Файл <code data-f>concept_phrase_about_unknown_language_property.gwf</code>. Это шаблон ответа «сведений нет», один на все пять типов вопроса.</p>
+<article><h3>Что в файле</h3>
+<figure><svg viewBox="0 0 1327 350" role="img" style="width:100%;max-width:1200px;height:auto" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="ar2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs>
+<rect x="851" y="46" width="350" height="271" rx="14" class="ct"/>
+<line x1="897.6" y1="272.8" x2="897.6" y2="195.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="908.6" y1="184.8" x2="1018.6" y2="184.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="958.4" y1="142.9" x2="963.2" y2="181.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="1029.6" y1="173.8" x2="1029.6" y2="100.8" class="a2" stroke-dasharray="6 4"/>
+<line x1="1029.6" y1="173.8" x2="1029.6" y2="100.8" class="a2i"/>
+<line x1="1029.6" y1="101.8" x2="1029.6" y2="88.8" stroke="none" marker-end="url(#ar2)"/>
+<line x1="1097.8" y1="135.3" x2="1032.6" y2="135.3" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="1124.2" y1="85.8" x2="1032.6" y2="85.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="198.0" y1="83.6" x2="198.0" y2="158.5" class="a2"/>
+<line x1="198.0" y1="83.6" x2="198.0" y2="158.5" class="a2i"/>
+<line x1="198.0" y1="157.5" x2="198.0" y2="170.5" stroke="none" marker-end="url(#ar2)"/>
+<line x1="116.6" y1="125.6" x2="195.0" y2="127.0" class="a1" marker-end="url(#ar)"/>
+<line x1="208.5" y1="178.1" x2="354.4" y2="130.4" class="a1" marker-end="url(#ar)"/>
+<line x1="369.6" y1="77.0" x2="369.6" y2="109.4" class="a1" marker-end="url(#ar)"/>
+<line x1="373.6" y1="125.4" x2="839.4" y2="125.4" class="a2"/>
+<line x1="373.6" y1="125.4" x2="839.4" y2="125.4" class="a2i"/>
+<line x1="838.4" y1="125.4" x2="851.4" y2="125.4" stroke="none" marker-end="url(#ar2)"/>
+<line x1="607.7" y1="63.8" x2="610.4" y2="122.4" class="a1" marker-end="url(#ar)"/>
+<line x1="208.5" y1="184.9" x2="354.4" y2="232.6" class="a1" marker-end="url(#ar)"/>
+<line x1="369.6" y1="286.0" x2="369.6" y2="253.6" class="a1" marker-end="url(#ar)"/>
+<line x1="373.6" y1="237.6" x2="839.4" y2="237.6" class="a2"/>
+<line x1="373.6" y1="237.6" x2="839.4" y2="237.6" class="a2i"/>
+<line x1="838.4" y1="237.6" x2="851.4" y2="237.6" stroke="none" marker-end="url(#ar2)"/>
+<line x1="607.7" y1="299.2" x2="610.4" y2="240.6" class="a1" marker-end="url(#ar)"/>
+<circle cx="898" cy="284" r="8" class="cn"/>
+<text x="898" y="308" text-anchor="middle" class="nc">concept_message</text>
+<rect x="890" y="177" width="16" height="16" class="vn"/>
+<text x="898" y="171" text-anchor="middle" class="nv">_message</text>
+<circle cx="957" cy="132" r="8" class="cn"/>
+<text x="957" y="118" text-anchor="middle" class="nc">rrel_entity</text>
+<rect x="1022" y="177" width="16" height="16" class="vn"/>
+<text x="1022" y="211" text-anchor="middle" class="nv">_language_unknown</text>
+<rect x="1018" y="77" width="24" height="18" class="vl"/>
+<text x="1030" y="72" text-anchor="middle" class="nv">_language_name_unknown</text>
+<circle cx="1109" cy="135" r="8" class="cn"/>
+<text x="1121" y="139" text-anchor="start" class="nc">nrel_main_idtf</text>
+<circle cx="1135" cy="86" r="8" class="cn"/>
+<text x="1147" y="90" text-anchor="start" class="nc">lang_ru</text>
+<circle cx="198" cy="182" r="8" class="cn"/>
+<text x="198" y="210" text-anchor="middle" class="nc">concept_phrase_about_unknown_language_property</text>
+<circle cx="198" cy="73" r="8" class="cn"/>
+<text x="210" y="77" text-anchor="start" class="nc">concept_phrase</text>
+<circle cx="106" cy="125" r="8" class="cn"/>
+<text x="116" y="111" text-anchor="middle" class="nc">nrel_inclusion</text>
+<rect x="356" y="112" width="399" height="26" class="lk"/>
+<text x="364" y="129" class="lt">В базе знаний нет таких сведений про ${_language_name_unknown}.</text>
+<circle cx="607" cy="53" r="8" class="cn"/>
+<text x="607" y="39" text-anchor="middle" class="nc">nrel_phrase_template</text>
+<circle cx="370" cy="66" r="8" class="cn"/>
+<text x="382" y="70" text-anchor="start" class="nc">lang_ru</text>
+<rect x="356" y="225" width="327" height="26" class="lk"/>
+<text x="364" y="242" class="lt">Этого про ${_language_name_unknown} я пока не знаю.</text>
+<circle cx="607" cy="310" r="8" class="cn"/>
+<text x="607" y="296" text-anchor="middle" class="nc">nrel_phrase_template</text>
+<circle cx="370" cy="297" r="8" class="cn"/>
+<text x="382" y="301" text-anchor="start" class="nc">lang_ru</text>
+</svg><figcaption>Весь файл. Слева класс фраз и две фразы, справа в контуре — образец. От каждой фразы к контуру идёт общая дуга с пометкой <code>nrel_phrase_template</code>.</figcaption></figure>
+<p>В файле три части:</p>
+<table>
+<thead><tr><th>Часть</th><th>Где на рисунке</th><th>Что сообщает</th></tr></thead>
+<tbody>
+<tr><td class="k">Образец</td><td>внутри контура: 7 узлов, 6 дуг</td><td>что найти в базе</td></tr>
+<tr><td class="k">Две фразы</td><td>два прямоугольника с текстом</td><td>что ответить; в тексте стоит метка места подстановки</td></tr>
+<tr><td class="k">Класс фраз</td><td>узел слева, от него дуги к обеим фразам</td><td>к какому набору фраз они относятся — на этот класс ссылается правило ответа</td></tr>
+</tbody>
+</table>
+</article>
+
+<h2 class="sec" id="g5">5. Общий шаблон: образец по шагам</h2>
+<p class="sec-note">Только то, что внутри контура. Красное — переменные, чёрное — константы. Цифры — порядок чтения.</p>
+<article><h3>Образец крупно</h3>
+<figure><svg viewBox="0 0 826 652" role="img" style="width:100%;max-width:760px;height:auto" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="ar2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs>
+<rect x="29" y="29" width="768" height="594" rx="14" class="ct"/>
+<text x="41" y="49" class="cl">контур — структура-образец</text>
+<line x1="130.5" y1="540.0" x2="130.5" y2="344.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="141.5" y1="333.5" x2="409.5" y2="333.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="262.4" y1="228.4" x2="275.1" y2="330.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="420.5" y1="322.5" x2="420.5" y2="131.0" class="a2" stroke-dasharray="6 4"/>
+<line x1="420.5" y1="322.5" x2="420.5" y2="131.0" class="a2i"/>
+<line x1="420.5" y1="132.0" x2="420.5" y2="119.0" stroke="none" marker-end="url(#ar2)"/>
+<line x1="583.5" y1="224.8" x2="423.5" y2="224.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="641.5" y1="116.0" x2="423.5" y2="116.0" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<circle cx="130" cy="551" r="8" class="cn"/>
+<text x="130" y="575" text-anchor="middle" class="nc">concept_message</text>
+<rect x="122" y="326" width="16" height="16" class="vn"/>
+<text x="130" y="320" text-anchor="middle" class="nv">_message</text>
+<circle cx="261" cy="218" r="8" class="cn"/>
+<text x="261" y="204" text-anchor="middle" class="nc">rrel_entity</text>
+<rect x="412" y="326" width="16" height="16" class="vn"/>
+<text x="412" y="360" text-anchor="middle" class="nv">_language_unknown</text>
+<rect x="408" y="107" width="24" height="18" class="vl"/>
+<text x="420" y="102" text-anchor="middle" class="nv">_language_name_unknown</text>
+<circle cx="594" cy="225" r="8" class="cn"/>
+<text x="606" y="229" text-anchor="start" class="nc">nrel_main_idtf</text>
+<circle cx="652" cy="116" r="8" class="cn"/>
+<text x="664" y="120" text-anchor="start" class="nc">lang_ru</text>
+<circle cx="144" cy="428" r="11" class="co"/><text x="144" y="433" text-anchor="middle" class="cot">1</text>
+<circle cx="290" cy="320" r="11" class="co"/><text x="290" y="324" text-anchor="middle" class="cot">2</text>
+<circle cx="434" cy="211" r="11" class="co"/><text x="434" y="215" text-anchor="middle" class="cot">3</text>
+<circle cx="550" cy="102" r="11" class="co"/><text x="550" y="106" text-anchor="middle" class="cot">4</text>
+</svg><figcaption>Образец общего шаблона. Пунктирные дуги — переменные: система ищет в базе дуги такого вида.</figcaption></figure>
+<ol class="flow">
+<li><span class="t">«Есть сообщение»</span>
+<span class="d">Дуга принадлежности от класса <code>concept_message</code> к переменной <code class="x">_message</code>. Читается: «<code class="x">_message</code> — какое-то сообщение». При ответе на это место встаёт вопрос пользователя.</span></li>
+<li><span class="t">«У сообщения есть сущность»</span>
+<span class="d">Дуга от <code class="x">_message</code> к переменной <code>_language_unknown</code>, и к этой дуге подходит дуга от <code>rrel_entity</code>. Читается: «в сообщении есть элемент, и его роль — сущность'». Эту связь к сообщению добавило правило распознавания, так что на место <code>_language_unknown</code> встаёт язык из вопроса.</span></li>
+<li><span class="t">«У сущности есть основной идентификатор»</span>
+<span class="d">Общая дуга от <code>_language_unknown</code> к переменной-ссылке <code>_language_name_unknown</code>, помеченная отношением <code>nrel_main_idtf</code>. Читается: «у этого языка есть название — какой-то текст».</span></li>
+<li><span class="t">«И это название — русское»</span>
+<span class="d">Дуга принадлежности от <code>lang_ru</code> к той же ссылке. У языка два названия, русское и английское; эта дуга оставляет русское.</span></li>
+</ol>
+<div class="plain"><b>итог чтения</b><p>«Найди сообщение, язык, выделенный в нём, и русское название этого языка». Найденный текст попадает в переменную-ссылку <code>_language_name_unknown</code> — это и есть место подстановки.</p></div>
+</article>
+<article><h3>Все узлы образца</h3>
+<table class="small">
+<thead><tr><th>Узел</th><th>Как записан тип в файле</th><th>Что это</th><th>Смысл</th></tr></thead>
+<tbody>
+<tr><td class="k"><code>concept_message</code></td><td><code>node/const/perm/group</code></td><td>узел-константа, класс</td><td>класс «сообщение» — он в базе один, это конкретный узел</td></tr>
+<tr><td class="k"><code>_message</code></td><td><code>node/var/perm/general</code></td><td>узел-переменная</td><td>какое-то сообщение — то самое, на которое сейчас отвечаем</td></tr>
+<tr><td class="k"><code>rrel_entity</code></td><td><code>node/const/perm/role</code></td><td>узел-константа, ролевое отношение</td><td>ролевое отношение «сущность'»: помечает дугу от сообщения к тому, о чём оно</td></tr>
+<tr><td class="k"><code>_language_unknown</code></td><td><code>node/var/perm/general</code></td><td>узел-переменная</td><td>какой-то объект — тот, что выделен в сообщении. При ответе на его место встаёт язык из вопроса</td></tr>
+<tr><td class="k"><code>_language_name_unknown</code></td><td><code>node/var/perm/general</code></td><td>узел-переменная, с содержимым</td><td>переменная-ссылка: место подстановки. Её имя стоит в тексте фразы как <code>${_language_name_unknown}</code></td></tr>
+<tr><td class="k"><code>nrel_main_idtf</code></td><td><code>node/const/perm/relation</code></td><td>узел-константа, неролевое отношение</td><td>отношение «основной идентификатор*»: помечает дугу от объекта к его названию</td></tr>
+<tr><td class="k"><code>lang_ru</code></td><td><code>node/const/perm/group</code></td><td>узел-константа, класс</td><td>класс «русский язык»: в него входят русские тексты</td></tr>
+</tbody>
+</table>
+</article>
+<article><h3>Все дуги образца</h3>
+<table class="small">
+<thead><tr><th>Откуда</th><th>Куда</th><th>Вид дуги</th></tr></thead>
+<tbody>
+<tr><td class="k">concept_message</td><td>_message</td><td>дуга принадлежности, переменная</td></tr>
+<tr><td class="k">_message</td><td>_language_unknown</td><td>дуга принадлежности, переменная</td></tr>
+<tr><td class="k">rrel_entity</td><td>дуга _message → _language_unknown</td><td>дуга принадлежности, переменная</td></tr>
+<tr><td class="k">_language_unknown</td><td>_language_name_unknown</td><td>общая дуга, переменная</td></tr>
+<tr><td class="k">nrel_main_idtf</td><td>дуга _language_unknown → _language_name_unknown</td><td>дуга принадлежности, переменная</td></tr>
+<tr><td class="k">lang_ru</td><td>_language_name_unknown</td><td>дуга принадлежности, переменная</td></tr>
+</tbody>
+</table>
+</article>
+
+<h2 class="sec" id="g6">6. Общий шаблон: фразы и класс</h2>
+<p class="sec-note">То, что снаружи контура: 9 узлов и 10 дуг.</p>
+<article><h3>Левая часть файла</h3>
+<figure><svg viewBox="0 0 1000 390" role="img" style="width:100%;max-width:1000px;height:auto" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="ar2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs>
+<rect x="983" y="39" width="413" height="320" rx="14" class="ct"/>
+<line x1="1037.4" y1="308.8" x2="1037.4" y2="213.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="1048.4" y1="202.8" x2="1182.4" y2="202.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="1109.0" y1="151.3" x2="1115.0" y2="199.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="1193.4" y1="191.8" x2="1193.4" y2="100.8" class="a2" stroke-dasharray="6 4"/>
+<line x1="1193.4" y1="191.8" x2="1193.4" y2="100.8" class="a2i"/>
+<line x1="1193.4" y1="101.8" x2="1193.4" y2="88.8" stroke="none" marker-end="url(#ar2)"/>
+<line x1="1276.0" y1="144.3" x2="1196.4" y2="144.3" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="1307.2" y1="85.8" x2="1196.4" y2="85.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="210.6" y1="81.2" x2="210.6" y2="175.9" class="a2"/>
+<line x1="210.6" y1="81.2" x2="210.6" y2="175.9" class="a2i"/>
+<line x1="210.6" y1="174.9" x2="210.6" y2="187.9" stroke="none" marker-end="url(#ar2)"/>
+<line x1="112.4" y1="132.8" x2="207.6" y2="134.5" class="a1" marker-end="url(#ar)"/>
+<line x1="221.1" y1="195.5" x2="398.2" y2="137.6" class="a1" marker-end="url(#ar)"/>
+<line x1="413.4" y1="73.4" x2="413.4" y2="116.6" class="a1" marker-end="url(#ar)"/>
+<line x1="417.4" y1="132.6" x2="970.8" y2="132.6" class="a2"/>
+<line x1="417.4" y1="132.6" x2="970.8" y2="132.6" class="a2i"/>
+<line x1="969.8" y1="132.6" x2="982.8" y2="132.6" stroke="none" marker-end="url(#ar2)"/>
+<line x1="694.7" y1="57.8" x2="698.0" y2="129.6" class="a1" marker-end="url(#ar)"/>
+<line x1="221.1" y1="202.3" x2="398.2" y2="260.2" class="a1" marker-end="url(#ar)"/>
+<line x1="413.4" y1="324.4" x2="413.4" y2="281.2" class="a1" marker-end="url(#ar)"/>
+<line x1="417.4" y1="265.2" x2="970.8" y2="265.2" class="a2"/>
+<line x1="417.4" y1="265.2" x2="970.8" y2="265.2" class="a2i"/>
+<line x1="969.8" y1="265.2" x2="982.8" y2="265.2" stroke="none" marker-end="url(#ar2)"/>
+<line x1="694.7" y1="340.0" x2="698.0" y2="268.2" class="a1" marker-end="url(#ar)"/>
+<circle cx="1037" cy="320" r="8" class="cn"/>
+<text x="1037" y="344" text-anchor="middle" class="nc">concept_message</text>
+<rect x="1029" y="195" width="16" height="16" class="vn"/>
+<text x="1037" y="189" text-anchor="middle" class="nv">_message</text>
+<circle cx="1108" cy="140" r="8" class="cn"/>
+<text x="1108" y="126" text-anchor="middle" class="nc">rrel_entity</text>
+<rect x="1185" y="195" width="16" height="16" class="vn"/>
+<text x="1185" y="229" text-anchor="middle" class="nv">_language_unknown</text>
+<rect x="1181" y="77" width="24" height="18" class="vl"/>
+<text x="1193" y="72" text-anchor="middle" class="nv">_language_name_unknown</text>
+<circle cx="1287" cy="144" r="8" class="cn"/>
+<text x="1299" y="148" text-anchor="start" class="nc">nrel_main_idtf</text>
+<circle cx="1318" cy="86" r="8" class="cn"/>
+<text x="1330" y="90" text-anchor="start" class="nc">lang_ru</text>
+<circle cx="211" cy="199" r="8" class="cn"/>
+<text x="211" y="227" text-anchor="middle" class="nc">concept_phrase_about_unknown_language_property</text>
+<circle cx="211" cy="70" r="8" class="cn"/>
+<text x="223" y="74" text-anchor="start" class="nc">concept_phrase</text>
+<circle cx="101" cy="133" r="8" class="cn"/>
+<text x="111" y="119" text-anchor="middle" class="nc">nrel_inclusion</text>
+<rect x="399" y="120" width="399" height="26" class="lk"/>
+<text x="407" y="137" class="lt">В базе знаний нет таких сведений про ${_language_name_unknown}.</text>
+<circle cx="694" cy="47" r="8" class="cn"/>
+<text x="694" y="33" text-anchor="middle" class="nc">nrel_phrase_template</text>
+<circle cx="413" cy="62" r="8" class="cn"/>
+<text x="425" y="66" text-anchor="start" class="nc">lang_ru</text>
+<rect x="399" y="252" width="327" height="26" class="lk"/>
+<text x="407" y="269" class="lt">Этого про ${_language_name_unknown} я пока не знаю.</text>
+<circle cx="694" cy="351" r="8" class="cn"/>
+<text x="694" y="337" text-anchor="middle" class="nc">nrel_phrase_template</text>
+<circle cx="413" cy="335" r="8" class="cn"/>
+<text x="425" y="339" text-anchor="start" class="nc">lang_ru</text>
+</svg><figcaption>Класс фраз, две фразы и дуги от фраз к образцу.</figcaption></figure>
+<table>
+<thead><tr><th>Что нарисовано</th><th>Как читать</th></tr></thead>
+<tbody>
+<tr><td class="k">Дуга от <code>concept_phrase_about_unknown_language_property</code> к прямоугольнику с текстом</td><td>эта фраза принадлежит классу фраз «сведений нет»</td></tr>
+<tr><td class="k">Дуга от <code>lang_ru</code> к прямоугольнику</td><td>текст фразы — русский</td></tr>
+<tr><td class="k">Общая дуга от прямоугольника к контуру с пометкой <code>nrel_phrase_template</code></td><td>шаблон этой фразы — вот этот образец</td></tr>
+<tr><td class="k">Общая дуга от <code>concept_phrase</code> к классу с пометкой <code>nrel_inclusion</code></td><td>наш класс — разновидность фразы</td></tr>
+</tbody>
+</table>
+<p>Обе фразы ведут к одному и тому же контуру: образец у них общий.</p>
+<p>Тексты фраз:</p>
+<pre><code>В базе знаний нет таких сведений про ${_language_name_unknown}.
+Этого про ${_language_name_unknown} я пока не знаю.</code></pre>
+<p>Метка <code class="x">${_language_name_unknown}</code> в тексте называет переменную-ссылку из образца. Имя в метке и идентификатор узла должны совпадать буква в букву — по нему система находит, что куда подставить.</p>
+</article>
+
+<h2 class="sec" id="g7">7. Как система пользуется общим шаблоном</h2>
+<p class="sec-note">На вопросе «Какая реализация у Haskell?».</p>
+<article><h3>По шагам</h3>
+<ol class="flow">
+<li><span class="t">Вопрос распознан</span>
+<span class="d">Правило распознавания добавило к сообщению сущность — узел <code>haskell_language</code>.</span></li>
+<li><span class="t">Правило по существу не сработало</span>
+<span class="d">У Haskell реализация в базе не записана. Сработало правило третьего приоритета и назвало класс фраз <code>concept_phrase_about_unknown_language_property</code>.</span></li>
+<li><span class="t">Взята одна из двух фраз</span>
+<span class="d">Например, «Этого про ${_language_name_unknown} я пока не знаю.».</span></li>
+<li><span class="t">По образцу найдено название</span>
+<span class="d"><code class="x">_message</code> — наш вопрос, <code>_language_unknown</code> — <code>haskell_language</code>, <code>_language_name_unknown</code> — текст «Haskell».</span></li>
+<li><span class="t">Текст подставлен</span>
+<span class="d">Получилось «Этого про Haskell я пока не знаю.»</span></li>
+</ol>
+</article>
+
+<h2 class="sec" id="g8">8. Почему он общий: сравнение с обычным</h2>
+<p class="sec-note">Рядом — образец из файла <code data-f>concept_phrase_about_implementation.gwf</code>, шаблон ответа о реализации.</p>
+<article><h3>Обычный шаблон</h3>
+<figure><svg viewBox="0 0 892 472" role="img" style="width:100%;max-width:900px;height:auto" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker><marker id="ar2" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d3a8a"/></marker></defs>
+<rect x="21" y="21" width="850" height="430" rx="14" class="ct"/>
+<text x="33" y="41" class="cl">контур — структура-образец</text>
+<line x1="94.5" y1="388.0" x2="94.5" y2="252.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="105.5" y1="241.5" x2="293.5" y2="241.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="190.4" y1="168.4" x2="199.1" y2="238.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="304.5" y1="230.5" x2="304.5" y2="99.0" class="a2" stroke-dasharray="6 4"/>
+<line x1="304.5" y1="230.5" x2="304.5" y2="99.0" class="a2i"/>
+<line x1="304.5" y1="100.0" x2="304.5" y2="87.0" stroke="none" marker-end="url(#ar2)"/>
+<line x1="419.5" y1="162.8" x2="307.5" y2="162.8" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="461.5" y1="84.0" x2="307.5" y2="84.0" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="315.5" y1="241.5" x2="523.0" y2="241.5" class="a2" stroke-dasharray="6 4"/>
+<line x1="315.5" y1="241.5" x2="523.0" y2="241.5" class="a2i"/>
+<line x1="522.0" y1="241.5" x2="535.0" y2="241.5" stroke="none" marker-end="url(#ar2)"/>
+<line x1="425.2" y1="325.0" x2="425.2" y2="244.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="557.0" y1="241.5" x2="741.0" y2="241.5" class="a2" stroke-dasharray="6 4"/>
+<line x1="557.0" y1="241.5" x2="741.0" y2="241.5" class="a2i"/>
+<line x1="740.0" y1="241.5" x2="753.0" y2="241.5" stroke="none" marker-end="url(#ar2)"/>
+<line x1="651.0" y1="325.0" x2="651.0" y2="244.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<line x1="756.0" y1="367.0" x2="756.0" y2="244.5" class="a1" stroke-dasharray="6 4" marker-end="url(#ar)"/>
+<circle cx="94" cy="399" r="8" class="cn"/>
+<text x="94" y="423" text-anchor="middle" class="nc">concept_message</text>
+<rect x="86" y="234" width="16" height="16" class="vn"/>
+<text x="94" y="228" text-anchor="middle" class="nv">_message</text>
+<circle cx="189" cy="158" r="8" class="cn"/>
+<text x="189" y="144" text-anchor="middle" class="nc">rrel_entity</text>
+<rect x="296" y="234" width="16" height="16" class="vn"/>
+<text x="296" y="268" text-anchor="middle" class="nv">_language_impl</text>
+<rect x="292" y="75" width="24" height="18" class="vl"/>
+<text x="304" y="70" text-anchor="middle" class="nv">_language_name_impl</text>
+<circle cx="430" cy="163" r="8" class="cn"/>
+<text x="442" y="167" text-anchor="start" class="nc">nrel_main_idtf</text>
+<circle cx="472" cy="84" r="8" class="cn"/>
+<text x="484" y="88" text-anchor="start" class="nc">lang_ru</text>
+<rect x="538" y="234" width="16" height="16" class="vn"/>
+<text x="546" y="228" text-anchor="middle" class="nv">_implementation</text>
+<circle cx="425" cy="336" r="8" class="cn"/>
+<text x="425" y="322" text-anchor="middle" class="nc">nrel_language_implementation</text>
+<rect x="744" y="232" width="24" height="18" class="vl"/>
+<text x="756" y="228" text-anchor="middle" class="nv">_impl_name</text>
+<circle cx="651" cy="336" r="8" class="cn"/>
+<text x="663" y="340" text-anchor="start" class="nc">nrel_main_idtf</text>
+<circle cx="756" cy="378" r="8" class="cn"/>
+<text x="768" y="382" text-anchor="start" class="nc">lang_ru</text>
+<circle cx="108" cy="306" r="11" class="co"/><text x="108" y="311" text-anchor="middle" class="cot">1</text>
+<circle cx="214" cy="228" r="11" class="co"/><text x="214" y="232" text-anchor="middle" class="cot">2</text>
+<circle cx="318" cy="149" r="11" class="co"/><text x="318" y="153" text-anchor="middle" class="cot">3</text>
+<circle cx="439" cy="228" r="11" class="co"/><text x="439" y="232" text-anchor="middle" class="cot">4</text>
+<circle cx="665" cy="228" r="11" class="co"/><text x="665" y="232" text-anchor="middle" class="cot">5</text>
+</svg><figcaption>Образец шаблона о реализации. Шаги 1–3 те же, что в общем шаблоне. Шаги 4 и 5 — то, чего в общем нет.</figcaption></figure>
+<ul>
+<li><b>Шаги 1–3 — те же, что в общем шаблоне.</b> Сообщение, язык в нём, русское название языка.</li>
+<li><b>Шаг 4 — «язык связан с чем-то отношением „реализация языка*“».</b> Общая дуга от языка к переменной <code>_implementation</code>, помеченная <code>nrel_language_implementation</code>.</li>
+<li><b>Шаг 5 — «у этого чего-то есть русское название».</b> Общая дуга к переменной-ссылке <code>_impl_name</code> с пометкой <code>nrel_main_idtf</code> и дуга от <code>lang_ru</code>.</li>
+</ul>
+</article>
+<article><h3>В чём разница</h3>
+<table>
+<thead><tr><th></th><th>Общий шаблон</th><th>Шаблон о реализации</th></tr></thead>
+<tbody>
+<tr><td class="k">Узлов и дуг в образце</td><td>7 и 6</td><td>12 и 11</td></tr>
+<tr><td class="k">Отношение из ЛР1 в образце</td><td class="yes">нет</td><td><code>nrel_language_implementation</code></td></tr>
+<tr><td class="k">Мест подстановки</td><td>одно: название языка</td><td>два: название языка и название реализации</td></tr>
+<tr><td class="k">На какие вопросы годится</td><td class="yes">на любой из пяти типов</td><td>только на вопрос о реализации</td></tr>
+<tr><td class="k">Когда находится в базе</td><td>всегда: название есть у каждого языка</td><td>только если у языка записана реализация</td></tr>
+</tbody>
+</table>
+<div class="say"><b>одной фразой</b><p>В общем шаблоне нет отношения, о котором спросили. Он берёт из базы только то, что есть у любого вопроса о языке, — название языка. Поэтому один и тот же образец подходит и к вопросу об авторе, и о годе, и о реализации, и о стандарте, и об организации.</p></div>
+</article>
+
+<p class="part">Часть III · остальное</p>
+
+<h2 class="sec" id="g9">9. Все шесть файлов</h2>
+<p class="sec-note">Папка <code class="x">ЛР3/Шаблоны_в_gwf</code>. Пять файлов устроены как шаблон о реализации, шестой — общий.</p>
+<article><h3>Чем они отличаются</h3>
+<table class="small">
+<thead><tr><th>Файл</th><th>Отношение в образце</th><th>Места подстановки</th><th>В контуре</th></tr></thead>
+<tbody>
+<tr><td class="k"><code data-f>concept_phrase_about_author.gwf</code></td><td><code>nrel_language_author</code></td><td><code>_language_name</code><br><code>_author_name</code></td><td>12 узлов, 11 дуг</td></tr>
+<tr><td class="k"><code data-f>concept_phrase_about_creation_year.gwf</code></td><td><code>nrel_creation_year</code></td><td><code>_language_name_year</code><br><code>_year_name</code></td><td>12 узлов, 11 дуг</td></tr>
+<tr><td class="k"><code data-f>concept_phrase_about_implementation.gwf</code></td><td><code>nrel_language_implementation</code></td><td><code>_language_name_impl</code><br><code>_impl_name</code></td><td>12 узлов, 11 дуг</td></tr>
+<tr><td class="k"><code data-f>concept_phrase_about_maintainer.gwf</code></td><td><code>nrel_maintaining_organization</code></td><td><code>_language_name_org</code><br><code>_org_name</code></td><td>12 узлов, 11 дуг</td></tr>
+<tr><td class="k"><code data-f>concept_phrase_about_standard.gwf</code></td><td><code>nrel_language_standard</code></td><td><code>_language_name_std</code><br><code>_std_name</code></td><td>12 узлов, 11 дуг</td></tr>
+<tr><td class="k"><code data-f>concept_phrase_about_unknown_language_property.gwf</code></td><td><b>нет — шаблон общий</b></td><td><code>_language_name_unknown</code></td><td>7 узлов, 6 дуг</td></tr>
+</tbody>
+</table>
+<p>Пять обычных шаблонов отличаются друг от друга одним узлом — отношением — и именами переменных. Имена разные намеренно: идентификаторы переменных общие на всю базу, и два файла с одним и тем же именем мешали бы друг другу.</p>
+</article>
+
+<h2 class="sec" id="g10">10. То же самое текстом: gwf и scs рядом</h2>
+<p class="sec-note">В базе знаний сейчас лежит текстовый вариант. Рисунок описывает ровно то же.</p>
+<article><h3>Текстовый файл общего шаблона</h3>
+<pre><code>/* Фразы класса concept_phrase_about_unknown_language_property (ЛР3).
+
+   Общий образец для всех пяти типов вопроса: из базы берётся только то, что
+   у этих вопросов общее, — русское название языка, выделенного в сообщении.
+   Подстановка одна. Обе фразы класса используют образец @tpl_unknown. */
+
+@var_language_name_unknown = _[];;
+@var_language_name_unknown
+=&gt; nrel_system_identifier:
+	[_language_name_unknown];;
+
+/* Образец: сообщение, выделенный в нём язык программирования и его русский
+   идентификатор. Отношение, о котором спросили, в образец не входит. */
+@tpl_unknown = [*
+	concept_message
+	_-&gt; _message;;
+
+	_message
+	_-&gt; rrel_entity:: _language_unknown;;
+
+	_language_unknown
+	_=&gt; nrel_main_idtf::
+		@var_language_name_unknown
+		(* _&lt;- lang_ru;; *);;
+*];;
+
+concept_phrase_about_unknown_language_property -&gt;
+	[В базе знаний нет таких сведений про ${_language_name_unknown}.]
+	(*
+		&lt;- lang_ru;;
+		=&gt; nrel_phrase_template: @tpl_unknown;;
+	*);;
+
+concept_phrase_about_unknown_language_property -&gt;
+	[Этого про ${_language_name_unknown} я пока не знаю.]
+	(*
+		&lt;- lang_ru;;
+		=&gt; nrel_phrase_template: @tpl_unknown;;
+	*);;</code></pre>
+</article>
+<article><h3>Что чему соответствует</h3>
+<table class="small">
+<thead><tr><th>В тексте</th><th>На рисунке</th></tr></thead>
+<tbody>
+<tr><td class="k"><code class="x">@var_… = _[];;</code> и строка <code class="x">nrel_system_identifier: [_language_name_unknown]</code></td><td>переменная-ссылка с идентификатором <code>_language_name_unknown</code>. В рисунке имя записано прямо у узла, отдельная строка не нужна.</td></tr>
+<tr><td class="k"><code class="x">@tpl_unknown = [* … *];;</code></td><td>контур</td></tr>
+<tr><td class="k"><code class="x">concept_message _-&gt; _message;;</code></td><td>пунктирная дуга принадлежности, шаг 1</td></tr>
+<tr><td class="k"><code class="x">_message _-&gt; rrel_entity:: _language_unknown;;</code></td><td>пунктирная дуга и дуга от <code>rrel_entity</code> к ней, шаг 2</td></tr>
+<tr><td class="k"><code class="x">_language_unknown _=&gt; nrel_main_idtf:: @var_…</code></td><td>пунктирная общая дуга и дуга от <code>nrel_main_idtf</code> к ней, шаг 3</td></tr>
+<tr><td class="k"><code class="x">(* _&lt;- lang_ru;; *)</code></td><td>пунктирная дуга от <code>lang_ru</code>, шаг 4</td></tr>
+<tr><td class="k"><code class="x">concept_phrase_about_unknown_language_property -&gt; […]</code></td><td>дуга от класса фраз к прямоугольнику с текстом</td></tr>
+<tr><td class="k"><code class="x">=&gt; nrel_phrase_template: @tpl_unknown;;</code></td><td>общая дуга от прямоугольника к контуру с пометкой <code>nrel_phrase_template</code></td></tr>
+</tbody>
+</table>
+<p>Подчёркивание перед стрелкой в тексте (<code class="x">_-&gt;</code>, <code class="x">_=&gt;</code>) — то же, что пунктир на рисунке: дуга-переменная.</p>
+</article>
+
+<h2 class="sec" id="g11">11. Если открыть gwf как текст</h2>
+<p class="sec-note">Внутри XML из трёх видов элементов: <code class="x">node</code>, <code class="x">pair</code>, <code class="x">contour</code>. Примеры взяты из файла общего шаблона, лишние атрибуты оформления убраны.</p>
+<article><h3>Узел-константа</h3>
+<pre><code>&lt;node type=&quot;node/const/perm/group&quot; idtf=&quot;concept_message&quot; id=&quot;94754700002096&quot; parent=&quot;94754700001056&quot;&gt;
+    &lt;content type=&quot;0&quot; mime_type=&quot;&quot; content_visibility=&quot;false&quot; file_name=&quot;&quot;/&gt;
+    &lt;/node&gt;</code></pre>
+<p><code class="x">type</code> — вид узла, <code class="x">idtf</code> — имя, <code class="x">id</code> — номер внутри файла, <code class="x">parent</code> — номер контура, в котором узел лежит. Если <code class="x">parent="0"</code>, узел снаружи.</p>
+</article>
+<article><h3>Переменная-ссылка — место подстановки</h3>
+<pre><code>&lt;node type=&quot;node/var/perm/general&quot; idtf=&quot;_language_name_unknown&quot; id=&quot;94754700006256&quot; parent=&quot;94754700001056&quot;&gt;
+    &lt;content type=&quot;1&quot; mime_type=&quot;content/term&quot; content_visibility=&quot;true&quot; file_name=&quot;&quot;&gt;&lt;![CDATA[ ]]&gt;&lt;/content&gt;
+    &lt;/node&gt;</code></pre>
+<p>Это узел-переменная (<code class="x">node/var</code>), у которого есть содержимое: <code class="x">content type="1"</code>. Так в файле записано «переменная-ссылка».</p>
+</article>
+<article><h3>Дуга и дуга, которая её помечает</h3>
+<pre><code>&lt;pair type=&quot;pair/var/-/perm/orient&quot; idtf=&quot;&quot; id=&quot;94754700012496&quot; parent=&quot;94754700001056&quot; id_b=&quot;94754700005216&quot; id_e=&quot;94754700006256&quot;&gt;
+    &lt;points/&gt;
+    &lt;/pair&gt;
+
+&lt;pair type=&quot;pair/var/pos/perm/orient/membership&quot; idtf=&quot;&quot; id=&quot;94754700013536&quot; parent=&quot;94754700001056&quot; id_b=&quot;94754700007296&quot; id_e=&quot;94754700012496&quot;&gt;
+    &lt;points/&gt;
+    &lt;/pair&gt;</code></pre>
+<p><code class="x">id_b</code> — откуда дуга, <code class="x">id_e</code> — куда. У второй дуги <code class="x">id_e</code> равен <code class="x">id</code> первой: она заканчивается на дуге, а не на узле. Слово <code class="x">var</code> в типе — дуга-переменная; <code class="x">/-/</code> — общая дуга; <code class="x">membership</code> — дуга принадлежности.</p>
+</article>
+<article><h3>Фраза</h3>
+<pre><code>&lt;node type=&quot;node/const/perm/general&quot; idtf=&quot;&quot; id=&quot;94754700020816&quot; parent=&quot;0&quot;&gt;
+    &lt;content type=&quot;1&quot; mime_type=&quot;content/term&quot; content_visibility=&quot;true&quot; file_name=&quot;&quot;&gt;&lt;![CDATA[В базе знаний нет таких сведений про ${_language_name_unknown}.]]&gt;&lt;/content&gt;
+    &lt;/node&gt;</code></pre>
+<p>Узел-константа с содержимым. Текст фразы лежит внутри <code class="x">CDATA</code>.</p>
+</article>
+
+<h2 class="sec" id="g12">12. Что говорить на защите</h2>
+<p class="sec-note">Если попросят прочитать рисунок или объяснить общий шаблон.</p>
+<article><h3>Как читать вслух</h3>
+<div class="say"><b>общий шаблон</b><p>Слева класс фраз и две фразы. От каждой фразы идёт дуга с отношением «шаблон фразы*» к контуру — это образец. В образце: сообщение, его сущность по роли «сущность'» и основной русский идентификатор этой сущности. Идентификатор — переменная-ссылка, её имя стоит в тексте фразы в фигурных скобках со знаком доллара. Система находит в базе конструкцию по этому образцу и подставляет найденный текст.</p></div>
+<div class="say"><b>почему он общий</b><p>В образце нет отношения, о котором спрашивают. Он достаёт только название языка, а оно есть у любого языка. Поэтому один образец обслуживает все пять типов вопроса, когда нужных сведений в базе нет.</p></div>
+</article>
+<article class="short"><h3>Почему дуги в образце пунктирные?</h3>
+<p>Это дуги-переменные. Образец — не утверждение о базе, а запрос к ней: «найди дуги такого вида».</p></article>
+<article class="short"><h3>Чем переменная-ссылка отличается от обычной переменной?</h3>
+<p>Обычная переменная — какой-то узел. Переменная-ссылка — какой-то текст. Подставлять в фразу можно только текст, поэтому места подстановки — именно ссылки.</p></article>
+<article class="short"><h3>Что будет, если образец в базе не найдётся?</h3>
+<p>Фраза не соберётся, ответа не будет. У общего шаблона так не бывает: название есть у каждого языка. У обычных шаблонов от этого защищает правило ответа — оно заранее проверяет, что нужные сведения есть.</p></article>
+<article class="short"><h3>Можно ли положить в базу и gwf, и scs?</h3>
+<p>Нет. Оба файла описывают одни и те же фразы, и в базе они окажутся дважды. В базе лежит один из двух вариантов.</p></article>
+
+<footer><p>Схемы и таблицы собраны скриптом <code class="x">tools/build_gwf_guide.py</code> из самих файлов gwf.</p></footer>
+
+</div>
+</body></html>

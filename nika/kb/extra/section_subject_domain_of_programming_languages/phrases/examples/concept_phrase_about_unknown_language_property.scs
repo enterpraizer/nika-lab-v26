@@ -1,10 +1,39 @@
 /* Фразы класса concept_phrase_about_unknown_language_property (ЛР3).
-   Образца у них нет: подставлять нечего, текст выдаётся как есть. */
+
+   Общий образец для всех пяти типов вопроса: из базы берётся только то, что
+   у этих вопросов общее, — русское название языка, выделенного в сообщении.
+   Подстановка одна. Обе фразы класса используют образец @tpl_unknown. */
+
+@var_language_name_unknown = _[];;
+@var_language_name_unknown
+=> nrel_system_identifier:
+	[_language_name_unknown];;
+
+/* Образец: сообщение, выделенный в нём язык программирования и его русский
+   идентификатор. Отношение, о котором спросили, в образец не входит. */
+@tpl_unknown = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_unknown;;
+
+	_language_unknown
+	_=> nrel_main_idtf::
+		@var_language_name_unknown
+		(* _<- lang_ru;; *);;
+*];;
 
 concept_phrase_about_unknown_language_property ->
-	[В базе знаний нет таких сведений об этом языке программирования.]
-	(* <- lang_ru;; *);;
+	[В базе знаний нет таких сведений про ${_language_name_unknown}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_unknown;;
+	*);;
 
 concept_phrase_about_unknown_language_property ->
-	[Этого о данном языке программирования я пока не знаю.]
-	(* <- lang_ru;; *);;
+	[Этого про ${_language_name_unknown} я пока не знаю.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_unknown;;
+	*);;

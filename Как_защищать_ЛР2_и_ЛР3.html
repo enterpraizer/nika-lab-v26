@@ -242,7 +242,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere}
 <li><b>Формулировок про автора стало четыре вместо двух.</b> Было «Кто создал X?» и «Кто автор X?». Добавились «Кто разработал X?» и «Кто создал X» без знака вопроса.</li>
 <li><b>В следствии этих правил появился второй класс</b> — общий <code>concept_message_about_language_property</code>. Он нужен правилу «сведений нет» из ЛР3.</li>
 <li><b>«Кто автор Пролог?» стало «Кто автор Пролога?»</b> — название поставлено в родительный падеж.</li>
-<li><b>Добавлено восьмое правило про автора — для языка ассемблера x86.</b> В отчёте ЛР2 вопрос «Кто создал язык ассемблера x86?» приведён как пример вопроса без правила. Теперь правило есть, и ответ другой — одна из двух фраз «сведений нет», например «В базе знаний нет таких сведений об этом языке программирования».</li>
+<li><b>Добавлено восьмое правило про автора — для языка ассемблера x86.</b> В отчёте ЛР2 вопрос «Кто создал язык ассемблера x86?» приведён как пример вопроса без правила. Теперь правило есть, и ответ другой — одна из двух фраз «сведений нет», например «В базе знаний нет таких сведений про язык ассемблера x86».</li>
 </ol>
 <div class="mine"><b>что из этого следует на защите</b><p>Как пример нераспознанного вопроса задавать не «Кто создал язык ассемблера x86?», а «Какой компилятор у Python?» — такого типа вопроса нет вообще.</p></div>
 </article>
@@ -536,7 +536,7 @@ rrel_entity                              ──▶  (эта связь)</code></
 <tr><td class="k"><code>…about_implementation</code></td><td><code>nrel_language_implementation</code></td><td>Реализация языка программирования … — ….<br>Для языка программирования … используется реализация «…».</td></tr>
 <tr><td class="k"><code>…about_standard</code></td><td><code>nrel_language_standard</code></td><td>Стандарт языка программирования … — ….<br>Язык программирования … описан стандартом ….</td></tr>
 <tr><td class="k"><code>…about_maintainer</code></td><td><code>nrel_maintaining_organization</code></td><td>Язык программирования … сопровождает ….<br>Сопровождением языка программирования … занимается ….</td></tr>
-<tr><td class="k"><code>…about_unknown_language_property</code></td><td>образца нет</td><td>В базе знаний нет таких сведений об этом языке программирования.<br>Этого о данном языке программирования я пока не знаю.</td></tr>
+<tr><td class="k"><code>…about_unknown_language_property</code></td><td>общий образец: только название языка</td><td>В базе знаний нет таких сведений про ….<br>Этого про … я пока не знаю.</td></tr>
 </tbody>
 </table>
 <p>Система берёт любую из двух фраз класса, поэтому на один и тот же вопрос формулировка бывает разной.</p>
@@ -707,10 +707,10 @@ Trying to generate by formula: lr_answer_about_unknown_language_property
 Compute atomic logical formula  true
 Target is achieved
 MessageHandler: the logic rule lr_answer_about_unknown_language_property is found</code></pre></li>
-<li><span class="t">Фраза без шаблона</span>
-<span class="d"><b>Файл:</b> <code>phrases/examples/concept_phrase_about_unknown_language_property.scs</code>. Подставлять нечего, текст выдаётся как есть.</span>
-<pre><code>MessageHandler: the phrase with the content "Этого о данном языке программирования я пока не знаю." is found
-Generated text: "Этого о данном языке программирования я пока не знаю."</code></pre></li>
+<li><span class="t">Фраза с общим шаблоном</span>
+<span class="d"><b>Файл:</b> <code>phrases/examples/concept_phrase_about_unknown_language_property.scs</code>. Образец достаёт из базы одно — название языка из сообщения. Он общий для всех пяти типов вопроса: отношения, о котором спросили, в нём нет.</span>
+<pre><code>MessageHandler: the phrase with the content "Этого про ${_language_name_unknown} я пока не знаю." is found
+Generated text: "Этого про Haskell я пока не знаю."</code></pre></li>
 </ol>
 <div class="plain"><b>сравните с разбором 4</b><p>Шаг 1 одинаков. Расходятся разборы на шаге 2, и причина одна — строка в файле экземпляра: у Python она есть, у Haskell нет. Ни правила, ни фразы при этом не менялись.</p></div>
 </article>
@@ -752,7 +752,7 @@ MessageHandler: the logic rule lr_not_classified_by_intent_message is found</cod
 <tr><td class="k">Пример</td><td>Какой компилятор у Python?</td><td>Какая реализация у Haskell?</td></tr>
 <tr><td class="k">Распознан ли вопрос</td><td class="no">нет</td><td class="yes">да: известны тип вопроса и язык</td></tr>
 <tr><td class="k">Какое правило отвечает</td><td>штатное <code>lr_not_classified_by_intent_message</code>, приоритет 1</td><td>своё <code>lr_answer_about_unknown_language_property</code>, приоритет 3</td></tr>
-<tr><td class="k">Что отвечает</td><td>«Сформулируйте, пожалуйста, по-другому» и подобное</td><td>«В базе знаний нет таких сведений об этом языке программирования» или «Этого о данном языке программирования я пока не знаю»</td></tr>
+<tr><td class="k">Что отвечает</td><td>«Сформулируйте, пожалуйста, по-другому» и подобное</td><td>«В базе знаний нет таких сведений про Haskell» или «Этого про Haskell я пока не знаю»</td></tr>
 </tbody>
 </table>
 </article>
