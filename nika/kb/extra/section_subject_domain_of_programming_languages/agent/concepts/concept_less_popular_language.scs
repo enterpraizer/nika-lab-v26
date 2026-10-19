@@ -1,0 +1,32 @@
+/* Понятие введено агентом рейтинга TIOBE (ЛР4). Принадлежность ему выводит агент. */
+
+concept_less_popular_language
+<- sc_node_class;
+<= nrel_inclusion:
+	concept_programming_language;
+=> nrel_main_idtf:
+	[менее популярный язык программирования]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[less popular programming language]
+	(* <- lang_en;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (менее популярный язык программирования)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Менее популярный язык программирования - язык программирования, занимающий в рейтинге TIOBE место с 11-го по 50-е.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_programming_language;
+			concept_tiobe_rating_entry
+		};;
+	*);;

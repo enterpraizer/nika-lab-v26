@@ -1,0 +1,38 @@
+/* Фразы ответа класса concept_phrase_about_language_outside_tiobe (ЛР4).
+
+   Значения для подстановки берутся из знаний, которые погрузил агент рейтинга TIOBE:
+   запись рейтинга и её название агент создаёт сам. Подстановок в фразе не больше двух,
+   имена переменных не совпадают с другими файлами базы. Обе фразы используют один образец @tpl_outside. */
+
+@var_language_name_outside = _[];;
+@var_language_name_outside
+=> nrel_system_identifier:
+	[_language_name_outside];;
+
+/* Образец: сообщение, выделенный в нём язык и его русское название. */
+@tpl_outside = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_outside;;
+
+	_language_outside
+	_=> nrel_main_idtf::
+		@var_language_name_outside
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_language_outside_tiobe ->
+	[В первые 50 языков рейтинга TIOBE ${_language_name_outside} не входит.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_outside;;
+	*);;
+
+concept_phrase_about_language_outside_tiobe ->
+	[В рейтинге TIOBE ${_language_name_outside} не попадает даже в первые 50 языков.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_outside;;
+	*);;

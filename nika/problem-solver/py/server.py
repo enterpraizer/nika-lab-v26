@@ -1,6 +1,7 @@
 import argparse
 from sc_kpm import ScServer
 from modules.messageProcessingModule.MessageProcessingModule import MessageProcessingModule
+from modules.tiobeRatingModule.TiobeRatingModule import TiobeRatingModule
 
 from pathlib import Path
 
@@ -19,7 +20,8 @@ def main(args: dict):
 
     with server.connect():
         modules = [
-            MessageProcessingModule()
+            MessageProcessingModule(),
+            TiobeRatingModule()
         ]
         server.add_modules(*modules)
         with server.register_modules():

@@ -2,3 +2,7 @@
 services:
   problem-solver:
     cpuset: "0"
+  py-sc-server:
+    volumes:
+      # ЛР4: код агентов (в том числе агент рейтинга TIOBE) берётся из папки проекта, образ остаётся стандартным
+      - ./problem-solver/py:/nika/problem-solver/problem-solver/py:ro

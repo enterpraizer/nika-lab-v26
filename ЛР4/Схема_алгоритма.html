@@ -1,0 +1,119 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Схема алгоритма агента</title>
+<style>
+  body{margin:0;background:#fff;font-family:"Times New Roman",Georgia,serif}
+  svg{display:block}
+  .b{fill:#fff;stroke:#1c1a17;stroke-width:1.6}
+  .d{fill:#fdf7ec;stroke:#1c1a17;stroke-width:1.6}
+  .t{fill:#0d0c0a;font-size:15px;text-anchor:middle;dominant-baseline:middle}
+  .s{fill:#5a5349;font-size:13px;text-anchor:middle;dominant-baseline:middle;font-style:italic}
+  .ln{stroke:#1c1a17;stroke-width:1.6;fill:none;marker-end:url(#a)}
+</style>
+<!-- Схема алгоритма агента TiobeRatingAgent (ЛР4, вариант 26). Процедуры: run, get_entity, get_tiobe_name,
+     read_page, immerse_entry, derive_popularity. Собрано tools/build_scheme_lr4.py. -->
+<svg width="1000" height="1936" viewBox="0 0 1000 1936" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+<path d="M0,0 L10,5 L0,10 z" fill="#1c1a17"/></marker></defs>
+<rect class="b" x="150" y="10" width="460" height="68" rx="34.0"/>
+<text class="t" x="380" y="34">Создана дуга принадлежности действия</text>
+<text class="t" x="380" y="54">классу action_find_tiobe_rating</text>
+<path class="ln" d="M380,78 L380,108"/>
+<polygon class="d" points="380,108 620.0,156.0 380,204 140.0,156.0"/>
+<text class="t" x="380" y="146">Сообщение о месте в рейтинге</text>
+<text class="t" x="380" y="166">или о популярности языка?</text>
+<path class="ln" d="M620,156 L820,156 L820,190"/>
+<text class="s" x="720" y="146">нет</text>
+<rect class="b" x="680" y="190.0" width="280" height="47" rx="23.5"/>
+<text class="t" x="820" y="214">Завершение без действий</text>
+<path class="ln" d="M380,204 L380,238"/>
+<text class="s" x="402" y="225">да</text>
+<rect class="b" x="160" y="238" width="440" height="68" rx="8"/>
+<text class="t" x="380" y="262">Найти язык, выделенный в сообщении,</text>
+<text class="t" x="380" y="282">по rrel_entity (get_entity)</text>
+<path class="ln" d="M380,306 L380,336"/>
+<rect class="b" x="160" y="336" width="440" height="68" rx="8"/>
+<text class="t" x="380" y="360">Прочитать название языка в рейтинге</text>
+<text class="t" x="380" y="380">nrel_tiobe_name (get_tiobe_name)</text>
+<path class="ln" d="M380,404 L380,434"/>
+<polygon class="d" points="380,434 620.0,482.0 380,530 140.0,482.0"/>
+<text class="t" x="380" y="472">Название в рейтинге</text>
+<text class="t" x="380" y="492">задано?</text>
+<path class="ln" d="M620,482 L820,482 L820,516"/>
+<text class="s" x="720" y="472">нет</text>
+<rect class="b" x="680" y="516.0" width="280" height="68" rx="34.0"/>
+<text class="t" x="820" y="540">Завершение: отвечает</text>
+<text class="t" x="820" y="560">правило «сведений нет»</text>
+<path class="ln" d="M380,530 L380,564"/>
+<text class="s" x="402" y="551">да</text>
+<polygon class="d" points="380,564 620.0,612.0 380,660 140.0,612.0"/>
+<text class="t" x="380" y="602">Страница в кэше свежая? (read_page)</text>
+<text class="t" x="380" y="622">сайт — час, копия — 5 минут</text>
+<path class="ln" d="M380,660 L380,694"/>
+<text class="s" x="402" y="681">нет</text>
+<rect class="b" x="160" y="694" width="440" height="68" rx="8"/>
+<text class="t" x="380" y="718">Скачать HTML-страницу</text>
+<text class="t" x="380" y="738">www.tiobe.com/tiobe-index/ (таймаут 7 с)</text>
+<path class="ln" d="M380,762 L380,792"/>
+<rect class="b" x="160" y="792" width="440" height="68" rx="8"/>
+<text class="t" x="380" y="816">Разобрать таблицы top20 и otherPL: место, язык,</text>
+<text class="t" x="380" y="836">доля; месяц из заголовка; проверить места 1–50</text>
+<path class="ln" d="M380,860 L380,890"/>
+<polygon class="d" points="380,890 620.0,938.0 380,986 140.0,938.0"/>
+<text class="t" x="380" y="928">Страница скачана</text>
+<text class="t" x="380" y="948">и разобрана?</text>
+<path class="ln" d="M620,938 L820,938 L820,972"/>
+<text class="s" x="720" y="928">нет</text>
+<rect class="b" x="690" y="972.0" width="260" height="68" rx="8"/>
+<text class="t" x="820" y="996">Взять сохранённую копию</text>
+<text class="t" x="820" y="1016">tiobe_snapshot.html</text>
+<path class="ln" d="M380,986 L380,1110"/>
+<text class="s" x="402" y="1052">да</text>
+<rect class="b" x="160" y="1110" width="440" height="68" rx="8"/>
+<text class="t" x="380" y="1134">Найти строку языка</text>
+<text class="t" x="380" y="1154">среди мест 1–50</text>
+<path class="ln" d="M820,1040 L820,1076 L490,1076 L490,1110"/>
+<path class="ln" d="M620,612 L978,612 L978,1094 L560,1094 L560,1110"/>
+<text class="s" x="799" y="602">да</text>
+<path class="ln" d="M380,1178 L380,1208"/>
+<rect class="b" x="120" y="1208" width="520" height="89" rx="8"/>
+<text class="t" x="380" y="1232">Снять прежнюю запись рейтинга языка; если язык</text>
+<text class="t" x="380" y="1252">найден — создать запись: место, доля, месяц,</text>
+<text class="t" x="380" y="1274">название «N место (рейтинг за …)» (immerse_entry)</text>
+<path class="ln" d="M380,1297 L380,1327"/>
+<polygon class="d" points="380,1327 620.0,1375.0 380,1423 140.0,1375.0"/>
+<text class="t" x="380" y="1364">Язык найден</text>
+<text class="t" x="380" y="1386">в рейтинге?</text>
+<path class="ln" d="M620,1375 L820,1375 L820,1409"/>
+<text class="s" x="720" y="1365">нет</text>
+<rect class="b" x="690" y="1409.0" width="260" height="68" rx="8"/>
+<text class="t" x="820" y="1432">класс: вне первых 50</text>
+<text class="t" x="820" y="1454">мест рейтинга</text>
+<path class="ln" d="M380,1423 L380,1457"/>
+<text class="s" x="402" y="1444">да</text>
+<polygon class="d" points="380,1457 620.0,1497.0 380,1537 140.0,1497.0"/>
+<text class="t" x="380" y="1497">Место ≤ 10?</text>
+<path class="ln" d="M620,1497 L820,1497 L820,1531"/>
+<text class="s" x="720" y="1487">нет</text>
+<rect class="b" x="690" y="1531.0" width="260" height="68" rx="8"/>
+<text class="t" x="820" y="1554">класс: менее</text>
+<text class="t" x="820" y="1576">популярный язык</text>
+<path class="ln" d="M380,1537 L380,1571"/>
+<text class="s" x="402" y="1558">да</text>
+<rect class="b" x="220" y="1571" width="320" height="47" rx="8"/>
+<text class="t" x="380" y="1594">класс: популярный язык</text>
+<path class="ln" d="M380,1618 L380,1658"/>
+<path class="ln" d="M820,1477 L970,1477 L970,1640 L480,1640 L480,1658"/>
+<path class="ln" d="M820,1599 L820,1640"/>
+<rect class="b" x="160" y="1658" width="440" height="68" rx="8"/>
+<text class="t" x="380" y="1682">Снять прежний класс популярности языка</text>
+<text class="t" x="380" y="1702">и добавить выведенный (derive_popularity)</text>
+<path class="ln" d="M380,1726 L380,1756"/>
+<rect class="b" x="160" y="1756" width="440" height="68" rx="8"/>
+<text class="t" x="380" y="1780">Записать результат действия: запись рейтинга</text>
+<text class="t" x="380" y="1800">или сам язык (create_action_answer)</text>
+<path class="ln" d="M380,1824 L380,1854"/>
+<rect class="b" x="150" y="1854" width="460" height="68" rx="34.0"/>
+<text class="t" x="380" y="1878">Действие завершено успешно; ответ строит</text>
+<text class="t" x="380" y="1898">правило ответа второго приоритета</text>
+</svg>

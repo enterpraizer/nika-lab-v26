@@ -1,0 +1,36 @@
+/* Класс сообщений ЛР4: вопрос, на который отвечают сведения, погружённые агентом рейтинга TIOBE.
+   Сообщение попадает в класс по правилу распознавания из agent/logic_rules/classification. */
+
+concept_message_about_tiobe_place
+<- sc_node_class;
+<- concept_intent_possible_class;
+<= nrel_inclusion:
+    concept_message_about_language_property;
+=> nrel_main_idtf:
+    [сообщение о месте языка программирования в рейтинге TIOBE]
+    (* <- lang_ru;; *);
+    [message about the TIOBE index position of a programming language]
+    (* <- lang_en;; *);
+=> nrel_wit_ai_idtf:
+    [about_tiobe_place];
+<- rrel_key_sc_element:
+    ...
+    (*
+    => nrel_main_idtf:
+    	[Опр. (сообщение о месте языка программирования в рейтинге TIOBE)]
+    	(* <- lang_ru;; *);;
+    <- definition;;
+    <= nrel_sc_text_translation:
+    	...
+    	(*
+    	-> rrel_example:
+    		[Сообщение о месте языка программирования в рейтинге TIOBE - атомарное сообщение, содержащее язык программирования, о популярности которого спрашивают.]
+    		(* <- lang_ru;; *);;
+    	*);;
+    <= nrel_using_constants:
+    	{
+    		concept_atomic_message;
+    		concept_programming_language;
+    		concept_tiobe_rating_entry
+    	};;
+    *);;

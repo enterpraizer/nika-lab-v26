@@ -1,0 +1,51 @@
+/* Фразы ответа класса concept_phrase_about_popular_language (ЛР4).
+
+   Значения для подстановки берутся из знаний, которые погрузил агент рейтинга TIOBE:
+   запись рейтинга и её название агент создаёт сам. Подстановок в фразе не больше двух,
+   имена переменных не совпадают с другими файлами базы. Обе фразы используют один образец @tpl_popular. */
+
+@var_language_name_popular = _[];;
+@var_language_name_popular
+=> nrel_system_identifier:
+	[_language_name_popular];;
+
+@var_popular_entry_name = _[];;
+@var_popular_entry_name
+=> nrel_system_identifier:
+	[_popular_entry_name];;
+
+/* Образец: сообщение, выделенный в нём язык, его русское название и название его записи в рейтинге. */
+@tpl_popular = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_popular;;
+
+	_language_popular
+	_=> nrel_main_idtf::
+		@var_language_name_popular
+		(* _<- lang_ru;; *);;
+
+	_language_popular
+	_=> nrel_tiobe_rating_entry:: _entry_popular;;
+
+	_entry_popular
+	_=> nrel_main_idtf::
+		@var_popular_entry_name
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_popular_language ->
+	[Да, это популярный язык программирования: в рейтинге TIOBE ${_language_name_popular} занимает ${_popular_entry_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_popular;;
+	*);;
+
+concept_phrase_about_popular_language ->
+	[В первую десятку рейтинга TIOBE входит и ${_language_name_popular}: ${_popular_entry_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_popular;;
+	*);;

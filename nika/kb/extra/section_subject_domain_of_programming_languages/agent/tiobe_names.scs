@@ -1,0 +1,35 @@
+/* Названия языков программирования в таблицах рейтинга TIOBE (ЛР4).
+   По этому названию агент рейтинга находит строку языка на web-странице рейтинга.
+   Экземпляры языков описаны в ЛР1, здесь к ним только добавляется отношение nrel_tiobe_name. */
+
+python_language
+=> nrel_tiobe_name:
+	[Python];;
+
+c_language
+=> nrel_tiobe_name:
+	[C];;
+
+cpp_language
+=> nrel_tiobe_name:
+	[C++];;
+
+java_language
+=> nrel_tiobe_name:
+	[Java];;
+
+javascript_language
+=> nrel_tiobe_name:
+	[JavaScript];;
+
+haskell_language
+=> nrel_tiobe_name:
+	[Haskell];;
+
+prolog_language
+=> nrel_tiobe_name:
+	[Prolog];;
+
+assembly_language_x86
+=> nrel_tiobe_name:
+	[Assembly language];;

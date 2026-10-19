@@ -1,0 +1,47 @@
+/* Отношение введено агентом рейтинга TIOBE (ЛР4). Значения заданы в agent/tiobe_names.scs. */
+
+nrel_tiobe_name
+<- sc_node_norole_relation;
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_main_idtf:
+	[название в рейтинге TIOBE*]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[TIOBE index name*]
+	(* <- lang_en;; *);
+=> nrel_first_domain: concept_programming_language;
+=> nrel_second_domain: sc_link;
+=> nrel_definitional_domain:
+	...
+	(*
+	<= nrel_combination:
+		{
+			concept_programming_language;
+			sc_link
+		};;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (название в рейтинге TIOBE*)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Название в рейтинге TIOBE* - бинарное ориентированное отношение, связывающее язык программирования с его названием в таблицах рейтинга TIOBE.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_programming_language;
+			sc_link
+		};;
+	*);;

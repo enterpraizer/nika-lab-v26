@@ -1,0 +1,51 @@
+/* Фразы ответа класса concept_phrase_about_tiobe_place (ЛР4).
+
+   Значения для подстановки берутся из знаний, которые погрузил агент рейтинга TIOBE:
+   запись рейтинга и её название агент создаёт сам. Подстановок в фразе не больше двух,
+   имена переменных не совпадают с другими файлами базы. Обе фразы используют один образец @tpl_place. */
+
+@var_language_name_place = _[];;
+@var_language_name_place
+=> nrel_system_identifier:
+	[_language_name_place];;
+
+@var_place_entry_name = _[];;
+@var_place_entry_name
+=> nrel_system_identifier:
+	[_place_entry_name];;
+
+/* Образец: сообщение, выделенный в нём язык, его русское название и название его записи в рейтинге. */
+@tpl_place = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_place;;
+
+	_language_place
+	_=> nrel_main_idtf::
+		@var_language_name_place
+		(* _<- lang_ru;; *);;
+
+	_language_place
+	_=> nrel_tiobe_rating_entry:: _entry_place;;
+
+	_entry_place
+	_=> nrel_main_idtf::
+		@var_place_entry_name
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_tiobe_place ->
+	[В рейтинге TIOBE ${_language_name_place} занимает ${_place_entry_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_place;;
+	*);;
+
+concept_phrase_about_tiobe_place ->
+	[По рейтингу популярности TIOBE ${_language_name_place} занимает ${_place_entry_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_place;;
+	*);;

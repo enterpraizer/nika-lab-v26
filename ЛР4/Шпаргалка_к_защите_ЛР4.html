@@ -1,0 +1,410 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<title>Защита ЛР4 по ТиИСПИС</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#FFFFFF; --surface:#FAFAF8; --surface-2:#F0EFEB;
+  --ink:#1A1A18; --ink-2:#4A4A46; --ink-3:#77766F;
+  --line:#DEDCD5; --line-strong:#C2BFB5;
+  --accent:#3F4A8A; --accent-soft:#E8EAF4; --accent-ink:#2C3566;
+  --mark:#8A5A20; --mark-soft:#F7EEE1;
+  --ok:#2F6B4A; --ok-soft:#E6F1EA;
+  --serif:"PT Serif",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.6}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.1rem 3rem}
+
+header{padding:2rem 0 1.1rem;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-ink);margin:0 0 .5rem}
+h1{font-family:var(--serif);font-weight:700;font-size:2.1rem;line-height:1.12;margin:0 0 .4rem}
+.sub{color:var(--ink-2);margin:0;font-size:.98rem}
+
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin:1.2rem 0 0}
+.facts h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 .55rem;font-weight:600}
+.fact{display:flex;justify-content:space-between;gap:1rem;padding:.32rem 0;
+  border-bottom:1px dashed var(--line);align-items:baseline}
+.fact:last-child{border-bottom:0}
+.fact dt{color:var(--ink-2);font-size:.92rem;margin:0}
+.fact dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+
+.part{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-ink);border-top:2px solid var(--ink);padding-top:.7rem;margin:2.8rem 0 0}
+h2.sec{font-family:var(--serif);font-weight:700;font-size:1.45rem;margin:2.2rem 0 .25rem}
+.part + h2.sec{margin-top:.5rem}
+.sec-note{color:var(--ink-3);font-size:.9rem;margin:0 0 1rem}
+
+nav.toc{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin:1.4rem 0 0}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 .5rem;font-weight:600}
+nav.toc ol{margin:0;padding-left:1.3rem;columns:2;column-gap:2rem;font-size:.92rem}
+nav.toc li{margin:.15rem 0;break-inside:avoid}
+nav.toc a{color:var(--accent-ink);text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+nav.toc .how{margin:.7rem 0 0;color:var(--ink-2);font-size:.9rem}
+
+article{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:.9rem 1.05rem;margin-bottom:.7rem}
+article h3{display:flex;gap:.7rem;align-items:flex-start;margin:0 0 .6rem;
+  font-size:1rem;font-weight:600;line-height:1.4}
+.n{font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--accent-ink);
+  background:var(--accent-soft);border-radius:4px;padding:.1rem .4rem;flex:none;margin-top:.12rem}
+article p{margin:.55rem 0;color:var(--ink-2);font-size:.95rem}
+article p strong{color:var(--ink);font-weight:600}
+article ul,article ol{margin:.5rem 0;padding-left:1.1rem;color:var(--ink-2);font-size:.95rem}
+article ol{padding-left:1.4rem}
+article li{margin:.25rem 0}
+
+.say,.mine,.plain{padding:.6rem .8rem;border-radius:0 5px 5px 0;margin:.7rem 0 0}
+.say{background:var(--accent-soft);border-left:3px solid var(--accent)}
+.mine{background:var(--mark-soft);border-left:3px solid var(--mark)}
+.plain{background:var(--ok-soft);border-left:3px solid var(--ok)}
+.say>b,.mine>b,.plain>b{display:block;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.2rem}
+.say>b{color:var(--accent-ink)} .mine>b{color:var(--mark)} .plain>b{color:var(--ok)}
+.say p,.mine p,.plain p{margin:0;color:var(--ink);font-size:.92rem}
+
+code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);
+  padding:.08em .32em;border-radius:3px;color:var(--ink)}
+pre{font-family:var(--mono);font-size:.78rem;line-height:1.5;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:6px;padding:.7rem .8rem;overflow-x:auto;
+  margin:.7rem 0;color:var(--ink)}
+pre code{background:none;padding:0}
+pre .c{color:var(--ink-3)}
+pre .hl{background:#FFF3C4;border-radius:2px}
+
+table{border-collapse:collapse;width:100%;font-size:.88rem;margin:.7rem 0}
+th,td{text-align:left;padding:.42rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+td.k{white-space:nowrap;font-weight:600;color:var(--ink)}
+
+/* путь сообщения */
+.flow{list-style:none;margin:.8rem 0 .2rem;padding:0;counter-reset:step}
+.flow li{position:relative;margin:0;padding:0 0 1rem 2.6rem;counter-increment:step}
+.flow li::before{content:counter(step);position:absolute;left:0;top:0;width:1.7rem;height:1.7rem;
+  border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:.8rem;
+  display:flex;align-items:center;justify-content:center}
+.flow li::after{content:"";position:absolute;left:.82rem;top:1.8rem;bottom:.1rem;width:2px;background:var(--line-strong)}
+.flow li:last-child{padding-bottom:0}
+.flow li:last-child::after{display:none}
+.flow .t{display:block;font-weight:600;color:var(--ink);font-size:.98rem}
+.flow .who{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  border-radius:3px;padding:.02rem .35rem;margin-left:.4rem;vertical-align:.08em}
+.who.ours{background:var(--mark-soft);color:var(--mark)}
+.who.stock{background:var(--surface-2);color:var(--ink-3)}
+.flow .d{display:block;color:var(--ink-2);font-size:.92rem;margin-top:.15rem}
+.flow pre{margin:.45rem 0 0;font-size:.72rem}
+
+figure{margin:.8rem 0 .3rem}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line-strong);border-radius:6px}
+figcaption{color:var(--ink-3);font-size:.84rem;margin-top:.35rem}
+
+footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:.85rem}
+
+@page{size:A4;margin:14mm 13mm}
+@media print{
+  body{font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  header{padding-top:0}
+  h1{font-size:20pt}
+  h2.sec{font-size:14pt;break-after:avoid}
+  .sec-note{break-after:avoid}
+  .part{break-after:avoid}
+  article{margin-bottom:5pt}
+  article.short{break-inside:avoid;page-break-inside:avoid}
+  .say,.mine,.plain{break-inside:avoid}
+  article h3{font-size:11pt;break-after:avoid}
+  article p,article ul,article ol{font-size:9.5pt}
+  .say p,.mine p,.plain p{font-size:9pt}
+  pre{font-size:8pt;break-inside:avoid}
+  .flow li{break-inside:avoid}
+  .flow pre{font-size:7pt}
+  .facts,nav.toc,figure{break-inside:avoid}
+  table{font-size:9pt}
+  tr{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+
+/* блоки, перенесённые из прежних шпаргалок */
+article{color:var(--ink-2);font-size:.95rem}
+article h3{color:var(--ink)}
+article pre{color:var(--ink)}
+.tip{background:var(--mark-soft);border-left:3px solid var(--mark);padding:.6rem .8rem;border-radius:0 5px 5px 0;
+  margin:.7rem 0;color:var(--ink);font-size:.92rem}
+.yes{color:var(--ok);font-weight:600} .no{color:#A33;font-weight:600}
+td.c,th.c{text-align:center}
+@media print{ .tip{break-inside:avoid;font-size:9pt} article{font-size:9.5pt} }
+td.k{white-space:normal}
+td code{overflow-wrap:anywhere}
+</style>
+</head><body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">ТиИСПИС · БГУИР · каф. ИИТ</p>
+  <h1>Защита ЛР4 по ТиИСПИС</h1>
+  <p class="sub">Sc-агент рейтинга TIOBE, вариант №26 — «Языки программирования». Сначала объяснение с нуля: что делает агент и как он встроен в NIKA. Потом 7 вопросов преподавателя и то, что ещё могут спросить.</p>
+
+  <dl class="facts">
+    <h2>Это надо назвать не задумываясь</h2>
+    <div class="fact"><dt>Вариант агента</dt><dd>3 · 2.3 · 1 · 2 — web-страница, HTML, процедурная модель, Python</dd></div>
+    <div class="fact"><dt>Источник</dt><dd>страница рейтинга www.tiobe.com/tiobe-index/</dd></div>
+    <div class="fact"><dt>Что выводит</dt><dd>класс популярности языка: первые 10 мест, места 11–50, вне 50</dd></div>
+    <div class="fact"><dt>Процедур агента</dt><dd>6: run, get_entity, get_tiobe_name, read_page, immerse_entry, derive_popularity</dd></div>
+    <div class="fact"><dt>Фрагмент базы ЛР4</dt><dd>42 файлов: 16 правил распознавания, 5 правил ответа, 4 класса фраз / 8 фраз</dd></div>
+    <div class="fact"><dt>Если сайт недоступен</dt><dd>сохранённая копия таблиц рейтинга, ответ всё равно будет</dd></div>
+  </dl>
+</header>
+
+<nav class="toc">
+  <h2>Содержание</h2>
+  <ol>
+    <li><a href="#s1">Вся работа за две минуты</a></li>
+    <li><a href="#s2">Вариант</a></li>
+    <li><a href="#s3">Путь одного вопроса через систему</a></li>
+    <li><a href="#s4">Шесть процедур агента</a></li>
+    <li><a href="#s5">Что появляется в базе знаний</a></li>
+    <li><a href="#s6">Вопросы, правила и фразы</a></li>
+    <li><a href="#s7">Сайт недоступен, языка нет в рейтинге</a></li>
+    <li><a href="#s8">Карта файлов</a></li>
+    <li><a href="#s9">Как запустить и показать</a></li>
+    <li><a href="#s10">Вопросы к защите</a></li>
+    <li><a href="#s11">Что ещё спросят</a></li>
+  </ol>
+  <p class="how">Если времени мало: разделы 1, 3, 9 и 10.</p>
+</nav>
+
+<p class="part">Часть I · с нуля</p>
+
+<h2 class="sec" id="s1">1. Вся работа за две минуты</h2>
+<p class="sec-note">Что требовалось и что сделано.</p>
+<p>Задание ЛР4: написать <b>sc-агента</b> — программу, которая сама запускается, когда в базе знаний появляется нужное событие, берёт знания из какого-то источника, <b>погружает</b> их в базу и <b>выводит</b> на погружённом новые знания. Вариант задаётся четырьмя классами из методички.</p>
+<p>Наш агент отвечает на вопросы «Какое место занимает Python в рейтинге TIOBE?» и «Популярен ли Haskell?». Он скачивает страницу рейтинга популярности языков программирования TIOBE, находит в её таблицах строку нужного языка, записывает место, долю и месяц рейтинга в базу знаний и выводит из места новое знание — к какому классу популярности относится язык. Ответ в чате строят логические правила и фразы с шаблоном, как в ЛР3.</p>
+<div class="plain"><b>главная мысль</b><p>Агент не пишет текст ответа. Он только меняет базу знаний: добавляет запись рейтинга и класс популярности. Текст строит штатный механизм ответа по правилам из базы. Поэтому ответ зависит от того, что агент погрузил.</p></div>
+
+<h2 class="sec" id="s2">2. Вариант</h2>
+<p class="sec-note">Вектор из четырёх классов методички.</p>
+<table>
+<thead><tr><th>Класс</th><th>Выбрано</th><th>Как это видно в работе</th></tr></thead>
+<tbody>
+<tr><td class="k">1. Локальность источников</td><td>3 — web-страницы (скраперы)</td><td>агент скачивает HTML-страницу www.tiobe.com/tiobe-index/</td></tr>
+<tr><td class="k">2. Структура информации</td><td>2.3 — полуструктурированные, html</td><td>данные — две HTML-таблицы: места 1–20 и 21–50</td></tr>
+<tr><td class="k">3. Модель обработки</td><td>1 — процедурная (алгоритмическая)</td><td>разбор таблиц и вывод класса — алгоритм на Python</td></tr>
+<tr><td class="k">4. Язык программирования</td><td>2 — Python</td><td>модуль <code>tiobeRatingModule</code> в <code>py-sc-server</code></td></tr>
+</tbody>
+</table>
+
+<h2 class="sec" id="s3">3. Путь одного вопроса через систему</h2>
+<p class="sec-note">«Какое место занимает Python в рейтинге TIOBE?» — от окна чата до ответа.</p>
+<ol class="flow">
+<li><span class="t">Сообщение попадает в базу знаний <span class="who stock">штатное</span></span>
+<span class="d">Окно чата создаёт узел-сообщение со ссылкой на текст и запускает программу обработки сообщения <code>message_processing_program</code>.</span></li>
+<li><span class="t">Правило распознавания определяет класс и язык <span class="who ours">ЛР4</span></span>
+<span class="d">Текст совпал с одной из четырёх формулировок правила <code>lr_classify_tiobe_place_of_python_lang_message</code>. Сообщение получает класс <code>concept_message_about_tiobe_place</code>, общий класс <code>concept_message_about_language_property</code> и сущность <code>python_language</code> (по <code>rrel_entity</code>).</span></li>
+<li><span class="t">Программа обработки создаёт действие для агента <span class="who ours">ЛР4</span></span>
+<span class="d">Шаг после погоды: действие класса <code>action_find_tiobe_rating</code> с аргументом — сообщением. Появление дуги принадлежности действия этому классу и есть условие инициирования агента.</span></li>
+<li><span class="t">Агент читает страницу и погружает место <span class="who ours">ЛР4</span></span>
+<span class="d">Название языка в рейтинге — «Python» (<code>nrel_tiobe_name</code>). Агент скачивает страницу, разбирает таблицы, находит строку и создаёт запись «1 место (рейтинг за октябрь 2026 года, доля 19,23 %)». Выводит класс <code>concept_popular_language</code>.</span>
+<pre><code>TiobeRatingAgent: get_tiobe_name -&gt; Python
+TiobeRatingAgent: read_page https://www.tiobe.com/tiobe-index/, October 2026, 50 positions
+TiobeRatingAgent: immerse_entry removed 0, created 1: 1 место (рейтинг за октябрь 2026 года, доля 19,23 %)
+TiobeRatingAgent: derive_popularity concept_popular_language (position 1, top 10 of 50)
+TiobeRatingAgent finished successfully</code></pre></li>
+<li><span class="t">Правило ответа выбирает класс фраз <span class="who ours">ЛР4</span></span>
+<span class="d"><code>lr_answer_about_tiobe_place</code> (второй приоритет) срабатывает: сообщение о месте, и у языка есть запись рейтинга. Указывает класс фраз <code>concept_phrase_about_tiobe_place</code>.</span></li>
+<li><span class="t">Фраза собирается по шаблону <span class="who stock">штатное</span></span>
+<span class="d">Образец находит в базе название языка и название записи и подставляет их: «В рейтинге TIOBE Python занимает 1 место (рейтинг за октябрь 2026 года, доля 19,23 %).»</span></li>
+</ol>
+
+<h2 class="sec" id="s4">4. Шесть процедур агента</h2>
+<p class="sec-note">Файл <code>problem-solver/py/modules/tiobeRatingModule/TiobeRatingAgent.py</code>; разбор страницы — в <code>tiobe_source.py</code>.</p>
+<table>
+<thead><tr><th>Процедура</th><th>Что делает</th></tr></thead>
+<tbody>
+<tr><td class="k"><code>run</code></td><td>точка входа: проверяет, что сообщение о месте или популярности, вызывает остальные процедуры, записывает результат действия; любая ошибка — журнал и завершение без падения программы обработки</td></tr>
+<tr><td class="k"><code>get_entity</code></td><td>находит язык, выделенный в сообщении, по ролевому отношению <code>rrel_entity</code></td></tr>
+<tr><td class="k"><code>get_tiobe_name</code></td><td>читает из базы название языка в таблицах рейтинга (<code>nrel_tiobe_name</code>): «C++», «Assembly language»</td></tr>
+<tr><td class="k"><code>read_page</code></td><td>скачивает страницу (таймаут 7 с), разбирает таблицы <code>top20</code> и <code>otherPL</code> и месяц из заголовка и проверяет, что таблицы похожи на рейтинг (места 1–20 и 21–50 без повторов); разобранную страницу держит в памяти час; при ошибке берёт сохранённую копию и снова пробует сайт через 5 минут</td></tr>
+<tr><td class="k"><code>immerse_entry</code></td><td>снимает прежнюю запись рейтинга языка и, если язык есть в таблицах, создаёт новую: место, доля, месяц и русское название</td></tr>
+<tr><td class="k"><code>derive_popularity</code></td><td>выводит новое знание: место ≤ 10 — популярный язык, 11–50 — менее популярный, нет в таблицах — вне первых 50; прежний класс снимает</td></tr>
+</tbody>
+</table>
+<div class="mine"><b>юнит-тесты</b><p>18 тестов в <code>tests/test_tiobe_source.py</code> проверяют разбор без NIKA и без сети: копия страницы, страница без таблиц, сдвиг столбцов, непонятный месяц, повтор языка, испорченная строка, недоступный сайт, граница 10/11, русский месяц. Запуск: <code>python3 -m unittest discover -s tests -v</code> в папке модуля.</p></div>
+
+<h2 class="sec" id="s5">5. Что появляется в базе знаний</h2>
+<p class="sec-note">Погружённое и выведенное агентом, на примере Python.</p>
+<pre><code>python_language =&gt; nrel_tiobe_rating_entry: ...;;      // запись рейтинга
+...  &lt;- concept_tiobe_rating_entry;
+     =&gt; nrel_main_idtf: [1 место (рейтинг за октябрь 2026 года, доля 19,23 %)];
+     =&gt; nrel_rating_position: [1];
+     =&gt; nrel_rating_share: [19.23%];
+     =&gt; nrel_rating_month: [October 2026];;
+python_language &lt;- concept_popular_language;;         // выведено</code></pre>
+<p>Повторный вопрос не задваивает знания: прежняя запись удаляется вместе со ссылками, прежний класс снимается. При перезапуске системы база собирается заново, и погружённое исчезает — агент погрузит его снова при следующем вопросе.</p>
+<p>Места языков по странице за октябрь 2026 года:</p>
+<table>
+<thead><tr><th>Язык</th><th>Название в рейтинге</th><th>Место</th><th>Доля</th><th>Вывод</th></tr></thead>
+<tbody>
+<tr><td class="k">Python</td><td>Python</td><td>1</td><td>19.23%</td><td>популярный</td></tr>
+<tr><td class="k">Си</td><td>C</td><td>2</td><td>11.33%</td><td>популярный</td></tr>
+<tr><td class="k">Си++</td><td>C++</td><td>3</td><td>8.87%</td><td>популярный</td></tr>
+<tr><td class="k">Java</td><td>Java</td><td>4</td><td>8.41%</td><td>популярный</td></tr>
+<tr><td class="k">JavaScript</td><td>JavaScript</td><td>6</td><td>2.77%</td><td>популярный</td></tr>
+<tr><td class="k">Haskell</td><td>Haskell</td><td>41</td><td>0.33%</td><td>менее популярный</td></tr>
+<tr><td class="k">Пролог</td><td>Prolog</td><td>31</td><td>0.49%</td><td>менее популярный</td></tr>
+<tr><td class="k">язык ассемблера x86</td><td>Assembly language</td><td>23</td><td>0.76%</td><td>менее популярный</td></tr>
+</tbody>
+</table>
+
+<h2 class="sec" id="s6">6. Вопросы, правила и фразы</h2>
+<p class="sec-note">По 4 формулировки на каждый из 8 языков: 16 правил распознавания.</p>
+<table>
+<thead><tr><th>Класс сообщения</th><th>Формулировки (X — название языка)</th></tr></thead>
+<tbody>
+<tr><td class="k">сообщение о месте языка программирования в рейтинге TIOBE</td><td>Какое место занимает X в рейтинге TIOBE? · Какое место у X в рейтинге TIOBE? · Какое место занимает X в рейтинге популярности? · Какое место занимает X в рейтинге TIOBE</td></tr>
+<tr><td class="k">сообщение о популярности языка программирования</td><td>Популярен ли X? · Насколько популярен X? · Популярен ли сейчас X? · Популярен ли X</td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr><th>Правило ответа (приоритет 2)</th><th>Класс сообщения</th><th>Условие на язык</th></tr></thead>
+<tbody>
+<tr><td class="k"><code>lr_answer_about_tiobe_place</code></td><td><code>concept_message_about_tiobe_place</code></td><td>у языка есть <code>nrel_tiobe_rating_entry</code></td></tr>
+<tr><td class="k"><code>lr_answer_about_place_outside_tiobe</code></td><td><code>concept_message_about_tiobe_place</code></td><td><code>concept_language_outside_tiobe_top50</code></td></tr>
+<tr><td class="k"><code>lr_answer_about_popular_language</code></td><td><code>concept_message_about_popularity</code></td><td><code>concept_popular_language</code></td></tr>
+<tr><td class="k"><code>lr_answer_about_less_popular_language</code></td><td><code>concept_message_about_popularity</code></td><td><code>concept_less_popular_language</code></td></tr>
+<tr><td class="k"><code>lr_answer_about_popularity_outside_tiobe</code></td><td><code>concept_message_about_popularity</code></td><td><code>concept_language_outside_tiobe_top50</code></td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr><th>Класс фраз</th><th>Фразы</th></tr></thead>
+<tbody>
+<tr><td class="k">фраза о месте языка программирования в рейтинге TIOBE</td><td>В рейтинге TIOBE … занимает ….<br>По рейтингу популярности TIOBE … занимает ….</td></tr>
+<tr><td class="k">фраза о популярном языке программирования</td><td>Да, это популярный язык программирования: в рейтинге TIOBE … занимает ….<br>В первую десятку рейтинга TIOBE входит и …: ….</td></tr>
+<tr><td class="k">фраза о менее популярном языке программирования</td><td>Это не самый популярный язык программирования: в рейтинге TIOBE … занимает ….<br>В первую десятку рейтинга TIOBE … не входит: ….</td></tr>
+<tr><td class="k">фраза о языке программирования вне рейтинга TIOBE</td><td>В первые 50 языков рейтинга TIOBE … не входит.<br>В рейтинге TIOBE … не попадает даже в первые 50 языков.</td></tr>
+</tbody>
+</table>
+<p>Условие на данные стоит в самом правиле, как в ЛР3: механизм вывода останавливается на первом сработавшем правиле, поэтому правило для «популярного» не должно срабатывать на непопулярный язык. Если агент ничего не погрузил, отвечает правило «сведений нет» третьего приоритета из ЛР3.</p>
+
+<h2 class="sec" id="s7">7. Сайт недоступен, языка нет в рейтинге</h2>
+<p class="sec-note">Две нештатные ситуации, обе проверены в живой системе.</p>
+<p><b>Сайт недоступен</b> (нет интернета, сайт поменял вёрстку). <code>read_page</code> ловит ошибку и берёт копию <code>data/tiobe_snapshot.html</code> — в ней только заголовок и две таблицы рейтинга за октябрь 2026 года. В журнале: <code>read_page snapshot</code> и причина. Чат отвечает по копии.</p>
+<p><b>Языка нет среди первых 50.</b> Агент снимает старую запись, новую не создаёт и выводит класс <code>concept_language_outside_tiobe_top50</code>. Отвечают правила <code>lr_answer_about_place_outside_tiobe</code> и <code>lr_answer_about_popularity_outside_tiobe</code>. Проверено на странице, из которой убрана строка Haskell.</p>
+<div class="say"><b>для опытов</b><p>Адрес страницы задаётся переменной окружения <code>TIOBE_URL</code> контейнера <code>py-sc-server</code>. Без неё — настоящий сайт.</p></div>
+
+<h2 class="sec" id="s8">8. Карта файлов</h2>
+<table>
+<thead><tr><th>Файл</th><th>Что в нём</th></tr></thead>
+<tbody>
+<tr><td class="k"><code>problem-solver/py/modules/tiobeRatingModule/TiobeRatingAgent.py</code></td><td>агент: шесть процедур</td></tr>
+<tr><td class="k"><code>…/tiobeRatingModule/tiobe_source.py</code></td><td>скачивание и разбор страницы, класс популярности, название записи</td></tr>
+<tr><td class="k"><code>…/tiobeRatingModule/data/tiobe_snapshot.html</code></td><td>запасная копия таблиц рейтинга</td></tr>
+<tr><td class="k"><code>…/tiobeRatingModule/tests/test_tiobe_source.py</code></td><td>юнит-тесты</td></tr>
+<tr><td class="k"><code>problem-solver/py/server.py</code></td><td>регистрация модуля <code>TiobeRatingModule</code></td></tr>
+<tr><td class="k"><code>kb/extra/…/agent/</code></td><td>понятия, отношения, действие, названия в рейтинге, правила, фразы</td></tr>
+<tr><td class="k"><code>kb/…/examples/message_processing_program.gwf</code></td><td>шаг агента после шага погоды</td></tr>
+<tr><td class="k"><code>docker-compose.override.yml</code></td><td>монтирует код агента в стандартный образ py-sc-server</td></tr>
+</tbody>
+</table>
+
+<h2 class="sec" id="s9">9. Как запустить и показать</h2>
+<pre><code>cd nika
+docker compose up -d --no-build</code></pre>
+<p>Через 2–3 минуты открыть <code>localhost:3033</code> и задать вопросы сценария. Затем в <code>localhost:8000</code> открыть <code>python_language</code> — у него появились запись рейтинга и класс «популярный язык программирования».</p>
+<table>
+<thead><tr><th>№</th><th>Вопрос</th><th>Ответ системы в проверочном прогоне</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Какое место занимает Python в рейтинге TIOBE?</td><td>По рейтингу популярности TIOBE Python занимает 1 место (рейтинг за октябрь 2026 года, доля 19,23 %).</td></tr>
+<tr><td>2</td><td>Популярен ли Python?</td><td>В первую десятку рейтинга TIOBE входит и Python: 1 место (рейтинг за октябрь 2026 года, доля 19,23 %).</td></tr>
+<tr><td>3</td><td>Какое место у Пролога в рейтинге TIOBE?</td><td>По рейтингу популярности TIOBE Пролог занимает 31 место (рейтинг за октябрь 2026 года, доля 0,49 %).</td></tr>
+<tr><td>4</td><td>Популярен ли Пролог?</td><td>Это не самый популярный язык программирования: в рейтинге TIOBE Пролог занимает 31 место (рейтинг за октябрь 2026 года, доля 0,49 %).</td></tr>
+<tr><td>5</td><td>Насколько популярен Java?</td><td>Да, это популярный язык программирования: в рейтинге TIOBE Java занимает 4 место (рейтинг за октябрь 2026 года, доля 8,41 %).</td></tr>
+<tr><td>6</td><td>Насколько популярен Haskell?</td><td>В первую десятку рейтинга TIOBE Haskell не входит: 41 место (рейтинг за октябрь 2026 года, доля 0,33 %).</td></tr>
+<tr><td>7</td><td>Какое место занимает язык ассемблера x86 в рейтинге TIOBE?</td><td>В рейтинге TIOBE язык ассемблера x86 занимает 23 место (рейтинг за октябрь 2026 года, доля 0,76 %).</td></tr>
+<tr><td>8</td><td>Популярен ли сейчас Си++?</td><td>Да, это популярный язык программирования: в рейтинге TIOBE Си++ занимает 3 место (рейтинг за октябрь 2026 года, доля 8,87 %).</td></tr>
+</tbody>
+</table>
+<p>Журнал агента: <code>docker compose logs py-sc-server</code>. Если Ника долго «печатает»: <code>docker compose restart problem-solver</code>, затем <code>docker compose restart py-sc-server</code>.</p>
+
+<p class="part">Часть II · вопросы</p>
+
+<h2 class="sec" id="s10">10. Вопросы к защите</h2>
+<p class="sec-note">Семь вопросов из методички. За устные ответы — два балла из десяти.</p>
+
+<article class="short"><h3>1. Что такое многоагентная система? Приведите пример.</h3>
+<p>Система, в которой задача решается взаимодействием многих автономных агентов, а не одним управляющим центром. Каждый агент реагирует на изменения общей среды и сам её меняет.</p>
+<p>Пример из нашей работы: одно сообщение в NIKA обрабатывает цепочка агентов — распознавания вопроса, погоды, нашего агента рейтинга, построения ответа, логического вывода, генерации фразы. Никто из них не вызывает другого напрямую: каждый срабатывает на появление в sc-памяти дуги принадлежности своему классу действий.</p></article>
+
+<article class="short"><h3>2. Какие бывают многоагентные системы?</h3>
+<p>По устройству агентов — <b>однородные</b> и <b>неоднородные</b>. По характеру взаимодействия — <b>кооперативные</b> (общая задача) и <b>конкурирующие</b>. По управлению — <b>централизованные</b> и <b>децентрализованные</b>. По способу взаимодействия — с обменом сообщениями и через общую память.</p>
+<p>NIKA — неоднородная, кооперативная, децентрализованная система с общей средой: агенты разного назначения вместе обрабатывают сообщение и общаются только через sc-память.</p></article>
+
+<article class="short"><h3>3. Зачем нужно создавать многоагентные системы? Возможно ли разрабатывать интеллектуальные системы, не являющиеся многоагентными?</h3>
+<p>Ради <b>автономности</b> (изменение одного агента не трогает остальных), <b>децентрализации</b> (нет единого центра, изменения локальны) и <b>параллельности</b> (агенты работают одновременно).</p>
+<p>Неагентную интеллектуальную систему построить можно, но при развитии она становится монолитом: каждое новое умение требует правки центрального кода. Наш агент добавлен без правки чужого кода — новым модулем, файлами базы и одним шагом в программе обработки.</p></article>
+
+<article class="short"><h3>4. Что такое интеллектуальная система?</h3>
+<p>Система, которая решает задачи на основе <b>явно представленных знаний</b>, умеет их пополнять и выводить новые. Знания хранятся отдельно от механизма обработки и меняются без перепрограммирования.</p>
+<p>У нас: правила ответа, классы сообщений и фразы лежат в базе знаний. Агент пополняет базу знаниями со страницы рейтинга и выводит новое знание — класс популярности.</p></article>
+
+<article class="short"><h3>5. Что такое агент? Какие бывают агенты?</h3>
+<p>Агент — субъект действия: процедура, которая автономно реагирует на изменения среды и может её изменять.</p>
+<p>В Технологии OSTIS sc-агенты бывают <b>атомарные</b> и <b>неатомарные</b> (коллективы агентов); по реализации — <b>платформенно-зависимые</b> (C++, внутри платформы) и <b>платформенно-независимые</b> (подключаются к sc-серверу по websocket: Python, TypeScript). Ещё делят на информационные (работают только с памятью) и эффекторные/рецепторные (взаимодействуют с внешней средой).</p>
+<p>Наш агент — атомарный, платформенно-независимый, на Python; он ещё и рецепторный по сути: берёт сведения из внешней среды — web-страницы.</p></article>
+
+<article class="short"><h3>6. Что входит в спецификацию любого агента?</h3>
+<ul>
+<li><b>условие инициирования</b> — появление дуги принадлежности действия классу <code>action_find_tiobe_rating</code>;</li>
+<li><b>результат</b> — запись рейтинга у языка и класс популярности языка в базе; действие завершено успешно;</li>
+<li><b>входные данные</b> — сообщение, его класс, выделенный язык, название языка в рейтинге, HTML-страница TIOBE;</li>
+<li><b>выходные данные</b> — запись класса <code>concept_tiobe_rating_entry</code> (место, доля, месяц, название), принадлежность языка одному из трёх классов популярности, результат действия;</li>
+<li><b>процедуры</b> — run, get_entity, get_tiobe_name, read_page, immerse_entry, derive_popularity;</li>
+<li><b>схема алгоритма</b> — рисунок в отчёте и файл <code>Схема_алгоритма.png</code>.</li>
+</ul></article>
+
+<article class="short"><h3>7. Какие задачи позволяет решать текущая реализация платформы OSTIS?</h3>
+<ul>
+<li><b>хранение</b> семантических сетей в sc-памяти;</li>
+<li><b>поиск и генерацию</b> конструкций по шаблонам;</li>
+<li><b>логический вывод</b> по правилам (<code>scl-machine</code>);</li>
+<li><b>событийную модель</b> для sc-агентов;</li>
+<li><b>интерпретацию программ</b> — неатомарных действий с переходами <code>nrel_then</code>, <code>nrel_else</code>, <code>nrel_goto</code>;</li>
+<li><b>сетевой доступ</b> к памяти по websocket (JSON) — агенты на любом языке;</li>
+<li><b>интерфейс</b> — sc-web для просмотра базы.</li>
+</ul>
+<p>Всё это использовано: хранение и поиск — база предметной области, вывод — правила ответа, события и программы — агент и его шаг, сетевой доступ — Python-модуль, интерфейс — показ в sc-web.</p></article>
+
+<h2 class="sec" id="s11">11. Что ещё спросят</h2>
+
+<article class="short"><h3>Где тут «вывод новых знаний на погружённых»?</h3>
+<p>Сначала агент погружает факт со страницы — место языка. Потом из погружённого места выводит то, чего на странице нет: принадлежность языка классу популярности. Правила ответа о популярности опираются именно на выведенный класс, а не на место.</p></article>
+
+<article class="short"><h3>Почему вариант — скрапер, а не внешний сервис?</h3>
+<p>У TIOBE нет API: данные есть только на web-странице для людей. Агент разбирает HTML, как браузер: находит таблицы по <code>id</code>, строки и ячейки. Это и есть класс источника «web-страницы (скраперы)».</p></article>
+
+<article class="short"><h3>Не нарушаем ли мы правила сайта?</h3>
+<p><code>robots.txt</code> сайта запрещает только служебный раздел <code>/wp-admin/</code>. Агент делает один запрос и держит разобранную страницу час, представляется своим User-Agent. В репозитории хранится не страница целиком, а только таблицы рейтинга.</p></article>
+
+<article class="short"><h3>Что будет, если TIOBE поменяет вёрстку?</h3>
+<p>Разбор проверяет, что таблицы похожи на рейтинг: в первой ровно места 1–20, во второй места 21–50, доля — число с процентом, языки не повторяются. Если сайт добавит столбец или поменяет заголовок, разбор бросит понятную ошибку, агент запишет её в журнал и ответит по сохранённой копии, а не выдаст неверное место. Это проверено юнит-тестами.</p></article>
+
+<article class="short"><h3>Почему название языка в рейтинге хранится в базе, а не в коде?</h3>
+<p>Названия в рейтинге отличаются от наших: «C++» вместо «Си++», «Assembly language» вместо «язык ассемблера x86». Отношение <code>nrel_tiobe_name</code> в базе знаний позволяет подключить новый язык без правки агента — достаточно файла базы.</p></article>
+
+<article class="short"><h3>Почему ответ иногда сформулирован по-другому?</h3>
+<p>В каждом классе фраз две фразы, система выбирает любую. Это требование ЛР3, которое сохранено.</p></article>
+
+<footer>
+  <p>Код агента: <code>problem-solver/py/modules/tiobeRatingModule</code>. База знаний ЛР4: <code>kb/extra/section_subject_domain_of_programming_languages/agent</code>.</p>
+</footer>
+
+</div>
+</body></html>

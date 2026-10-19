@@ -1,0 +1,32 @@
+/* Понятие введено агентом рейтинга TIOBE (ЛР4). Экземпляры создаёт агент по web-странице рейтинга. */
+
+concept_tiobe_rating_entry
+<- sc_node_class;
+=> nrel_main_idtf:
+	[запись рейтинга TIOBE]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[TIOBE index entry]
+	(* <- lang_en;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (запись рейтинга TIOBE)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Запись рейтинга TIOBE - сведения о положении языка программирования в рейтинге популярности TIOBE за определённый месяц: место, доля и месяц рейтинга.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_programming_language;
+			nrel_rating_position;
+			nrel_rating_share;
+			nrel_rating_month
+		};;
+	*);;

@@ -1,0 +1,26 @@
+/* Класс действий, на который подписан агент рейтинга TIOBE (ЛР4).
+   Действие этого класса порождается программой обработки сообщений message_processing_program. */
+
+action_find_tiobe_rating
+<- sc_node_class;
+=> nrel_main_idtf:
+	[действие. найти место языка программирования в рейтинге TIOBE]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[action. find the TIOBE index position of a programming language]
+	(* <- lang_en;; *);
+<- actions_class;
+<- atomic_action_class;
+<= nrel_inclusion: information_action;
+<- rrel_key_sc_element:
+	...
+	(*
+	<- explanation;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Действие. найти место языка программирования в рейтинге TIOBE - действие по чтению web-страницы рейтинга популярности языков программирования TIOBE, погружению в базу знаний места языка, выделенного в сообщении, и выводу на нём класса популярности языка.]
+			(* <- lang_ru;; *);;
+		*);;
+	*);;

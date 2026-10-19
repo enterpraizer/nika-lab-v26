@@ -1,0 +1,47 @@
+/* Отношение введено агентом рейтинга TIOBE (ЛР4). Дуги создаёт агент. */
+
+nrel_rating_share
+<- sc_node_norole_relation;
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+<- antireflexive_relation;
+<- asymmetric_relation;
+<- antitransitive_relation;
+=> nrel_main_idtf:
+	[доля в рейтинге*]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[rating share*]
+	(* <- lang_en;; *);
+=> nrel_first_domain: concept_tiobe_rating_entry;
+=> nrel_second_domain: sc_link;
+=> nrel_definitional_domain:
+	...
+	(*
+	<= nrel_combination:
+		{
+			concept_tiobe_rating_entry;
+			sc_link
+		};;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (доля в рейтинге*)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Доля в рейтинге* - бинарное ориентированное отношение, связывающее запись рейтинга TIOBE с долей языка в процентах.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_tiobe_rating_entry;
+			sc_link
+		};;
+	*);;

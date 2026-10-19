@@ -1,0 +1,51 @@
+/* Фразы ответа класса concept_phrase_about_less_popular_language (ЛР4).
+
+   Значения для подстановки берутся из знаний, которые погрузил агент рейтинга TIOBE:
+   запись рейтинга и её название агент создаёт сам. Подстановок в фразе не больше двух,
+   имена переменных не совпадают с другими файлами базы. Обе фразы используют один образец @tpl_less. */
+
+@var_language_name_less = _[];;
+@var_language_name_less
+=> nrel_system_identifier:
+	[_language_name_less];;
+
+@var_less_entry_name = _[];;
+@var_less_entry_name
+=> nrel_system_identifier:
+	[_less_entry_name];;
+
+/* Образец: сообщение, выделенный в нём язык, его русское название и название его записи в рейтинге. */
+@tpl_less = [*
+	concept_message
+	_-> _message;;
+
+	_message
+	_-> rrel_entity:: _language_less;;
+
+	_language_less
+	_=> nrel_main_idtf::
+		@var_language_name_less
+		(* _<- lang_ru;; *);;
+
+	_language_less
+	_=> nrel_tiobe_rating_entry:: _entry_less;;
+
+	_entry_less
+	_=> nrel_main_idtf::
+		@var_less_entry_name
+		(* _<- lang_ru;; *);;
+*];;
+
+concept_phrase_about_less_popular_language ->
+	[Это не самый популярный язык программирования: в рейтинге TIOBE ${_language_name_less} занимает ${_less_entry_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_less;;
+	*);;
+
+concept_phrase_about_less_popular_language ->
+	[В первую десятку рейтинга TIOBE ${_language_name_less} не входит: ${_less_entry_name}.]
+	(*
+		<- lang_ru;;
+		=> nrel_phrase_template: @tpl_less;;
+	*);;

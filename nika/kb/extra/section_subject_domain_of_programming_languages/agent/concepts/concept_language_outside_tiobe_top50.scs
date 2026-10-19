@@ -1,0 +1,32 @@
+/* Понятие введено агентом рейтинга TIOBE (ЛР4). Принадлежность ему выводит агент. */
+
+concept_language_outside_tiobe_top50
+<- sc_node_class;
+<= nrel_inclusion:
+	concept_programming_language;
+=> nrel_main_idtf:
+	[язык программирования вне первых 50 мест рейтинга TIOBE]
+	(* <- lang_ru;; *);
+=> nrel_main_idtf:
+	[programming language outside the TIOBE top 50]
+	(* <- lang_en;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+	=> nrel_main_idtf:
+		[Опр. (язык программирования вне первых 50 мест рейтинга TIOBE)]
+		(* <- lang_ru;; *);;
+	<- definition;;
+	<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+			[Язык программирования вне первых 50 мест рейтинга TIOBE - язык программирования, которого нет среди первых 50 языков рейтинга TIOBE.]
+			(* <- lang_ru;; *);;
+		*);;
+	<= nrel_using_constants:
+		{
+			concept_programming_language;
+			concept_tiobe_rating_entry
+		};;
+	*);;
